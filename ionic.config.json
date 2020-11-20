@@ -1,0 +1,7 @@
+{
+  "name": "TiendaReact",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}

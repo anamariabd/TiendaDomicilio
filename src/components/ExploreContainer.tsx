@@ -1,0 +1,59 @@
+import React from 'react';
+import { IonButtons, IonFooter, IonContent, IonHeader, IonMenuButton, IonPage, IonSearchbar, IonToolbar } from '@ionic/react';
+import Productos from './Productos'
+import Carrito from './Carrito'
+import './ExploreContainer.css';
+import Historial from './Historial'
+import Inicio from './Inicio';
+import Buscador from './Buscador'
+import BuscarTienda from './BuscarTienda';
+
+interface ContainerProps {
+  name: string;
+}
+
+const ExploreContainer: React.FC<ContainerProps> = ({ name }) => {
+  return (
+    <div className="container">
+
+      {(() => {
+         switch (name) {
+         case 'Inicio':
+         return (
+           <div>
+          <Buscador/>
+          <Productos/>
+           </div>
+           
+         )
+         case 'Carrito':
+         return ( 
+          <Carrito/>         )
+         case 'Notificaciones':
+         return (
+          <h1> Las notificaciones</h1>
+         )
+         case 'Productos':
+         return (
+          <Productos/>
+         )
+         case 'Tienda':
+         return (
+          <BuscarTienda/>
+         )
+         case 'Historial':
+         return ( <Historial/>
+
+         )
+         default:
+         return (
+           <div>404 NOT FOUND :c</div>
+         )
+        }
+
+       })()}
+    </div>
+  );
+};
+
+export default ExploreContainer;

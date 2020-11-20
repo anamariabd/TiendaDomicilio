@@ -1,0 +1,21 @@
+#List-Corner{
+    position: relative;
+  float: right;
+  
+  --inner-border-width: 0 0 0 0;
+}
+
+#List-Corner ion-item{
+
+  position: relative;
+    float: right;
+}
+
+#title{
+  margin-top: 10px;
+  font-size: 24px;
+}
+
+#page{
+  margin-left: 0px;
+}
