@@ -24,11 +24,11 @@ const BuscarTienda: React.FC = () => (
                     </div>
         <IonLabel>Tienda mi super fresh</IonLabel>
                     <span>500Lb</span>
-                    <p>Stock disponible</p>
+                    <p>Localización</p>
                     
                 </div>
             </div>
-        <Clasificacion/> 
+      <div> <Clasificacion/> </div>  
         <input type="button" name = "submit" className="btn" value="Ver tienda"/>
       </IonItem>
       <IonItem href = "#">
@@ -41,11 +41,11 @@ const BuscarTienda: React.FC = () => (
 
         <IonLabel>Tienda la barata</IonLabel>
                     <span>500Lb</span>
-                    <p>Stock disponible</p>
+                    <p>Localización</p>
                     
                 </div>
             </div>
-        <Clasificacion/> 
+            <div> <Clasificacion/> </div>  
         <input type="button" name = "submit" className="btn" value="Ver tienda"/>
       </IonItem>
     </IonList>

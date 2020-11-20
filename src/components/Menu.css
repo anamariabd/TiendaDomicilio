@@ -1,29 +1,38 @@
 ion-menu ion-content {
-  --background: var(--ion-item-background, var(--ion-background-color, rgb(190, 104, 104)));
+  --background: var(--ion-item-background, var(--ion-background-color, rgb(255, 255, 255)));
+
+  
+
 }
 
 ion-menu{
-  --width: 280px;
+  --width: 290px;
   --max-width: 280px;
 }
 
 ion-menu.md ion-content {
+  
   --padding-start: 8px;
   --padding-end: 8px;
   --padding-top: 50px;
   --padding-bottom: 20px;
 }
 
+
 ion-menu.md ion-list {
   padding: 20px 0;
+
 }
 
 ion-menu.md ion-note {
   margin-bottom: 30px;
 }
 
+
+
 ion-menu.md ion-list-header, ion-menu.md ion-note {
   padding-left: 25px;
+  
 }
 
 ion-menu.md ion-list#list {

@@ -1,58 +1,66 @@
 import React, { Fragment, useState } from 'react';
-import { IonLabel, IonListHeader, IonItem, IonSelect, IonSelectOption, IonButtons, IonSearchbar, IonToolbar, IonButton } from '@ionic/react';
+import { IonLabel, IonIcon, IonGrid, IonRow, IonList,IonSelect,IonCardTitle, IonCol, IonCard,IonCardContent,  IonItem, IonContent, IonSelectOption, IonButtons, IonSearchbar, IonToolbar, IonButton } from '@ionic/react';
+import { searchCircleOutline, searchCircleSharp} from 'ionicons/icons';
+
 import '../Styles/styles.css'
+import './Productos.css'
 
 const Productos: React.FC = () => {
 
   const [precio, setPrecio] = useState<string>();
 
     return(
-        <Fragment>
-             <IonListHeader>
-            <IonLabel>
-              Buscar por:
-            </IonLabel>
-          </IonListHeader>
-
+        <Fragment>    
+  <IonGrid>
+    <IonRow>
+      <IonCol size="9">
+        <IonSearchbar animated placeholder="Buscar"></IonSearchbar>
+      </IonCol>
+      <IonCol size="2">
+        <IonButton id="botonBuscar">
+          <IonIcon md={searchCircleOutline}></IonIcon>
+        </IonButton>
+      </IonCol>
+    </IonRow>
+    <IonRow>
+      <IonCol>
+        <IonList>
           <IonItem>
-            <IonLabel>Precio</IonLabel>
-            <IonSelect value={precio} placeholder="Select One" onIonChange={e => setPrecio(e.detail.value)}>
-              <IonSelectOption value="500 - 1000">500 - 1000</IonSelectOption>
-              <IonSelectOption value="1100 - 2000">1100 - 2000</IonSelectOption>
-              <IonSelectOption value="2100 - 3000">2100 - 3000</IonSelectOption>
-              <IonSelectOption value="3100 - 4000">3100 - 4000</IonSelectOption>
-              <IonSelectOption value="4100 - 5000">4100 - 5000</IonSelectOption>              
-              <IonSelectOption value="5100 - 6000">5100 - 6000</IonSelectOption>
+            <IonLabel>Ordenar por</IonLabel>
+            <IonSelect value="brown" okText="Aceptar" cancelText="Cancelar">
+              <IonSelectOption value="brown">Precio</IonSelectOption>
+              <IonSelectOption value="blonde">Marca</IonSelectOption>
+              <IonSelectOption value="black">Categoria</IonSelectOption>
             </IonSelect>
           </IonItem>
+        </IonList>
+      </IonCol>
+    </IonRow>
+    <IonRow>
+      <div id="articles">
+        <IonCard  className="article-item" id = "article-template">
+          <div className = "image-wrap">
+          <img id="img" src="https://www.arrozroa.com/landingarrozroa/wp-content/uploads/2019/12/arroz-roa-fortiplus.png" alt="arroz"></img>
+          </div>
+          <IonCardContent>
+            <IonCardTitle>
+              Arroz 
+            </IonCardTitle>
+            <p>
+              Peso: 500gr
+              Marca: roa
+              Precio : 2.500
+            </p>
+          </IonCardContent>
+        </IonCard>
+      </div>
+      
+      
+      
+    </IonRow>
 
-          <IonItem>
-            <IonLabel>Marca</IonLabel>
-            <IonSelect value={precio} placeholder="Select One" onIonChange={e => setPrecio(e.detail.value)}>
-              <IonSelectOption value="female">Sin marca</IonSelectOption>
-              <IonSelectOption value="male">1100 - 2000</IonSelectOption>
-              <IonSelectOption value="male">2100 - 3000</IonSelectOption>
-              <IonSelectOption value="male">3100 - 4000</IonSelectOption>
-              <IonSelectOption value="male">4100 - 5000</IonSelectOption>              
-              <IonSelectOption value="male">5100 - 6000</IonSelectOption>
-            </IonSelect>
-          </IonItem>
-
-          <input type="button" name = "submit" className="btn" value="Buscar"/>
-
-            <div id = "articles">
-                <div className="article-item" id = "article-template">
-                    <div className = "image-wrap">
-                        <img src="https://esenserio.com/wp-content/uploads/2020/04/arroz_diana_500gr.jpg" alt = "paisaje">
-                         </img>
-                    </div>
-                    <h2>Arroz Diana</h2>
-                    <span>500Lb</span>
-                    <p>Tienda La Barata</p>
-                    <p>Stock disponible</p>
-                    
-                </div>
-            </div>
+  </IonGrid>
+  
         </Fragment>
     );
 

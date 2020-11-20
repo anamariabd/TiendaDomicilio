@@ -21,7 +21,6 @@ const ExploreContainer: React.FC<ContainerProps> = ({ name }) => {
          case 'Inicio':
          return (
            <div>
-          <Buscador/>
           <Productos/>
            </div>
            
