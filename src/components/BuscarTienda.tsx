@@ -1,5 +1,5 @@
 import React from 'react';
-import Clasificacion from './Clasificación' 
+import Clasificacion from '../SingleComponents/Clasificación' 
 import Buscador from './Buscador'
 import '../Styles/styles.css'
 import { IonList, IonItem, IonLabel, IonInput, IonToggle, IonRadio, IonCheckbox, IonItemSliding, IonItemOption, IonItemOptions, IonContent } from '@ionic/react';
