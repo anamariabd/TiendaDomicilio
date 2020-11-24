@@ -6,7 +6,6 @@ import './ExploreContainer.css';
 import Historial from './Historial'
 import Notificaciones from './Notificaciones'
 import Inicio from './Inicio';
-import Buscador from './Buscador'
 import BuscarTienda from './BuscarTienda';
 
 interface ContainerProps {
