@@ -13,8 +13,9 @@ import {
 
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import { timeOutline, timeSharp, notificationsOutline, homeOutline, homeSharp, notificationsSharp, cartOutline, cartSharp, locationOutline, locationSharp, trashOutline, trashSharp,  cart } from 'ionicons/icons';
+import { timeOutline, timeSharp, notificationsOutline, homeOutline, homeSharp, notificationsSharp, cartOutline, cartSharp, locationOutline, locationSharp, trashOutline, trashSharp, storefrontOutline, storefrontSharp} from 'ionicons/icons';
 import './Menu.css';
+import { ENGINE_METHOD_NONE } from 'constants';
 
 interface AppPage {
   url: string;
@@ -23,8 +24,40 @@ interface AppPage {
   title: string;
 }
 
+const appPagesTienda: AppPage[] = [
+  {
+    title: 'Inicio',
+    url: '/page/Inicio',
+    iosIcon: homeOutline,    mdIcon: homeSharp
+  },
+  {
+    title: 'Reportes',
+    url: '/page/Reportes',
+    iosIcon: cartOutline,    mdIcon: cartSharp
+  },
+  {
+    title: 'Pedidos',
+    url: '/page/Pedidos',
+    iosIcon: notificationsOutline,    mdIcon: notificationsSharp
+  },
+  {
+    title: 'Mis tiendas',
+    url: '/page/Tiendas',
+    iosIcon: storefrontOutline,    mdIcon: storefrontSharp
+  },
+  {
+    title: 'Domiciliarios',
+    url: '/page/Domiciliarios',
+    iosIcon: timeOutline,    mdIcon: timeSharp
+  },
+  {
+    title: 'Mis productos',
+    url: '/page/MisProductos',
+    iosIcon: timeOutline,    mdIcon: timeSharp
+  }
+]
+
 const appPages: AppPage[] = [
-  
   {
     title: 'Inicio',
     url: '/page/Inicio',
@@ -63,9 +96,10 @@ const appPages: AppPage[] = [
   },
 ];
 
-const Menu: React.FC = () => {
+const Menu: React.FC<{TypeUser:string}> = ({TypeUser}) => {
   const location = useLocation();
 
+  var probando = appPages
   return (
     <IonMenu contentId="main" type="overlay" >
       <IonContent>
@@ -75,12 +109,13 @@ const Menu: React.FC = () => {
         </IonAvatar>
           <IonListHeader>Usuario Cliente</IonListHeader>
           <IonNote>Haz un pedido!</IonNote>
-          {appPages.map((appPage, index) => {
+          
+          {probando.map((appPages, index) => {
             return (
               <IonMenuToggle key={index} autoHide={false}>
-                <IonItem className={location.pathname === appPage.url ? 'selected' : ''} routerLink={appPage.url} routerDirection="none" lines="none" detail={false}>
-                  <IonIcon slot="start" ios={appPage.iosIcon} md={appPage.mdIcon} />
-                  <IonLabel>{appPage.title}</IonLabel>
+                <IonItem className={location.pathname === appPages.url ? 'selected' : ''} routerLink={appPages.url} routerDirection="none" lines="none" detail={false}>
+                  <IonIcon slot="start" ios={appPages.iosIcon} md={appPages.mdIcon} />
+                  <IonLabel>{appPages.title}</IonLabel>
                 </IonItem>
               </IonMenuToggle>
             );

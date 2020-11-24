@@ -4,6 +4,7 @@ import Productos from './Productos'
 import Carrito from './Carrito'
 import './ExploreContainer.css';
 import Historial from './Historial'
+import Notificaciones from './Notificaciones'
 import Inicio from './Inicio';
 import Buscador from './Buscador'
 import BuscarTienda from './BuscarTienda';
@@ -22,15 +23,14 @@ const ExploreContainer: React.FC<ContainerProps> = ({ name }) => {
          return (
            <div>
           <Productos/>
-           </div>
-           
+           </div>    
          )
          case 'Carrito':
          return ( 
           <Carrito/>         )
          case 'Notificaciones':
          return (
-          <h1> Las notificaciones</h1>
+          <Notificaciones/>
          )
          case 'Productos':
          return (
@@ -41,8 +41,8 @@ const ExploreContainer: React.FC<ContainerProps> = ({ name }) => {
           <BuscarTienda/>
          )
          case 'Historial':
-         return ( <Historial/>
-
+         return ( 
+         <Historial/>
          )
          default:
          return (
