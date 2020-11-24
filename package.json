@@ -45,6 +45,7 @@
   },
   "devDependencies": {
     "@capacitor/cli": "2.4.2",
+    "@ionic/lab": "3.2.9",
     "react-scripts": "3.4.0"
   },
   "description": "An Ionic project"
