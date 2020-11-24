@@ -15,6 +15,8 @@
     "@types/react-dom": "^16.9.4",
     "@types/react-router": "^5.1.4",
     "@types/react-router-dom": "^5.1.3",
+    "cordova-plugin-firebase": "^2.0.5",
+    "firebase": "^8.1.1",
     "ionicons": "^5.0.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
@@ -45,7 +47,11 @@
   },
   "devDependencies": {
     "@capacitor/cli": "2.4.2",
+<<<<<<< HEAD
     "@ionic/lab": "3.2.9",
+=======
+    "@types/firebase": "^3.2.1",
+>>>>>>> 4050575c4e18508a2783a8601091c7c0c074b7fd
     "react-scripts": "3.4.0"
   },
   "description": "An Ionic project"

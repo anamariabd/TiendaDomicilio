@@ -15,7 +15,6 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { timeOutline, timeSharp, notificationsOutline, homeOutline, homeSharp, notificationsSharp, cartOutline, cartSharp, locationOutline, locationSharp, trashOutline, trashSharp, storefrontOutline, storefrontSharp} from 'ionicons/icons';
 import './Menu.css';
-import { ENGINE_METHOD_NONE } from 'constants';
 
 interface AppPage {
   url: string;
