@@ -1,11 +1,13 @@
 import { IonButtons, IonListHeader, IonContent, IonItem, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar, IonIcon} from '@ionic/react';
 import React from 'react';
-import { useParams } from 'react-router';
 import {cartSharp, cartOutline, bagOutline, bagSharp, personSharp, personOutline, personCircleOutline, personCircleSharp} from 'ionicons/icons';
 import ExploreContainer from '../components/ExploreContainer';
+import { useParams } from 'react-router';
 import './Page.css';
 
-const Page: React.FC = () => {
+const Page: React.FC  = () => {
+
+  const { name } = useParams<{ name: string; }>();
 
   interface AppPage {
     url: string;
@@ -26,8 +28,6 @@ const Page: React.FC = () => {
       iosIcon: personCircleOutline,
       mdIcon: personCircleSharp
     }]
-
-  const { name } = useParams<{ name: string; }>();
 
   return (
     <IonPage id="page">

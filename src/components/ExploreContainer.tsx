@@ -1,11 +1,9 @@
 import React from 'react';
-import { IonButtons, IonFooter, IonContent, IonHeader, IonMenuButton, IonPage, IonSearchbar, IonToolbar } from '@ionic/react';
 import Productos from './Productos'
 import Carrito from './Carrito'
 import './ExploreContainer.css';
 import Historial from './Historial'
 import Notificaciones from './Notificaciones'
-import Inicio from './Inicio';
 import BuscarTienda from './BuscarTienda';
 
 interface ContainerProps {
