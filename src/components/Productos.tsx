@@ -40,7 +40,7 @@ const Productos: React.FC = () => {
       <div id="articles">
         <IonCard  className="article-item" id = "article-template">
           <div className = "image-wrap">
-          <img id="img" src="https://www.arrozroa.com/landingarrozroa/wp-content/uploads/2019/12/arroz-roa-fortiplus.png" alt="arroz"></img>
+          <img id="img" src="../Assets/arroz.png" alt="arroz"></img>
           </div>
           <IonCardContent>
             <IonCardTitle>
@@ -54,17 +54,11 @@ const Productos: React.FC = () => {
           </IonCardContent>
         </IonCard>
       </div>
-      
-      
-      
     </IonRow>
-
   </IonGrid>
-  
         </Fragment>
     );
 
 }
 
 export default Productos;
-
