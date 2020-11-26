@@ -1,0 +1,23 @@
+.bg{
+    background-image: url("../Assets/login.jpg");
+    background-repeat:no-repeat ;
+    background-size: cover ;
+    background-position: center ;
+    height: 100%;
+}
+
+.conte{
+    background-color: #857885;
+    margin-top: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.entrada{
+    background-color: white;
+    margin: 10px;
+}
+
+#bIngresar{
+    text-align: center;
+}
