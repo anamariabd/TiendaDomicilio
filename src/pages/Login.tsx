@@ -1,24 +1,30 @@
-import { IonButtons,  IonContent, IonHeader, IonInput, IonPage, IonTitle, IonToolbar, IonIcon, IonButton} from '@ionic/react';
+import { IonButton, IonCol, IonContent, IonGrid, IonInput, IonPage, IonRow } from '@ionic/react';
 import React, {useState} from 'react';
-import {personCircleOutline, personCircleSharp} from 'ionicons/icons';
-import './Page.css';
+import './Login.css';
 
 const Login: React.FC = () => {
-
-  const [userName] = useState('');
-
-  function LoginUser(){
-      
-  }
-
   return (
-    <IonPage id="page">
-
-      <IonContent fullscreen>
-        <IonInput placeholder="username"></IonInput>
-        <IonInput type="password" placeholder="contraseña"></IonInput>
-      <IonButton onClick={LoginUser}> click me </IonButton>
-    
+    <IonPage>
+      <IonContent >
+        <IonGrid class="bg">
+          <IonRow class="cont">
+            <IonCol>
+              <IonRow>
+                <IonInput class="entrada" placeholder="Nombre de usuario"> </IonInput>
+              </IonRow>
+              <IonRow>
+                <IonInput class="entrada" placeholder="Contraseña"> </IonInput>
+              </IonRow>
+            </IonCol>
+          </IonRow>
+          <IonRow>
+            <IonCol id="bIngresar">
+              <IonButton routerLink="/page/Inicio">
+                Iniciar Sesion
+              </IonButton>
+            </IonCol>
+          </IonRow>
+        </IonGrid>
       </IonContent>
     </IonPage>
   );
