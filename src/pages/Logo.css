@@ -1,0 +1,12 @@
+#bg{
+    background-image: url("../Assets/im1.jpg");
+    background-repeat:no-repeat ;
+    background-size: cover ;
+    background-position: center ;
+    height: 100%;
+}
+
+#im3{
+    margin-top: 100px;
+    height: 200px;
+}

@@ -47,11 +47,8 @@
   },
   "devDependencies": {
     "@capacitor/cli": "2.4.2",
-<<<<<<< HEAD
     "@ionic/lab": "3.2.9",
-=======
     "@types/firebase": "^3.2.1",
->>>>>>> 4050575c4e18508a2783a8601091c7c0c074b7fd
     "react-scripts": "3.4.0"
   },
   "description": "An Ionic project"
