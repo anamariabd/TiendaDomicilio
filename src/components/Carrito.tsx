@@ -1,14 +1,12 @@
-import React, { Fragment, useState } from 'react';
-import { IonGrid, IonRow, IonCol, IonContent, IonIcon, IonButton } from '@ionic/react';
-import { cartOutline,cartSharp, pencilOutline, addCircleOutline, removeCircleOutline, trashOutline} from 'ionicons/icons';
+import React from 'react';
+import { IonGrid, IonRow, IonCol, IonContent, IonCardContent, } from '@ionic/react';
 import '../Styles/styles.css'
+import FilaProducto from '../SingleComponents/FilaProducto'
 
 const Carrito: React.FC = () => {
 
-  const [count, setCount] = useState(1);
-
     return(
-       <Fragment> 
+       <IonCardContent> 
 
       <IonGrid>
       <IonRow>
@@ -19,23 +17,12 @@ const Carrito: React.FC = () => {
         <IonCol></IonCol>
       </IonRow>
       <br/>
-      <IonRow>  
-        <IonCol>Arroz Roa 500g</IonCol>
-        <IonCol> <IonButton className="btnCircle" onClick={() => setCount(count - 1)}><IonIcon md={removeCircleOutline}> 
-        </IonIcon>
-        </IonButton> {count}<IonButton  className="btnCircle" onClick={() => setCount(count + 1)}>
-          <IonIcon md={addCircleOutline}> </IonIcon> </IonButton>
-         </IonCol>
-        <IonCol>1200</IonCol>
-        <IonCol>2400</IonCol>
-        <IonCol><IonButton  color = "danger" className="btnCircle"> <IonIcon md={trashOutline}> </IonIcon> </IonButton> 
-        <IonButton className="btnCircle"  > <IonIcon md={pencilOutline}> </IonIcon> </IonButton> 
-        </IonCol>
-      </IonRow>
-
+      <FilaProducto/>
+      <br/>
+      <FilaProducto/>
     </IonGrid>                     
 
-        </Fragment>
+        </IonCardContent>
     );
 
 }
