@@ -2,9 +2,10 @@ import React from 'react';
 import Productos from './Productos'
 import Carrito from './Carrito'
 import './ExploreContainer.css';
-import Historial from './Historial'
+import Historial from './Configuracion'
 import Notificaciones from './Notificaciones'
 import BuscarTienda from './BuscarTienda';
+import Configuracion from './Configuracion';
 
 interface ContainerProps {
   name: string;
@@ -40,6 +41,10 @@ const ExploreContainer: React.FC<ContainerProps> = ({ name }) => {
          case 'Historial':
          return ( 
          <Historial/>
+         )
+         case 'Mi perfil':
+         return ( 
+         <Configuracion/>
          )
          default:
          return (

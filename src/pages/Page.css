@@ -1,11 +1,11 @@
-#List-Corner{
+.List-Corner{
     position: relative;
   float: right;
   
   --inner-border-width: 0 0 0 0;
 }
 
-#List-Corner ion-item{
+.List-Corner ion-item{
 
   position: relative;
     float: right;
