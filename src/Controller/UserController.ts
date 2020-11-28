@@ -2,6 +2,7 @@
 import firebase  from "firebase/app"
 import {firebaseConfig} from "../firebaseConfig"
 
+
   const a = firebase.initializeApp(firebaseConfig)
   require('firebase/auth')
   //Autenticacion con firebase 
@@ -29,3 +30,4 @@ import {firebaseConfig} from "../firebaseConfig"
         }
       });
     }
+

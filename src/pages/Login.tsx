@@ -4,9 +4,7 @@ import React, {useState} from 'react';
 import './Login.css';
 import {loginUser} from '../Controller/UserController'
 
-
 const Login: React.FC = () => {
- 
   const  [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [entry, setEntry] = useState('/page/Inicio');
