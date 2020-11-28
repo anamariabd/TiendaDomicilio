@@ -25,7 +25,7 @@ const Register: React.FC = () => {
                 <IonInput class="entrada" placeholder="Direcion de domicilio"> </IonInput>
               </IonRow>
               <IonRow>
-                <IonInput class="entrada" placeholder="Contraseña"> </IonInput>
+                <IonInput type ="password" class="entrada" placeholder="Contraseña"> </IonInput>
               </IonRow>
             </IonCol>
           </IonRow>
