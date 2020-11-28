@@ -3,7 +3,24 @@ import { IonGrid, IonRow, IonCol, IonContent, IonCardContent, } from '@ionic/rea
 import '../Styles/styles.css'
 import FilaProducto from '../SingleComponents/FilaProducto'
 
-const Carrito: React.FC = () => {
+interface ProductsCarrito{
+  name: string;
+  Precio: number;
+}
+
+const Productos: ProductsCarrito[] = [
+  {
+    name: 'Arroz Roa 500g',
+    Precio: 1200
+  },
+  {
+    name: 'Frijol Rojo 500g',
+    Precio: 2000
+  }
+]
+
+const Carrito: React.FC =() => {
+
 
     return(
        <IonCardContent> 
@@ -12,14 +29,19 @@ const Carrito: React.FC = () => {
       <IonRow>
         <IonCol>Producto</IonCol>
         <IonCol> Unidades </IonCol>
-        <IonCol>Precio unit.</IonCol>
         <IonCol>Precio total</IonCol>
         <IonCol></IonCol>
       </IonRow>
-      <br/>
-      <FilaProducto/>
-      <br/>
-      <FilaProducto/>
+
+      {Productos.map((Productos, index) => {
+            return (
+             <div>
+              <br/>
+              <FilaProducto name = {Productos.name} precio={Productos.Precio} />
+              </div>
+            );
+          })}
+
     </IonGrid>                     
 
         </IonCardContent>
