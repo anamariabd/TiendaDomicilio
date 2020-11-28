@@ -4,22 +4,21 @@ import React, {useState} from 'react';
 import './Login.css';
 import {loginUser} from '../Controller/UserController'
 
+
 const Login: React.FC = () => {
  
   const  [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [entry, setEntry] = useState("/page/Inicio");
+  const [entry, setEntry] = useState('/page/Inicio');
 
   async function login(){
     
-    const res = await loginUser(username, password);
-        
-   /* if(loginUser(username, password)){
-      setEntry("/page/Inicio")
-    }else{
-      setEntry("/logo")
-    }
-      // console.log( `${res ? "login success" : "login failed"}`);*/
+    const res =  await loginUser(username, password);
+      if (typeof res == "boolean"){
+          console.log("ingrese")
+      }else{
+        console.log(res.code, res.message)
+      }
   }
 
   
@@ -42,7 +41,7 @@ const Login: React.FC = () => {
           </IonRow>
           <IonRow>
             <IonCol id="bIngresar">
-              <IonButton onClick = { () => {login()}} href={entry}>
+              <IonButton href ={entry} onClick = { () => {login()}} /*href={entry}*/>
                 Iniciar Sesion
               </IonButton>
             </IonCol>

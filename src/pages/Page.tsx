@@ -16,20 +16,6 @@ const Page: React.FC  = () => {
     mdIcon: string;
     title: string;
   }
-  const appPages: AppPage[] = [
-    {
-      title: 'Carrito',
-      url: '/page/Carrito',
-      iosIcon: bagOutline,
-      mdIcon: bagSharp
-    },
-    {
-      title: 'Perfil',
-      url: '/page/Inicio',
-      iosIcon: personCircleOutline,
-      mdIcon: personCircleSharp
-    }]
-
   return (
     <IonPage id="page">
       <IonHeader color = "primary"> 
@@ -39,13 +25,13 @@ const Page: React.FC  = () => {
           </IonButtons>
           
        <IonButtons slot ="end" className = "List-Corner" color="primary">
-        {appPages.map((appPage, index) => {
-            return (
-                <IonItem href={appPage.url} color="primary">
-                  <IonIcon slot="end" ios={appPage.iosIcon} md={appPage.mdIcon} />
+                <IonItem href='/page/Carrito' color="primary">
+                  <IonIcon slot="end" ios={ bagOutline} md={bagSharp} />
                 </IonItem>
-            );
-          })}
+                
+                <IonItem href="/page/Inicio" color="primary">
+                  <IonIcon slot="end" ios={personCircleOutline} md={personCircleSharp} />
+                </IonItem>
   </IonButtons>
 
         </IonToolbar>
