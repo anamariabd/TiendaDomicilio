@@ -29,5 +29,14 @@ import {firebaseConfig} from "../firebaseConfig"
           // No user is signed in.
         }
       });
-    }
+  }
+
+  export async function registUser(email: string , password: string){
+
+      let reg = await firebase.auth().createUserWithEmailAndPassword(email,password).then((e:any) => {return e}).catch((e:any) => {return e})
+
+      console.log(reg)
+
+  } 
+
 
