@@ -7,7 +7,6 @@ import { IonApp, IonRouterOutlet, IonSplitPane } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
-
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
 
@@ -28,7 +27,6 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 import InicioUser from './pages/InicioUser'
-import Register from './pages/Register';
 
 const App: React.FC = () => {
 
@@ -39,7 +37,7 @@ const App: React.FC = () => {
               <Route path="/logo" component= {Logo} exact />
               <Route path="/login" component= {Login} exact />      
               <Route path="/page/:name" component= {InicioUser} exact/>    
-              <Route path="/register" component= {Register} exact />
+          
             <Redirect  to="/logo"/> 
           </IonRouterOutlet>
       </IonReactRouter>

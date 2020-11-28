@@ -20,7 +20,7 @@ const Logo: React.FC = () => {
                 </IonRow>
                 <IonRow>
                     <IonCol>
-                        <IonButton routerLink="/register" class="btn" color="primary" expand="block">Registrate Aqui</IonButton>
+                        <IonButton routerLink="/login" class="btn" color="primary" expand="block">Registrate Aqui</IonButton>
                     </IonCol>
                 </IonRow>
             </IonGrid>
