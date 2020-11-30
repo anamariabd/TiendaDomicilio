@@ -13,15 +13,14 @@ const FilaProducto: React.FC<DatosProduct> = ({name, precio}) => {
     const [count, setCount] = useState(1);
     const [nuevoPrecio, setNuevoPrecio] = useState(precio);
     const [nombre] = useState(name);
-    const precioUnit = precio; 
     return(
       <IonRow>  
             <IonCol>{nombre}</IonCol>
             <IonCol> <IonButton className="btnCircle" onClick={() =>{ if(count > 1 ){ setCount(count - 1);
-             setNuevoPrecio(nuevoPrecio-precioUnit)}}} ><IonIcon md={removeCircleOutline}> 
+             setNuevoPrecio(nuevoPrecio-precio)}}} ><IonIcon md={removeCircleOutline}> 
             </IonIcon>
             </IonButton> {count}<IonButton  className="btnCircle" onClick={() => {setCount(count + 1);
-             setNuevoPrecio(precioUnit+nuevoPrecio)}}>
+             setNuevoPrecio(precio+nuevoPrecio)}}>
             <IonIcon md={addCircleOutline}> </IonIcon> </IonButton>
             </IonCol>
             <IonCol>{nuevoPrecio}</IonCol>

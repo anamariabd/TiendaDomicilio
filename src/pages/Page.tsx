@@ -10,12 +10,6 @@ const Page: React.FC  = () => {
 
   const { name } = useParams<{ name: string; }>();
 
-  interface AppPage {
-    url: string;
-    iosIcon: string;
-    mdIcon: string;
-    title: string;
-  }
   return (
     <IonPage id="page">
       <IonHeader color = "primary"> 

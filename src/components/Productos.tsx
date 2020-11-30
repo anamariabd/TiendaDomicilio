@@ -1,13 +1,38 @@
 import React, { Fragment, useState } from 'react';
-import { IonLabel, IonIcon, IonGrid, IonRow, IonList,IonSelect,IonCardTitle, IonCol, IonCard,IonCardContent,  IonItem, IonContent, IonSelectOption, IonButtons, IonSearchbar, IonToolbar, IonButton } from '@ionic/react';
+import { IonLabel, IonIcon, IonGrid, IonRow, IonList,IonSelect, IonCol,IonItem, IonContent, IonSelectOption, IonButtons, IonSearchbar, IonToolbar, IonButton } from '@ionic/react';
 import { searchCircleOutline, searchCircleSharp} from 'ionicons/icons';
-
+import ProductCard from '../SingleComponents/ProductCard'
 import '../Styles/styles.css'
 import './Productos.css'
 
-const Productos: React.FC = () => {
 
-  const [precio, setPrecio] = useState<string>();
+interface DatosProduct{
+  name: string;
+  medida: string;
+  marca: string;
+  Precio: number;
+  UrlImg: string
+}
+
+const Product: DatosProduct[] = [
+  {
+    name: 'Arroz',
+    medida: '500g',
+    marca: 'Roa ',
+    Precio: 1200,
+    UrlImg: 'https://www.arrozroa.com/landingarrozroa/wp-content/uploads/2019/12/arroz-roa-fortiplus.png'
+  },
+  {
+    name: 'Frijol Rojo',
+    medida: '500g',
+    marca: 'N.n.',
+    Precio: 800,
+    UrlImg: 'https://www.midia.com.co/sites/default/files/styles/product_detail/public/2020-06/7705946351805.png?itok=A6LSWDWp'
+  }
+]
+
+
+const Productos: React.FC = () => {
 
     return(
         <Fragment>    
@@ -36,25 +61,15 @@ const Productos: React.FC = () => {
         </IonList>
       </IonCol>
     </IonRow>
-    <IonRow>
-      <div id="articles">
-        <IonCard  className="article-item" id = "article-template">
-          <div className = "image-wrap">
-          <img id="img" src="../Assets/arroz.png" alt="arroz"></img>
-          </div>
-          <IonCardContent>
-            <IonCardTitle>
-              Arroz 
-            </IonCardTitle>
-            <p>
-              Peso: 500gr
-              Marca: roa
-              Precio : 2.500
-            </p>
-          </IonCardContent>
-        </IonCard>
-      </div>
-    </IonRow>
+   {/* */}
+   {Product.map((Product, index) => {
+            return (
+             <div>
+              <br/>
+              <ProductCard name = {Product.name} medida = {Product.medida} marca = {Product.marca} precio={Product.Precio} UrlImg = {Product.UrlImg} />
+              </div>
+            );
+          })}
   </IonGrid>
         </Fragment>
     );
