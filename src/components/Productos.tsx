@@ -4,8 +4,18 @@ import { searchCircleOutline, searchCircleSharp} from 'ionicons/icons';
 import ProductCard from '../SingleComponents/ProductCard'
 import '../Styles/styles.css'
 import './Productos.css'
+//import {loadProducts} from "../Controller/UserController"
 
-
+ /*async function cargaDato(){
+   const resultado = await loadProducts();
+   if(resultado != 0){
+        resultado.forEach(element => {
+            
+        });
+   }else{
+     console.log("error")
+   }
+ }*/
 interface DatosProduct{
   name: string;
   medida: string;
