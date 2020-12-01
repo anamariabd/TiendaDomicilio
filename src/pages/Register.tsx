@@ -1,7 +1,7 @@
-import { IonButton, IonCol, IonContent, IonGrid, IonInput, IonPage, IonRow } from '@ionic/react';
+import { IonButton, IonSelect, IonSelectOption, IonCol, IonLabel, IonContent, IonGrid, IonInput, IonPage, IonRow } from '@ionic/react';
 import React, {useState} from 'react';
 import './Register.css';
-import {registUser} from '../Controller/UserController';
+import {registUser,RegisterData} from '../Controller/UserController';
 
 
 const Register: React.FC = () => {
@@ -12,7 +12,8 @@ const Register: React.FC = () => {
   const [numberphone, setNumberphone] = useState<number>();
   const [address, setAddress] = useState('');
   const [password, setPassword] = useState('');
-
+  const [tUser, setTUser] = useState('');
+  
   async function registerUser(){
     console.log(email, password)
     
@@ -25,7 +26,9 @@ const Register: React.FC = () => {
     }else if(!emailReg.test(email)){
         console.log("No es un correo");
     }else{
+
       let resultado =  await registUser(email, password);
+      await RegisterData(name, username, numberphone, address, email,tUser)
     }
   }
 
@@ -35,6 +38,14 @@ const Register: React.FC = () => {
         <IonGrid class="bg">
           <IonRow class="conte">
             <IonCol>
+                 
+           <IonRow>
+               <IonLabel class="entrada">Ordenar por</IonLabel>
+                <IonSelect  value={tUser} okText="Aceptar" cancelText="Cancelar" onIonChange = { (e : any) => setTUser(e.target.value)}>
+                <IonSelectOption value="Tendero">Tendero</IonSelectOption>
+                <IonSelectOption   value="Cliente">Cliente</IonSelectOption>
+              </IonSelect>
+            </IonRow>
               <IonRow>
                 <IonInput class="entrada" placeholder="Nombre Completo" onIonChange = { (e : any) => setName(e.target.value)}> </IonInput>
               </IonRow>
@@ -50,6 +61,7 @@ const Register: React.FC = () => {
               <IonRow>
                 <IonInput class="entrada" placeholder="Direcion de domicilio" onIonChange = { (e : any) => setAddress(e.target.value)}> </IonInput>
               </IonRow>
+           
               <IonRow>
                 <IonInput type ="password" class="entrada" placeholder="Contraseña"  onIonChange = { (e : any) => setPassword(e.target.value) }> </IonInput>
               </IonRow>

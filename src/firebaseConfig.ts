@@ -1,4 +1,4 @@
-import firebase from "firebase/app";
+
 
 export const firebaseConfig = {
     apiKey: "AIzaSyCxnH8cNOZ6oDen6AKjjz--BmOPnG3ngIU",
@@ -11,6 +11,3 @@ export const firebaseConfig = {
     measurementId: "G-21B0HGT1T8"
   };
 
-  
-
- 
