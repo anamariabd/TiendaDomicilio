@@ -21,13 +21,30 @@ import "firebase/firestore"
      .catch((e : any) => {console.log(e,"que cagada")})
   }
   export async function loadProducts() {
-     const result =  await database.collection("cliente").get() // TOMA LOS DATOS DE LA TABLA "producto" Y LOS OBTIENE
-        .then(/*(querySnapshot) =>{
+      interface produt{
+        id:  string,
+        name:  string,
+        img: string,
+        medida: string,
+        marca: string
+
+      }
+     const result =  await database.collection("producto").get() // TOMA LOS DATOS DE LA TABLA "producto" Y LOS OBTIENE
+        .then((querySnapshot) =>{
+          let list:Array<produt> =  new Array();
           querySnapshot.forEach((doc) =>{
-            console.log(`${doc.id} => ${doc.data()}`)})}*/
-            ()=>{console.log("si carga productos")})
+            let id =  doc.id;
+            let name = doc.data().nombre;
+            let img = doc.data().imagen;
+            let medida = doc.data().medida;
+            let marca = doc.data().marca;
+            list.push({id, img, name, medida, marca});
+          });
+          return list;
+        })
         .catch((e: any)=>{
-          return 0});
+          return 0
+        });
         return result;
   }
 

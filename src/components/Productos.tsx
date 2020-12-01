@@ -10,7 +10,7 @@ import './Productos.css'
    const resultado = await loadProducts();
    if(resultado != 0){
         resultado.forEach(element => {
-            
+            console.log(element.id, element.name, element.marca); 
         });
    }else{
      console.log("error")
