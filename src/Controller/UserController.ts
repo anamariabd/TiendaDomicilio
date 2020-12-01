@@ -62,20 +62,26 @@ import "firebase/firestore"
     console.log(error);
     };
   }
+
   export function userCurrent(){
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-          console.log("Entre");
+          let doc =database.collection("usuarios").where("correo", "==",user.email ).get()
+          .then((querySnapshot) => {
+              querySnapshot.forEach((doc) => {
+                console.log(doc.id, doc.data())
+              })
+          })
+          .catch()
+         
         } else {
            // No user is signed in.
         }
       });
   }
 
-  export async function registUser(email: string , password: string){
-
+  export async function registUser(email: string, password: string){
       let reg = await firebase.auth().createUserWithEmailAndPassword(email,password).then((e:any) => {return e}).catch((e:any) => {return e})
-
       console.log(reg)
 
   } 

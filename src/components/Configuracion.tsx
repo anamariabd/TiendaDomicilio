@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
-import {logOut} from "../Controller/UserController";
 import { IonButton, IonItem, IonLabel, IonList, IonListHeader } from '@ionic/react';
-import {userCurrent} from '../Controller/UserController'
+import {userCurrent,logOut} from '../Controller/UserController'
 
 const Configuracion: React.FC = () => {
 

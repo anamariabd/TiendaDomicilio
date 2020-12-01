@@ -4,18 +4,18 @@ import { searchCircleOutline, searchCircleSharp} from 'ionicons/icons';
 import ProductCard from '../SingleComponents/ProductCard'
 import '../Styles/styles.css'
 import './Productos.css'
-//import {loadProducts} from "../Controller/UserController"
+import {loadProducts} from "../Controller/UserController"
 
- /*async function cargaDato(){
+ async function cargaDato(){ //devuelve datos en una lista de productos
    const resultado = await loadProducts();
-   if(resultado != 0){
-        resultado.forEach(element => {
-            console.log(element.id, element.name, element.marca); 
-        });
+   if(typeof resultado !== "number"){ // resultado es una lista de productos.
+       for(let element of resultado){
+        console.log(element.id, element.name, element.marca); // mostrando id del producto, nombre y otros detalles
+       }   
    }else{
      console.log("error")
    }
- }*/
+ }
 interface DatosProduct{
   name: string;
   medida: string;
@@ -43,7 +43,7 @@ const Product: DatosProduct[] = [
 
 
 const Productos: React.FC = () => {
-
+  
     return(
         <Fragment>    
   <IonGrid>
@@ -72,7 +72,9 @@ const Productos: React.FC = () => {
       </IonCol>
     </IonRow>
    {/* */}
+    
    {Product.map((Product, index) => {
+      
             return (
              <div>
               <br/>
