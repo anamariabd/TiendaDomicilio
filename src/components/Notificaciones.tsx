@@ -21,6 +21,8 @@ const BuscarTienda: React.FC = () => (
          <IonAvatar id="perfil"> 
         <img src="https://sociedadcivilnavarra.com/wp-content/uploads/2015/08/perfil-hombre.jpg" />
         </IonAvatar>
+        
+        <IonLabel>Juanchito Trucupei</IonLabel>
         <div className="article-item" id = "article-template">
                     <div className = "image-wrap">
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7L9WW1ZfI60LtfM74zaBl-16DwDNIfB_aLw&usqp=CAU" alt = "Tienda">

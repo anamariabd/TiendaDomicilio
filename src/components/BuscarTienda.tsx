@@ -22,6 +22,7 @@ const BuscarTienda: React.FC = () => (
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7L9WW1ZfI60LtfM74zaBl-16DwDNIfB_aLw&usqp=CAU" alt = "Tienda">
                          </img>
                     </div>
+                    
          <IonLabel>Tienda mi super fresh</IonLabel>
                     <span>500Lb</span>
                     <p>Localización</p>
