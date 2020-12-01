@@ -53,12 +53,16 @@ ion-menu.md ion-list#list .perfil{
   margin-top: 35px;
 }
 
+#subT, #subT h2, #subT p{
+  margin-right: 0px;
+}
+
 #perfil img{
   display: block;
   float: left;
-  height: 60px;
+  height: 65px;
   margin-right: 0px;
-  margin-left: 96px;
+  margin-left: 10px;
   margin-bottom: 35px;
 }
 
