@@ -1,6 +1,6 @@
+import firebase from "firebase/app"
 
-
-export const firebaseConfig = {
+ const firebaseConfig = {
     apiKey: "AIzaSyCxnH8cNOZ6oDen6AKjjz--BmOPnG3ngIU",
     authDomain: "app-tiendas-7f8ba.firebaseapp.com",
     databaseURL: "https://app-tiendas-7f8ba.firebaseio.com",
@@ -11,3 +11,5 @@ export const firebaseConfig = {
     measurementId: "G-21B0HGT1T8"
   };
 
+  export const fireB = firebase.initializeApp(firebaseConfig)
+  
