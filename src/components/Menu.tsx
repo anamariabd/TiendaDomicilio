@@ -23,40 +23,46 @@ interface AppPage {
   title: string;
 }
 
-const appPagesTienda: AppPage[] = [
+const Tienda: AppPage[] = [
   {
     title: 'Inicio',
-    url: '/page/Inicio',
+    url: '/page/Tendero/Inicio',
     iosIcon: homeOutline,    mdIcon: homeSharp
   },
   {
     title: 'Reportes',
-    url: '/page/Reportes',
+    url: '/page/Tendero/Reportes',
     iosIcon: cartOutline,    mdIcon: cartSharp
   },
   {
     title: 'Pedidos',
-    url: '/page/Pedidos',
+    url: '/page/Tendero/Pedidos',
     iosIcon: notificationsOutline,    mdIcon: notificationsSharp
   },
   {
     title: 'Mis tiendas',
-    url: '/page/Tiendas',
+    url: '/page/Tendero/Tiendas',
     iosIcon: storefrontOutline,    mdIcon: storefrontSharp
   },
   {
     title: 'Domiciliarios',
-    url: '/page/Domiciliarios',
+    url: '/page/Tendero/Domiciliarios',
     iosIcon: timeOutline,    mdIcon: timeSharp
   },
   {
     title: 'Mis productos',
-    url: '/page/MisProductos',
+    url: '/page/Tendero/MisProductos',
     iosIcon: timeOutline,    mdIcon: timeSharp
+  },
+  {
+    title: 'MiPerfil',
+    url: '/page/Tendero/Perfil',
+    iosIcon: personOutline,
+    mdIcon: personSharp
   }
 ]
 
-const appPages: AppPage[] = [
+const Cliente: AppPage[] = [
   {
     title: 'Inicio',
     url: '/page/Inicio',
@@ -82,13 +88,13 @@ const appPages: AppPage[] = [
     mdIcon: locationSharp
   },
   {
-    title: 'Historial',
-    url: '/page/Historial',
+    title: 'Mis Compras',
+    url: '/page/MisCompras',
     iosIcon: timeOutline,
     mdIcon: timeSharp
   },
   {
-    title: 'Mi perfil',
+    title: 'MiPerfil',
     url: '/page/Perfil',
     iosIcon: personOutline,
     mdIcon: personSharp
@@ -98,7 +104,8 @@ const appPages: AppPage[] = [
 const Menu: React.FC<{TypeUser:string}> = ({TypeUser}) => {
   const location = useLocation();
 
-  var probando = appPages
+  var probando = Tienda;
+
   return (
     <IonMenu contentId="main" type="overlay" >
       <IonContent>
@@ -110,7 +117,7 @@ const Menu: React.FC<{TypeUser:string}> = ({TypeUser}) => {
           <IonNote>Haz un pedido!</IonNote>
           
           {probando.map((appPages, index) => {
-            return (
+            return ( 
               <IonMenuToggle key={index} autoHide={false}>
                 <IonItem className={location.pathname === appPages.url ? 'selected' : ''} routerLink={appPages.url} routerDirection="none" lines="none" detail={false}>
                   <IonIcon slot="start" ios={appPages.iosIcon} md={appPages.mdIcon} />

@@ -1,17 +1,20 @@
-import firebase  from "firebase/app"
 import {fireB} from "../firebaseConfig"
 import "firebase/firestore"
 import "firebase/auth"
-  export interface produt{
-    id:  string,
+import Productos from "../components/Productos"
+import { useState } from "react"
+ 
+  export interface produt {
+    id:  number,
     name:  string,
     img: string,
     medida: string,
     marca: string
+
   }
 
 
-  export const database = fireB.firestore()
+export const database = fireB.firestore()
   require('firebase/auth')
   //Autenticacion con firebase 
    // CONEXION A BASE DE DATOS
@@ -28,30 +31,37 @@ import "firebase/auth"
      .then((doc) => {console.log(doc.id)})
      .catch((e : any) => {console.log(e,"que cagada")})
   }
-   export let list:Array<produt> = new Array();
+  //let list:Array<produt> = new Array();
+  
+ // const[listaProduct, setListaProduct] = useState<produt[]>([]);
+
   export async function loadProducts() {
     
      const result =  await database.collection("producto").get() // TOMA LOS DATOS DE LA TABLA "producto" Y LOS OBTIENE
-        .then((querySnapshot) =>{
-         
-          querySnapshot.forEach((doc) =>{
-           
+        .then(
+          (querySnapshot) =>{
+          
+          let list: produt[] = [];
+          querySnapshot.forEach((doc :  any) =>{
+            console.log(doc.id,doc.data().nombre,doc.data().imagen)
             let id =  doc.id;
             let name = doc.data().nombre;
             let img = doc.data().imagen;
             let medida = doc.data().medida;
             let marca = doc.data().marca;
-            
-            list.push({id, name, img, medida,marca});
-          });
-          return list;
-        })
+          
+            list.push({id: id,name: name, img: img, medida: medida, marca: marca});
+          }); 
+      //    setListaProduct(list);
+        //  return listaProduct;
+        }) 
         .catch((e: any)=>{
           return 0;
         });
         console.log(result);
-        return result;
+        return result;  
   }
+
 
   export async function loginUser(username: string, password:string ){
     

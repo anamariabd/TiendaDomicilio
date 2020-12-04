@@ -1,32 +1,27 @@
 import React, { Fragment } from 'react';
-import { IonButton, IonItem, IonLabel, IonList, IonListHeader } from '@ionic/react';
+import { IonButton,  IonLabel, IonListHeader } from '@ionic/react';
 import {userCurrent,logOut} from '../Controller/UserController'
 
-const Configuracion: React.FC = () => {
+const MiPerfil: React.FC = () => {
 
     return(
         <Fragment> 
     {/*-- Default List Header --*/}
     <IonListHeader>
-      <IonLabel>List Header</IonLabel>
+      <IonLabel>Nombre</IonLabel>
     </IonListHeader>
 
     {/*-- List Header with Outline Button --*/}
     <IonListHeader>
-      <IonLabel>New This Week</IonLabel>
-      <IonButton fill="outline">See All</IonButton>
+      <IonLabel>Apellido</IonLabel>
     </IonListHeader>
-
     {/*-- List Header Full Lines --*/}
-    <IonListHeader lines="full">
-      <IonLabel>New This Week</IonLabel>
-      <IonButton>See All</IonButton>
+    <IonListHeader>
+      <IonLabel>Dirección:</IonLabel>
     </IonListHeader>
-
-    {/*-- List Header Inset Lines --*/}
-    <IonListHeader lines="inset">
-      <IonLabel>New This Week</IonLabel>
-      <IonButton>See All</IonButton>
+    {/*-- List Header Inset Lines --*/}   
+    <IonListHeader>
+      <IonLabel>Mi telefono:</IonLabel>
     </IonListHeader>
 
     <IonButton onClick = {logOut} href = "/logo"> LOGOUT </IonButton>
@@ -36,4 +31,4 @@ const Configuracion: React.FC = () => {
 
 }
 
-export default Configuracion;
+export default MiPerfil;

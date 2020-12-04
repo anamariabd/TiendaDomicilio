@@ -4,12 +4,13 @@ import { bagOutline, bagSharp,  personCircleOutline, personCircleSharp} from 'io
 import ExploreContainer from '../components/ExploreContainer';
 import { useParams } from 'react-router';
 import './Page.css';
+import ExploreContTienda from '../components/ExploreContTienda';
 
 const Page: React.FC  = () => {
  
 
   const { name } = useParams<{ name: string; }>();
-
+  const { TypeUser } = useParams<{ TypeUser: string; }>();
   return (
     <IonPage id="page">
       <IonHeader color = "primary"> 
@@ -36,8 +37,18 @@ const Page: React.FC  = () => {
 
        <IonTitle id= "title" >{name}</IonTitle>
        
-       <ExploreContainer name={name} />
-        
+       {()=>{
+
+         if(TypeUser){
+
+         }
+
+       }
+
+       }
+      {/* <ExploreContainer name={name} /> */}
+       <ExploreContTienda name={name} />
+
       </IonContent>
     </IonPage>
   );

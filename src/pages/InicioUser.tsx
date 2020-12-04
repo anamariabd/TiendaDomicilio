@@ -1,16 +1,12 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { IonApp, IonRouterOutlet, IonSplitPane } from '@ionic/react';
 import { Redirect, Route } from 'react-router-dom';
+import { useParams } from 'react-router';
 import Menu from '../components/Menu'
 import Page from './Page'
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
-
-/* Basic CSS for apps built with Ionic */
-import '@ionic/react/css/normalize.css';
-import '@ionic/react/css/structure.css';
-import '@ionic/react/css/typography.css';
 
 /* Optional CSS utils that can be commented out */
 import '../Styles/styles.css'
@@ -24,11 +20,12 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import '../theme/variables.css';
 
-const App: React.FC = () => {
+const InicioUser: React.FC = () => {
 
+  const { Tipo } = useParams<{ Tipo: string; }>();
     return (
         <IonSplitPane contentId="main">
-          <Menu TypeUser="Tienda"/>
+          <Menu TypeUser={Tipo}/>
           <IonRouterOutlet id="main">
               <Page/>
           </IonRouterOutlet>
@@ -36,4 +33,4 @@ const App: React.FC = () => {
     );
   };
   
-  export default App;
+  export default InicioUser;

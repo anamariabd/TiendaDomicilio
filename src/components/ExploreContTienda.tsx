@@ -11,7 +11,7 @@ interface ContainerProps {
   name: string;
 }
 
-const ExploreContainer: React.FC<ContainerProps> = ({ name }) => {
+const ExploreContTienda: React.FC<ContainerProps> = ({ name }) => {
   return (
     <div className="container">
 
@@ -23,22 +23,22 @@ const ExploreContainer: React.FC<ContainerProps> = ({ name }) => {
           <Productos/>
            </div>    
          )
-         case 'Carrito':
+         case 'Reportes':
          return ( 
           <Carrito/>         )
-         case 'Notificaciones':
+         case 'Pedidos':
          return (
           <Notificaciones/>
          )
-         case 'Productos':
+         case 'Tiendas':
          return (
           <Productos/>
          )
-         case 'Tienda':
+         case 'Domiciliarios':
          return (
           <BuscarTienda/>
          )
-         case 'MisCompras':
+         case 'MisProductos':
          return ( 
          <MisCompras/>
          )
@@ -58,4 +58,4 @@ const ExploreContainer: React.FC<ContainerProps> = ({ name }) => {
   );
 };
 
-export default ExploreContainer;
+export default ExploreContTienda;
