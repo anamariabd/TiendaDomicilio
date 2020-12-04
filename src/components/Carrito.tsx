@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { IonGrid, IonRow, IonCol, IonContent, IonCardContent, } from '@ionic/react';
+import { IonGrid, IonRow, IonCol, useIonViewWillEnter, IonCardContent, } from '@ionic/react';
 import '../Styles/styles.css'
 import FilaProducto from '../SingleComponents/FilaProducto'
+import {IdProduct} from '../SingleComponents/ProductCard'
 
 interface ProductsCarrito{
   name: string;
@@ -28,8 +29,15 @@ const Productos: ProductsCarrito[] = [
 const Carrito: React.FC =() => {
 
   const [precioTotal, setPrecioTotal] = useState(0);
-
+  const [ ProductAdd, setProductAdd] = useState(0);
  var total = 0;
+
+ async function AddIdProducts() {
+
+  setProductAdd(IdProduct);   
+  console.log(ProductAdd);
+ }
+
 
     return(
        <IonCardContent> 

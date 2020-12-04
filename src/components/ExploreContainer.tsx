@@ -2,10 +2,10 @@ import React from 'react';
 import Productos from './Productos'
 import Carrito from './Carrito'
 import './ExploreContainer.css';
-import Historial from './Configuracion'
+import MisCompras from './MisCompras'
 import Notificaciones from './Notificaciones'
 import BuscarTienda from './BuscarTienda';
-import Configuracion from './Configuracion';
+import MiPerfil from './MiPerfil';
 
 interface ContainerProps {
   name: string;
@@ -38,16 +38,17 @@ const ExploreContainer: React.FC<ContainerProps> = ({ name }) => {
          return (
           <BuscarTienda/>
          )
-         case 'Historial':
+         case 'MisCompras':
          return ( 
-         <Historial/>
+         <MisCompras/>
          )
-         case 'Mi perfil':
+         case 'Perfil':
          return ( 
-         <Configuracion/>
+         <MiPerfil/>
          )
          default:
          return (
+          
            <div>404 NOT FOUND :c</div>
          )
         }

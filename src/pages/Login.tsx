@@ -4,6 +4,8 @@ import React, {useState} from 'react';
 import './Login.css';
 import {loginUser,loadProducts} from '../Controller/UserController'
 
+let TipoUser;
+
 const Login: React.FC = () => {
   const  [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -12,6 +14,7 @@ const Login: React.FC = () => {
   const [tUser, setTUser] = useState('');
  
   async function login(){
+    TipoUser= tUser;
         const res =  await loginUser(username, password);
         
       if (typeof res == "boolean"){
@@ -31,10 +34,10 @@ const Login: React.FC = () => {
             <IonCol>
             <IonRow>
                <IonLabel class="entrada">Ordenar por</IonLabel>
-                <IonSelect  value={tUser} okText="Aceptar" cancelText="Cancelar" onIonChange = { (e : any) => setTUser(e.target.value)}>
+                <IonSelect onIonChange={(e:any)=> {setTUser( e.detail.value);  setEntry("/"+e.detail.value); console.log(entry)}} value={tUser} okText="Aceptar" cancelText="Cancelar" >
                 <IonSelectOption value="Tendero">Tendero</IonSelectOption>
-                <IonSelectOption   value="Cliente">Cliente</IonSelectOption>
-              </IonSelect>
+                <IonSelectOption  value="Cliente">Cliente</IonSelectOption>
+              </IonSelect> 
             </IonRow>
               <IonRow>
                 <IonInput class="entrada" 
@@ -49,7 +52,7 @@ const Login: React.FC = () => {
           </IonRow>
           <IonRow>
             <IonCol id="bIngresar">
-              <IonButton href ={entry} onClick = { () => {login()}} /*href={entry}*/>
+              <IonButton href ={"/page"+entry} onClick = { () => {login()}} /*href={entry}*/>
                 Iniciar Sesion
               </IonButton>
             </IonCol>

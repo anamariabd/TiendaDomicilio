@@ -13,6 +13,7 @@ const FilaProducto: React.FC<DatosProduct> = ({name, precio}) => {
     const [count, setCount] = useState(1);
     const [nuevoPrecio, setNuevoPrecio] = useState(precio);
     const [nombre] = useState(name);
+
     return(
       <IonRow>  
             <IonCol>{nombre}</IonCol>

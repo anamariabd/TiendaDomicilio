@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import { IonLabel, IonIcon, IonGrid, IonRow, IonList,IonSelect, IonCol,IonItem, useIonViewWillEnter, IonSelectOption, IonSearchbar,IonButton } from '@ionic/react';
-import { logoStackoverflow, searchCircleOutline, searchCircleSharp} from 'ionicons/icons';
+import { searchCircleOutline, searchCircleSharp} from 'ionicons/icons';
 import ProductCard from '../SingleComponents/ProductCard'
 import '../Styles/styles.css'
 import './Productos.css'
@@ -9,21 +9,13 @@ interface produt {
   id:  number,
   name:  string,
   img: string,
+  //precio
   medida: string,
   marca: string
 
 }
 
-interface DatosProduct{
-  name: string;
-  medida: string;
-  marca: string;
-  //Precio: number;
-  img: string;
-}
-
 const list: produt[] = [];
-//const listaProduct: produt[] = [];
 
 const Productos: React.FC = () => {
 
@@ -39,7 +31,7 @@ async function loadProducts() {
          console.log(doc.id,doc.data().nombre,doc.data().imagen)
        
          list.push({id: doc.id,name:doc.data().nombre, img: doc.data().imagen, medida: doc.data().medida, marca:  doc.data().marca});
-         listaProduct.push({id: doc.id,name:doc.data().nombre, img: doc.data().imagen, medida: doc.data().medida, marca:  doc.data().marca});
+      
        }); 
       
        console.log(listaProduct.length)
@@ -50,7 +42,6 @@ async function loadProducts() {
      });
      setListaProduct(list);
 
-     console.log(list.length+" Y "+listaProduct.length);
      return result;  
 }
 
@@ -90,7 +81,7 @@ useIonViewWillEnter( ()=>{ loadProducts(); } )
             return (
               <div>
                 <br/>
-                <ProductCard name={listaProduct.name} medida = {listaProduct.medida} marca = {listaProduct.marca} UrlImg={listaProduct.img}/>
+                <ProductCard Id = {listaProduct.id} name={listaProduct.name} medida = {listaProduct.medida} marca = {listaProduct.marca} /*UrlImg={listaProduct.img}*//>
               </div>
             );
           })}

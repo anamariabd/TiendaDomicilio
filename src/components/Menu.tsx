@@ -82,13 +82,13 @@ const appPages: AppPage[] = [
     mdIcon: locationSharp
   },
   {
-    title: 'Historial',
-    url: '/page/Historial',
+    title: 'Mis Compras',
+    url: '/page/MisCompras',
     iosIcon: timeOutline,
     mdIcon: timeSharp
   },
   {
-    title: 'Mi perfil',
+    title: 'MiPerfil',
     url: '/page/Perfil',
     iosIcon: personOutline,
     mdIcon: personSharp

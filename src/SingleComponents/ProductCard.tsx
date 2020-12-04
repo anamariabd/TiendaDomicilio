@@ -1,23 +1,27 @@
 import React, { useState } from 'react';
 import {  IonRow, IonCard, IonIcon, IonButton, IonCardContent, IonCardTitle } from '@ionic/react';
-import {addCircleOutline, cartOutline, cartSharp,} from 'ionicons/icons';
 import './Clasificacion.css'
 
 interface DatosProduct {
   name: string;
   medida: string;
   marca:  string;
+  Id : number;
  // precio: number;
-   UrlImg: string;
+  // UrlImg: string;
 }
-const FilaProducto: React.FC<DatosProduct> = ({name, medida, marca, UrlImg}) => {
 
+export let IdProduct = 0;
+
+const ProductCard: React.FC<DatosProduct> = ({name, medida, marca, Id}) => {
+  const [ ProdAdd, setProdAdd] = useState(0);
+  IdProduct = ProdAdd;
     return( 
     <IonRow>
         <div id="articles">
           <IonCard  className="article-item" id = "article-template">
             <div className = "image-wrap">
-         <img id="img" src={UrlImg} alt="arroz"></img>
+        {/* <img id="img" src={UrlImg} alt="arroz"></img>*/}
             </div>
             <IonCardContent>
               <IonCardTitle>
@@ -29,11 +33,11 @@ const FilaProducto: React.FC<DatosProduct> = ({name, medida, marca, UrlImg}) => 
                 Precio : 1200
               </p>
             </IonCardContent>
-            <button>Agregar a Carrito</button>
+            <button value = {Id} onClick= { ()=>{ setProdAdd(Id) }}>Agregar a Carrito</button>
           </IonCard>
         </div>
       </IonRow>
     );
 
 }
-export default FilaProducto;
+export default ProductCard;
