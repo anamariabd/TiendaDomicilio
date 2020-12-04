@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { IonApp, IonRouterOutlet, IonSplitPane } from '@ionic/react';
 import { Redirect, Route } from 'react-router-dom';
+import { useParams } from 'react-router';
 import Menu from '../components/Menu'
 import Page from './Page'
 
@@ -21,9 +22,10 @@ import '../theme/variables.css';
 
 const App: React.FC = () => {
 
+  const { Tipo } = useParams<{ Tipo: string; }>();
     return (
         <IonSplitPane contentId="main">
-          <Menu TypeUser="Tienda"/>
+          <Menu TypeUser={Tipo}/>
           <IonRouterOutlet id="main">
               <Page/>
           </IonRouterOutlet>

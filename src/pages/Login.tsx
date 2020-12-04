@@ -33,7 +33,7 @@ const Login: React.FC = () => {
           <IonRow class="cont">
             <IonCol>
             <IonRow>
-               <IonLabel class="entrada">Ordenar por</IonLabel>
+               <IonLabel class="entrada">Tipo de usuario:</IonLabel>
                 <IonSelect onIonChange={(e:any)=> {setTUser( e.detail.value);  setEntry("/"+e.detail.value); console.log(entry)}} value={tUser} okText="Aceptar" cancelText="Cancelar" >
                 <IonSelectOption value="Tendero">Tendero</IonSelectOption>
                 <IonSelectOption  value="Cliente">Cliente</IonSelectOption>
@@ -52,7 +52,7 @@ const Login: React.FC = () => {
           </IonRow>
           <IonRow>
             <IonCol id="bIngresar">
-              <IonButton href ={"/page"+entry} onClick = { () => {login()}} /*href={entry}*/>
+              <IonButton href ={"/page"+entry+"/Inicio"} onClick = { () => {login()}} /*href={entry}*/>
                 Iniciar Sesion
               </IonButton>
             </IonCol>

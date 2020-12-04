@@ -23,7 +23,7 @@ interface AppPage {
   title: string;
 }
 
-const appPagesTienda: AppPage[] = [
+const Tienda: AppPage[] = [
   {
     title: 'Inicio',
     url: '/page/Inicio',
@@ -56,7 +56,7 @@ const appPagesTienda: AppPage[] = [
   }
 ]
 
-const appPages: AppPage[] = [
+const Cliente: AppPage[] = [
   {
     title: 'Inicio',
     url: '/page/Inicio',
@@ -98,7 +98,8 @@ const appPages: AppPage[] = [
 const Menu: React.FC<{TypeUser:string}> = ({TypeUser}) => {
   const location = useLocation();
 
-  var probando = appPages
+  var probando = Tienda;
+  
   return (
     <IonMenu contentId="main" type="overlay" >
       <IonContent>
@@ -110,7 +111,7 @@ const Menu: React.FC<{TypeUser:string}> = ({TypeUser}) => {
           <IonNote>Haz un pedido!</IonNote>
           
           {probando.map((appPages, index) => {
-            return (
+            return ( 
               <IonMenuToggle key={index} autoHide={false}>
                 <IonItem className={location.pathname === appPages.url ? 'selected' : ''} routerLink={appPages.url} routerDirection="none" lines="none" detail={false}>
                   <IonIcon slot="start" ios={appPages.iosIcon} md={appPages.mdIcon} />
