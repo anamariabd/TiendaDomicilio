@@ -55,7 +55,7 @@ const Carrito: React.FC =() => {
       <IonRow>
         <IonCol>Total a pagar: {total}</IonCol>
       </IonRow>
-
+     
     </IonGrid>                     
 
         </IonCardContent>
