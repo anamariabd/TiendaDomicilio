@@ -20,7 +20,7 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import '../theme/variables.css';
 
-const App: React.FC = () => {
+const InicioUser: React.FC = () => {
 
   const { Tipo } = useParams<{ Tipo: string; }>();
     return (
@@ -33,4 +33,4 @@ const App: React.FC = () => {
     );
   };
   
-  export default App;
+  export default InicioUser;

@@ -26,33 +26,39 @@ interface AppPage {
 const Tienda: AppPage[] = [
   {
     title: 'Inicio',
-    url: '/page/Inicio',
+    url: '/page/Tendero/Inicio',
     iosIcon: homeOutline,    mdIcon: homeSharp
   },
   {
     title: 'Reportes',
-    url: '/page/Reportes',
+    url: '/page/Tendero/Reportes',
     iosIcon: cartOutline,    mdIcon: cartSharp
   },
   {
     title: 'Pedidos',
-    url: '/page/Pedidos',
+    url: '/page/Tendero/Pedidos',
     iosIcon: notificationsOutline,    mdIcon: notificationsSharp
   },
   {
     title: 'Mis tiendas',
-    url: '/page/Tiendas',
+    url: '/page/Tendero/Tiendas',
     iosIcon: storefrontOutline,    mdIcon: storefrontSharp
   },
   {
     title: 'Domiciliarios',
-    url: '/page/Domiciliarios',
+    url: '/page/Tendero/Domiciliarios',
     iosIcon: timeOutline,    mdIcon: timeSharp
   },
   {
     title: 'Mis productos',
-    url: '/page/MisProductos',
+    url: '/page/Tendero/MisProductos',
     iosIcon: timeOutline,    mdIcon: timeSharp
+  },
+  {
+    title: 'MiPerfil',
+    url: '/page/Tendero/Perfil',
+    iosIcon: personOutline,
+    mdIcon: personSharp
   }
 ]
 
@@ -99,7 +105,7 @@ const Menu: React.FC<{TypeUser:string}> = ({TypeUser}) => {
   const location = useLocation();
 
   var probando = Tienda;
-  
+
   return (
     <IonMenu contentId="main" type="overlay" >
       <IonContent>
