@@ -11,5 +11,7 @@ import firebase from "firebase/app"
     measurementId: "G-21B0HGT1T8"
   };
 
-  export const fireB = firebase.initializeApp(firebaseConfig)
+  export const fireB = firebase.initializeApp(firebaseConfig); // Inicializacion de firebase
+  //export const database = fireB.firestore(); // Inicializacion de la base de datos
+
   

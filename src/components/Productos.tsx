@@ -1,55 +1,61 @@
 import React, { Fragment, useState } from 'react';
-import { IonLabel, IonIcon, IonGrid, IonRow, IonList,IonSelect, IonCol,IonItem, IonContent, IonSelectOption, IonButtons, IonSearchbar, IonToolbar, IonButton } from '@ionic/react';
-import { searchCircleOutline, searchCircleSharp} from 'ionicons/icons';
+import { IonLabel, IonIcon, IonGrid, IonRow, IonList,IonSelect, IonCol,IonItem, useIonViewWillEnter, IonSelectOption, IonSearchbar,IonButton } from '@ionic/react';
+import { logoStackoverflow, searchCircleOutline, searchCircleSharp} from 'ionicons/icons';
 import ProductCard from '../SingleComponents/ProductCard'
 import '../Styles/styles.css'
 import './Productos.css'
-import {loadProducts, produt, list} from "../Controller/UserController";
+import {database} from "../Controller/UserController";
+interface produt {
+  id:  number,
+  name:  string,
+  img: string,
+  medida: string,
+  marca: string
 
- let listProduct:Array<produt> = new Array;
- listProduct = list;
- 
- async function cargaDato(){ //devuelve datos en una lista de productos
-    
-  const resultado = await loadProducts();
+}
 
-   if(typeof resultado !== "number"){ // resultado es una lista de productos.
-     /*resultado.forEach((data) =>{
-      listProduct.push(data); 
-    });*/
-    
-   }else{
-     console.log("error")
-   }
- }
-/*
 interface DatosProduct{
   name: string;
   medida: string;
   marca: string;
   //Precio: number;
-  UrlImg: string;
+  img: string;
 }
- 
-const Product: DatosProduct[] = [
-  {
-    name: 'Arroz',
-    medida: '500g',
-    marca: 'Roa ',
-    Precio: 1200,
-    UrlImg: 'https://www.arrozroa.com/landingarrozroa/wp-content/uploads/2019/12/arroz-roa-fortiplus.png'
-  },
-  {
-    name: 'Frijol Rojo',
-    medida: '500g',
-    marca: 'N.n.',
-    Precio: 800,
-    UrlImg: 'https://www.midia.com.co/sites/default/files/styles/product_detail/public/2020-06/7705946351805.png?itok=A6LSWDWp'
-  }
-]*/
 
+const list: produt[] = [];
+//const listaProduct: produt[] = [];
 
 const Productos: React.FC = () => {
+
+ const[listaProduct, setListaProduct] = useState<produt[]>([]);
+
+async function loadProducts() {
+    
+  const result =  await database.collection("producto").get() // TOMA LOS DATOS DE LA TABLA "producto" Y LOS OBTIENE
+     .then(
+       (querySnapshot) =>{
+       
+       querySnapshot.forEach((doc :  any) =>{
+         console.log(doc.id,doc.data().nombre,doc.data().imagen)
+       
+         list.push({id: doc.id,name:doc.data().nombre, img: doc.data().imagen, medida: doc.data().medida, marca:  doc.data().marca});
+         listaProduct.push({id: doc.id,name:doc.data().nombre, img: doc.data().imagen, medida: doc.data().medida, marca:  doc.data().marca});
+       }); 
+      
+       console.log(listaProduct.length)
+       return listaProduct;
+     }) 
+     .catch((e: any)=>{
+       return 0;
+     });
+     setListaProduct(list);
+
+     console.log(list.length+" Y "+listaProduct.length);
+     return result;  
+}
+
+useIonViewWillEnter( ()=>{ loadProducts(); } )
+
   
     return(
      
@@ -72,24 +78,23 @@ const Productos: React.FC = () => {
           <IonItem>
             <IonLabel>Ordenar por</IonLabel>
             <IonSelect value="brown" okText="Aceptar" cancelText="Cancelar">
-              <IonSelectOption value="brown">Precio</IonSelectOption>
-              <IonSelectOption value="blonde">Marca</IonSelectOption>
-              <IonSelectOption value="black">Categoria</IonSelectOption>
+              <IonSelectOption value="precio">Precio</IonSelectOption>
+              <IonSelectOption value="Marca">Marca</IonSelectOption>
+              <IonSelectOption value="Categoria">Categoria</IonSelectOption>
             </IonSelect>
           </IonItem>
         </IonList>
       </IonCol>
     </IonRow>
-     
-  {cargaDato()}
- { listProduct.forEach((doc) =>{
-    return (
-      <div>
-       <br/>
-       <ProductCard key= {doc.id} name = {doc.name} medida = {doc.medida} marca = {doc.marca} precio={1502} UrlImg = {doc.img} />
-       </div>
-    );
- })}
+    {listaProduct.map((listaProduct, index) => {
+            return (
+              <div>
+                <br/>
+                <ProductCard name={listaProduct.name} medida = {listaProduct.medida} marca = {listaProduct.marca} UrlImg={listaProduct.img}/>
+              </div>
+            );
+          })}
+
  </IonGrid>
         </Fragment>
     );

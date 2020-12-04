@@ -7,17 +7,17 @@ interface DatosProduct {
   name: string;
   medida: string;
   marca:  string;
-  precio: number;
-  UrlImg: string;
+ // precio: number;
+   UrlImg: string;
 }
-const FilaProducto: React.FC<DatosProduct> = ({name, medida, marca, precio, UrlImg}) => {
+const FilaProducto: React.FC<DatosProduct> = ({name, medida, marca, UrlImg}) => {
 
     return( 
     <IonRow>
         <div id="articles">
           <IonCard  className="article-item" id = "article-template">
             <div className = "image-wrap">
-            <img id="img" src={UrlImg} alt="arroz"></img>
+         <img id="img" src={UrlImg} alt="arroz"></img>
             </div>
             <IonCardContent>
               <IonCardTitle>
@@ -26,7 +26,7 @@ const FilaProducto: React.FC<DatosProduct> = ({name, medida, marca, precio, UrlI
               <p>
                 Peso: {medida}
                 Marca: {marca}
-                Precio : {precio}
+                Precio : 1200
               </p>
             </IonCardContent>
             <button>Agregar a Carrito</button>
