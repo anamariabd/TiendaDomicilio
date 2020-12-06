@@ -81,7 +81,7 @@ useIonViewWillEnter( ()=>{ loadProducts(); } )
             return (
               <div>
                 <br/>
-                <ProductCard Id = {listaProduct.id} name={listaProduct.name} medida = {listaProduct.medida} marca = {listaProduct.marca} /*UrlImg={listaProduct.img}*//>
+                <ProductCard key={index} Id = {listaProduct.id} name={listaProduct.name} medida = {listaProduct.medida} marca = {listaProduct.marca} /*UrlImg={listaProduct.img}*//>
               </div>
             );
           })}
