@@ -6,11 +6,10 @@ import { useParams } from 'react-router';
 import './Page.css';
 import ExploreContTienda from '../components/ExploreContTienda';
 
-const Page: React.FC  = () => {
- 
+const Page: React.FC <{TypeUser:string}> = ({TypeUser}) => {
 
   const { name } = useParams<{ name: string; }>();
-  const { TypeUser } = useParams<{ TypeUser: string; }>();
+ // const { TypeUser } = useParams<{ TypeUser: string; }>();
   return (
     <IonPage id="page">
       <IonHeader color = "primary"> 
@@ -20,11 +19,11 @@ const Page: React.FC  = () => {
           </IonButtons>
           
        <IonButtons slot ="end" className = "List-Corner" color="primary">
-                <IonItem href='/page/Carrito' color="primary">
+                <IonItem href='/page/:TypeUser/Carrito' color="primary">
                   <IonIcon slot="end" ios={ bagOutline} md={bagSharp} />
                 </IonItem>
                 
-                <IonItem href="/page/Inicio" color="primary">
+                <IonItem href="/page/:TypeUser/Inicio" color="primary">
                   <IonIcon slot="end" ios={personCircleOutline} md={personCircleSharp} />
                 </IonItem>
   </IonButtons>
@@ -36,19 +35,24 @@ const Page: React.FC  = () => {
       <IonContent fullscreen>
 
        <IonTitle id= "title" >{name}</IonTitle>
-       
-       {()=>{
-
-         if(TypeUser){
-
-         }
-
-       }
-
-       }
+       {(() => {
+         switch (TypeUser) {
+         case 'Tendero':
+         return (
+          <ExploreContTienda name={name} /> 
+         )
+         case 'Cliente':
+         return ( 
+          <ExploreContainer name={name} />     
+           )
+         default:
+         return (
+           <div>404 NOT FOUND :c</div>
+         )
+        }
+       })()}
       {/* <ExploreContainer name={name} /> */}
-       <ExploreContTienda name={name} />
-
+     
       </IonContent>
     </IonPage>
   );
