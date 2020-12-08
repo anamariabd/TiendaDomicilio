@@ -1,0 +1,10 @@
+.cabeceraTabla{
+    background-color: #373A3C;
+    color: white;
+}
+
+  /* Works - pass "my-custom-class" in cssClass to increase specificity */
+  .my-custom-class .modal-wrapper {
+    background: rgb(255, 255, 255);
+    color: black;
+  }
