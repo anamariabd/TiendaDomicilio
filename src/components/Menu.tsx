@@ -65,7 +65,7 @@ const Tienda: AppPage[] = [
 const Cliente: AppPage[] = [
   {
     title: 'Inicio',
-    url: '/page/Inicio',
+    url: '/page/Cliente/Inicio',
     iosIcon: homeOutline,
     mdIcon: homeSharp
   },
@@ -77,34 +77,36 @@ const Cliente: AppPage[] = [
   },
   {
     title: 'Notificaciones',
-    url: '/page/Notificaciones',
+    url: '/page/Cliente/Notificaciones',
     iosIcon: notificationsOutline,
     mdIcon: notificationsSharp
   },
   {
     title: 'Buscar tienda',
-    url: '/page/Tienda',
+    url: '/page/Cliente/Tienda',
     iosIcon: locationOutline,
     mdIcon: locationSharp
   },
   {
     title: 'Mis Compras',
-    url: '/page/MisCompras',
+    url: '/page/Cliente/MisCompras',
     iosIcon: timeOutline,
     mdIcon: timeSharp
   },
   {
     title: 'MiPerfil',
-    url: '/page/Perfil',
+    url: '/page/Cliente/Perfil',
     iosIcon: personOutline,
     mdIcon: personSharp
   },
 ];
 
 const Menu: React.FC<{TypeUser:string}> = ({TypeUser}) => {
+  var Usuario = Tienda;
   const location = useLocation();
-
-  var probando = Cliente;
+if(TypeUser==="Tendero"){ Usuario = Tienda; console.log("TIENDA")}
+else if(TypeUser==="Cliente"){ 
+   Usuario = Cliente; }
 
   return (
     <IonMenu contentId="main" type="overlay" >
@@ -116,7 +118,9 @@ const Menu: React.FC<{TypeUser:string}> = ({TypeUser}) => {
           <IonListHeader>Usuario Cliente</IonListHeader>
           <IonNote>Haz un pedido!</IonNote>
           
-          {probando.map((appPages, index) => {
+          {
+          
+          Usuario.map((appPages, index) => {
             return ( 
               <IonMenuToggle key={index} autoHide={false}>
                 <IonItem className={location.pathname === appPages.url ? 'selected' : ''} routerLink={appPages.url} routerDirection="none" lines="none" detail={false}>
