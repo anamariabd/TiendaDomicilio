@@ -31,7 +31,7 @@ import { useState } from "react"
      .then((doc) => {console.log(doc.id)})
      .catch((e : any) => {console.log(e,"que cagada")})
   }
-  //let list:Array<produt> = new Array();
+  let list:Array<produt> = new Array();
   
  // const[listaProduct, setListaProduct] = useState<produt[]>([]);
 
@@ -40,25 +40,21 @@ import { useState } from "react"
      const result =  await database.collection("producto").get() // TOMA LOS DATOS DE LA TABLA "producto" Y LOS OBTIENE
         .then(
           (querySnapshot) =>{
-          
-          let list: produt[] = [];
-          querySnapshot.forEach((doc :  any) =>{
-            console.log(doc.id,doc.data().nombre,doc.data().imagen)
-            let id =  doc.id;
-            let name = doc.data().nombre;
-            let img = doc.data().imagen;
-            let medida = doc.data().medida;
-            let marca = doc.data().marca;
-          
-            list.push({id: id,name: name, img: img, medida: medida, marca: marca});
-          }); 
-      //    setListaProduct(list);
-        //  return listaProduct;
+            querySnapshot.forEach((doc :  any) =>{
+              console.log(doc.id,doc.data().nombre,doc.data().imagen)
+              let id =  doc.id;
+              let name = doc.data().nombre;
+              let img = doc.data().imagen;
+              let medida = doc.data().medida;
+              let marca = doc.data().marca;
+              list.push({id: id,name: name, img: img, medida: medida, marca: marca});
+            }); 
+          return list;
         }) 
         .catch((e: any)=>{
           return 0;
         });
-        console.log(result);
+        
         return result;  
   }
 
