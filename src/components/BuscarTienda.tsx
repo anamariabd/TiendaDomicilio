@@ -1,8 +1,28 @@
 import React from 'react';
 import Clasificacion from '../SingleComponents/Clasificación' 
 import Buscador from './Buscador'
+import {TiendaCard, DatosTienda} from '../SingleComponents/TiendaCard'
 import '../Styles/styles.css'
-import { IonList, IonItem, IonLabel, IonInput, IonToggle, IonRadio, IonCheckbox, IonItemSliding, IonItemOption, IonItemOptions, IonContent } from '@ionic/react';
+import { IonList} from '@ionic/react';
+
+
+//Simulando los datos
+const Tiendas: DatosTienda[] = [
+  {
+    name: 'Tienda mi super fresh',
+    Localizacion: 'Localización',
+    Calificacion: 'Roa ',
+    Id: 1,
+    UrlImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7L9WW1ZfI60LtfM74zaBl-16DwDNIfB_aLw&usqp=CAU"
+  },
+  {name: 'Tienda la barata',
+  Localizacion: 'Localización',
+  Calificacion: 'Roa ',
+  Id: 2,
+  UrlImg: "https://image.freepik.com/vector-gratis/diseno-logotipo-supermercado-lema-tienda_23-2148458443.jpg"
+
+  }
+]
 
 const BuscarTienda: React.FC = () => (
   <div>
@@ -15,42 +35,15 @@ const BuscarTienda: React.FC = () => (
 
     {/*-- List of Text Items --*/}
     <IonList>
-      <IonItem href = "#">
-      <div id = "articles">
-                <div className="article-item" id = "article-template">
-                    <div className = "image-wrap">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7L9WW1ZfI60LtfM74zaBl-16DwDNIfB_aLw&usqp=CAU" alt = "Tienda">
-                         </img>
-                    </div>
-                    
-         <IonLabel>Tienda mi super fresh</IonLabel>
-                    <span>500Lb</span>
-                    <p>Localización</p>
-                    
-                </div>
-                
-      <div> <Clasificacion/> </div>  
-          </div>
-        <input type="button" name = "submit" className="btn" value="Ver tienda"/>
-      </IonItem>
-      <IonItem href = "#">
-      <div id = "articles">
-                <div className="article-item" id = "article-template">
-                    <div className = "image-wrap">
-                        <img src="https://image.freepik.com/vector-gratis/diseno-logotipo-supermercado-lema-tienda_23-2148458443.jpg" alt = "Tienda">
-                         </img>
-                    </div>
-
-        <IonLabel>Tienda la barata</IonLabel>
-                    <span>500Lb</span>
-                    <p>Localización</p>
-                    
-                </div>
-                
-            <div> <Clasificacion/> </div>  
-            </div>
-        <input type="button" name = "submit" className="btn" value="Ver tienda"/>
-      </IonItem>
+       
+    {Tiendas.map((Tiendas, index) => {
+            return (
+              <div key={index}>
+                <br/>
+                <TiendaCard key={index} Id = {Tiendas.Id} name={Tiendas.name} Localizacion = {Tiendas.Localizacion} Calificacion = {Tiendas.Calificacion} UrlImg={Tiendas.UrlImg}/>
+              </div>
+            );
+          })}
     </IonList>
   </div>
 );

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { IonGrid, IonRow, IonCol, useIonViewWillEnter, IonCardContent, IonButton, } from '@ionic/react';
 import '../Styles/styles.css'
 import FilaProducto from '../SingleComponents/FilaProducto'
-import {listCard} from '../SingleComponents/ProductCard'
+import {listCard, DatosProduct} from '../SingleComponents/ProductCard'
 
 interface ProductsCarrito{
   name: string;
@@ -32,13 +32,9 @@ const Carrito: React.FC =() => {
   //const [ ProductAdd, setProductAdd] = useState(0);
  var total = 0;
 
- /*async function AddIdProducts() {
-
-  //setProductAdd(IdProduct);   
- // console.log(ProductAdd);
- }*/
-
-
+ 
+ const[listaProduct, setListaProduct] = useState<DatosProduct[]>([]);
+//setListaProduct(listCard);
     return(
        <IonCardContent> 
 
@@ -49,11 +45,11 @@ const Carrito: React.FC =() => {
         <IonCol>Precio total</IonCol>
       </IonRow>
 
-      {Productos.map((Productos, index) => {
+      {listCard.map((listCard, index) => {
             return (
              <div  key={index}>
               <br/>
-              <FilaProducto name = {Productos.name+" "+Productos.marca+Productos.medida} precio={Productos.Precio} />
+              <FilaProducto name = {listCard.name+" "+listCard.marca+listCard.medida} precio={1200} />
               </div>
             );
           })}
