@@ -102,8 +102,10 @@ const Cliente: AppPage[] = [
 ];
 
 const Menu: React.FC<{TypeUser:string}> = ({TypeUser}) => {
+  var mensaje = "";
   var Usuario = Tienda;
   const location = useLocation();
+<<<<<<< HEAD
   const[mensaje,setMensaje] = useState("");
    const[SubMensaje,setSubmensaje] = useState("");
 
@@ -113,6 +115,17 @@ if(TypeUser==="Tendero"){
  // setMensaje("Bienvenido tendero");/* setSubmensaje("Atiende tu negocio!")*/}
 else if(TypeUser==="Cliente"){ 
    Usuario = Cliente; /* setMensaje("Bienvenido cliente"); setSubmensaje("Haz un pedido!") */}
+=======
+
+if(TypeUser==="Tendero"){ 
+   Usuario = Tienda;
+  mensaje = "Atiende tu negocio!";
+   console.log("TIENDA")}
+else if(TypeUser==="Cliente"){ 
+   Usuario = Cliente;
+   mensaje="Haz un pedido!";
+  }
+>>>>>>> 6fbc6ccf3ffb0a7827c4ae8330475b613e8dff5c
 
   return (
     <IonMenu contentId="main" type="overlay" >
@@ -121,8 +134,13 @@ else if(TypeUser==="Cliente"){
         <IonAvatar id="perfil">
         <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" />
         </IonAvatar>
+<<<<<<< HEAD
   <IonListHeader></IonListHeader>
   <IonNote></IonNote>
+=======
+          <IonListHeader>Usuario {TypeUser}</IonListHeader>
+          <IonNote>{mensaje}</IonNote>
+>>>>>>> 6fbc6ccf3ffb0a7827c4ae8330475b613e8dff5c
           
           {
           

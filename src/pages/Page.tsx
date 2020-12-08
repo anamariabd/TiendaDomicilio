@@ -1,6 +1,6 @@
 import { IonButtons, IonListHeader, IonContent, IonItem, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar, IonIcon} from '@ionic/react';
 import React from 'react';
-import { bagOutline, bagSharp,  personCircleOutline, personCircleSharp} from 'ionicons/icons';
+import { bagOutline, bagSharp, locationOutline, locationSharp,  personCircleOutline, personCircleSharp} from 'ionicons/icons';
 import ExploreContainer from '../components/ExploreContainer';
 import { useParams } from 'react-router';
 import './Page.css';
@@ -19,10 +19,28 @@ const Page: React.FC <{TypeUser:string}> = ({TypeUser}) => {
           </IonButtons>
           
        <IonButtons slot ="end" className = "List-Corner" color="primary">
-                <IonItem href='/page/:TypeUser/Carrito' color="primary">
+       {(() => {
+         switch (TypeUser) {
+         case 'Tendero':
+         return (
+         
+          <IonItem href={"'/page/+`TypeUse`+/Carrito'"} color="primary">
+                  <IonIcon slot="end" ios={locationOutline} md={locationSharp} />
+           </IonItem>  
+         )
+         case 'Cliente':
+         return ( 
+          <IonItem href={"'/page/+`TypeUse`+/Carrito'"} color="primary">
                   <IonIcon slot="end" ios={ bagOutline} md={bagSharp} />
-                </IonItem>
-                
+           </IonItem>  
+           )
+         default:
+         return (
+           <div>404 NOT FOUND :c</div>
+         )
+        }
+       })()}
+                              
                 <IonItem href="/page/:TypeUser/Inicio" color="primary">
                   <IonIcon slot="end" ios={personCircleOutline} md={personCircleSharp} />
                 </IonItem>
