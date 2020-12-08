@@ -42,7 +42,9 @@ const App: React.FC = () => {
           <IonRouterOutlet>
               <Route path="/logo" component= {Logo} exact />
               <Route path="/login" component= {Login} exact />
-              <Route path="/page/:Tipo/:name" component= {InicioUser} exact/>    
+              <Route path="/page/:Tipo/:name" component= {InicioUser} exact/>  
+              
+              <Route path="/page/:Tipo" component= {InicioUser} exact/>      
             { /* <Route path="/page/Cliente/:name" component= {InicioUser} exact/> */ } 
               <Route path="/register" component= {Register} exact />
               <Route path="/estado-pedido" component= {EstadoPedido} exact />

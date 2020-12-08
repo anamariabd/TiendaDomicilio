@@ -23,11 +23,12 @@ import '../theme/variables.css';
 const InicioUser: React.FC = () => {
 
   const { Tipo } = useParams<{ Tipo: string; }>();
+  console.log(Tipo);
     return (
         <IonSplitPane contentId="main">
           <Menu TypeUser={Tipo}/>
           <IonRouterOutlet id="main">
-              <Page/>
+              <Page TypeUser={Tipo}/>
           </IonRouterOutlet>
         </IonSplitPane>
     );
