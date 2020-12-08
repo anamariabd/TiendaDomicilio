@@ -71,7 +71,7 @@ const Cliente: AppPage[] = [
   },
   {
     title: 'Mi carrito',
-    url: '/page/Carrito',
+    url: '/page/Cliente/Carrito',
     iosIcon: cartOutline,
     mdIcon: cartSharp
   },
@@ -104,7 +104,7 @@ const Cliente: AppPage[] = [
 const Menu: React.FC<{TypeUser:string}> = ({TypeUser}) => {
   const location = useLocation();
 
-  var probando = Tienda;
+  var probando = Cliente;
 
   return (
     <IonMenu contentId="main" type="overlay" >
