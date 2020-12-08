@@ -4,16 +4,9 @@ import { searchCircleOutline, searchCircleSharp} from 'ionicons/icons';
 import ProductCard from '../SingleComponents/ProductCard'
 import '../Styles/styles.css'
 import './Productos.css'
-import {database} from "../Controller/UserController";
-interface produt {
-  id:  number,
-  name:  string,
-  img: string,
-  //precio
-  medida: string,
-  marca: string
+import {database} from "../firebaseConfig"
+import {produt} from "../Controller/UserController";
 
-}
 
 const list: produt[] = [];
 
@@ -25,18 +18,13 @@ async function loadProducts() {
     
   const result =  await database.collection("producto").get() // TOMA LOS DATOS DE LA TABLA "producto" Y LOS OBTIENE
      .then(
-       (querySnapshot) =>{
-       
-       querySnapshot.forEach((doc :  any) =>{
-         console.log(doc.id,doc.data().nombre,doc.data().imagen)
-       
-         list.push({id: doc.id,name:doc.data().nombre, img: doc.data().imagen, medida: doc.data().medida, marca:  doc.data().marca});
-      
-       }); 
-      
+      (querySnapshot) =>{
+        querySnapshot.forEach((doc :  any) =>{
+          list.push({id: doc.id,name:doc.data().nombre, img: doc.data().imagen, medida: doc.data().medida, marca:  doc.data().marca});
+        }); 
        console.log(listaProduct.length)
        return listaProduct;
-     }) 
+      }) 
      .catch((e: any)=>{
        return 0;
      });
