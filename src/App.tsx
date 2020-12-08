@@ -47,9 +47,6 @@ const App: React.FC = () => {
               <Route path="/page/:Tipo" component= {InicioUser} exact/>      
             { /* <Route path="/page/Cliente/:name" component= {InicioUser} exact/> */ } 
               <Route path="/register" component= {Register} exact />
-              <Route path="/estado-pedido" component= {EstadoPedido} exact />
-              <Route path="/reportes" component= {Reportes} exact />
-              <Route path="/domiciliarios" component= {Domiciliarios} exact />
               <Redirect  to="/logo"/> 
           </IonRouterOutlet>
       </IonReactRouter>

@@ -1,11 +1,11 @@
 import React from 'react';
 import Productos from './Productos'
-import Carrito from './Carrito'
+import Reportes from '../pages/Reportes'
 import './ExploreContainer.css';
-import MisCompras from './MisCompras'
-import Notificaciones from './Notificaciones'
 import BuscarTienda from './BuscarTienda';
 import MiPerfil from './MiPerfil';
+import EstadoPedido from '../pages/EstadoPedido';
+import Domiciliarios from '../pages/Domiciliarios';
 
 interface ContainerProps {
   name: string;
@@ -25,22 +25,22 @@ const ExploreContTienda: React.FC<ContainerProps> = ({ name }) => {
          )
          case 'Reportes':
          return ( 
-          <Carrito/>         )
+          <Reportes/>         )
          case 'Pedidos':
          return (
-          <Notificaciones/>
+          <EstadoPedido/>
          )
          case 'Tiendas':
          return (
-          <Productos/>
+          <BuscarTienda/>
          )
          case 'Domiciliarios':
          return (
-          <BuscarTienda/>
+          <Domiciliarios/>
          )
          case 'MisProductos':
          return ( 
-         <MisCompras/>
+         <Productos/>
          )
          case 'Perfil':
          return ( 

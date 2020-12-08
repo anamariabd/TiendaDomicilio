@@ -1,25 +1,12 @@
 import { IonHeader,IonButton, IonSelect, IonSelectOption, IonCol, IonLabel, IonContent, IonGrid, IonInput, IonPage, IonRow, IonToolbar, IonButtons, IonIcon, IonModal, IonCard, IonCardContent, IonCardTitle, IonImg } from '@ionic/react';
 import { notifications, personCircle } from 'ionicons/icons';
-import React, {useState} from 'react';
+import React, {Fragment, useState} from 'react';
 import './Domiciliarios.css';
 
 const Domiciliarios: React.FC = () => {
     
   return (
-    <IonPage>
-        <IonHeader >
-            <IonToolbar color = "primary">
-            <IonButtons slot="secondary">
-                <IonButton>
-                <IonIcon slot="icon-only" icon={notifications} />
-                </IonButton>
-                <IonButton>
-                <IonIcon slot="icon-only" icon={personCircle} />
-                </IonButton>
-            </IonButtons>
-            </IonToolbar>
-        </IonHeader>
-      <IonContent >
+    <Fragment>
         <IonGrid>
             <IonRow>
                 <IonCol>
@@ -55,8 +42,7 @@ const Domiciliarios: React.FC = () => {
               </IonCol>
             </IonRow>
         </IonGrid>
-      </IonContent>
-    </IonPage>
+    </Fragment>
   );
 };
 

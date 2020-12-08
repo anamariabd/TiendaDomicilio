@@ -11,7 +11,7 @@ import {
   IonNote
 } from '@ionic/react';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { personSharp, personOutline, timeOutline, timeSharp, notificationsOutline, homeOutline, homeSharp, notificationsSharp, cartOutline, cartSharp, locationOutline, locationSharp, storefrontOutline, storefrontSharp} from 'ionicons/icons';
 import './Menu.css';
@@ -104,9 +104,15 @@ const Cliente: AppPage[] = [
 const Menu: React.FC<{TypeUser:string}> = ({TypeUser}) => {
   var Usuario = Tienda;
   const location = useLocation();
-if(TypeUser==="Tendero"){ Usuario = Tienda; console.log("TIENDA")}
+  const[mensaje,setMensaje] = useState("");
+   const[SubMensaje,setSubmensaje] = useState("");
+
+if(TypeUser==="Tendero"){ 
+  Usuario = Tienda;
+}
+ // setMensaje("Bienvenido tendero");/* setSubmensaje("Atiende tu negocio!")*/}
 else if(TypeUser==="Cliente"){ 
-   Usuario = Cliente; }
+   Usuario = Cliente; /* setMensaje("Bienvenido cliente"); setSubmensaje("Haz un pedido!") */}
 
   return (
     <IonMenu contentId="main" type="overlay" >
@@ -115,8 +121,8 @@ else if(TypeUser==="Cliente"){
         <IonAvatar id="perfil">
         <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" />
         </IonAvatar>
-          <IonListHeader>Usuario Cliente</IonListHeader>
-          <IonNote>Haz un pedido!</IonNote>
+  <IonListHeader></IonListHeader>
+  <IonNote></IonNote>
           
           {
           
