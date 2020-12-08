@@ -1,5 +1,6 @@
 import Menu from './components/Menu';
 import Page from './pages/Page';
+import Inicio from './components/Inicio';
 import Logo from './pages/Logo';
 import Reportes from './pages/Reportes';
 import Domiciliarios from './pages/Domiciliarios';
