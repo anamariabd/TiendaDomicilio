@@ -16,13 +16,11 @@ const Login: React.FC = () => {
   async function login(){
     TipoUser= tUser;
         const res =  await loginUser(username, password);
-        
-      if (typeof res == "boolean"){
-         
+        if (typeof res == "boolean"){
           console.log("ingrese")
-      }else{
-        console.log(res.code, res.message)
-      }
+        }else{
+          console.log(res.code, res.message)
+        }
   }
 
   
