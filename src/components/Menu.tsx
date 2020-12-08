@@ -104,13 +104,12 @@ const Cliente: AppPage[] = [
 const Menu: React.FC<{TypeUser:string}> = ({TypeUser}) => {
   var Usuario = Tienda;
   const location = useLocation();
-<<<<<<< HEAD
+
+
 if(TypeUser==="Tendero"){ Usuario = Tienda; console.log("TIENDA")}
 else if(TypeUser==="Cliente"){ 
    Usuario = Cliente; }
-=======
 
->>>>>>> Fredy
 
   return (
     <IonMenu contentId="main" type="overlay" >
