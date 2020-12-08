@@ -66,11 +66,6 @@ ion-menu.md ion-list#list .perfil{
   margin-bottom: 35px;
 }
 
-.btnCircle{
-  margin-top: -12px;
-  width: 50px;
-  --border-radius: 50px;
-}
 .boton{
   width:30px;
   height:30px;

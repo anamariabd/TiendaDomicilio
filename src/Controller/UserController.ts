@@ -1,7 +1,6 @@
 import {fireB} from "../firebaseConfig"
 import "firebase/firestore"
 import "firebase/auth"
-import Productos from "../components/Productos"
 import { useState } from "react"
  
   export interface produt {
