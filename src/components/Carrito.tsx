@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { IonGrid, IonRow, IonCol, useIonViewWillEnter, IonCardContent, } from '@ionic/react';
+import { IonGrid, IonRow, IonCol, useIonViewWillEnter, IonCardContent, IonButton, } from '@ionic/react';
 import '../Styles/styles.css'
 import FilaProducto from '../SingleComponents/FilaProducto'
 import {listCard} from '../SingleComponents/ProductCard'
@@ -47,7 +47,6 @@ const Carrito: React.FC =() => {
         <IonCol>Producto</IonCol>
         <IonCol> Unidades </IonCol>
         <IonCol>Precio total</IonCol>
-        <IonCol></IonCol>
       </IonRow>
 
       {Productos.map((Productos, index) => {
@@ -63,7 +62,7 @@ const Carrito: React.FC =() => {
       <IonRow>
         <IonCol>Total a pagar: {total}</IonCol>
       </IonRow>
-     
+     <IonButton> Comprar </IonButton>
     </IonGrid>                     
 
         </IonCardContent>

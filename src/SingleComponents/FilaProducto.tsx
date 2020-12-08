@@ -17,16 +17,16 @@ const FilaProducto: React.FC<DatosProduct> = ({name, precio}) => {
     return(
       <IonRow>  
             <IonCol>{nombre}</IonCol>
-            <IonCol> <IonButton className="btnCircle" onClick={() =>{ if(count > 1 ){ setCount(count - 1);
+            <IonCol> <IonButton className="BtnCircle" onClick={() =>{ if(count > 1 ){ setCount(count - 1);
              setNuevoPrecio(nuevoPrecio-precio)}}} ><IonIcon md={removeCircleOutline}> 
             </IonIcon>
-            </IonButton> {count}<IonButton  className="btnCircle" onClick={() => {setCount(count + 1);
+            </IonButton> {count}<IonButton  className="BtnCircle" onClick={() => {setCount(count + 1);
              setNuevoPrecio(precio+nuevoPrecio)}}>
             <IonIcon md={addCircleOutline}> </IonIcon> </IonButton>
             </IonCol>
-            <IonCol>{nuevoPrecio}</IonCol>
-            <IonCol><IonButton  color = "danger" className="btnCircle"> <IonIcon md={trashOutline}> </IonIcon> </IonButton>
-            </IonCol>
+            <IonCol>{nuevoPrecio} </IonCol>
+            <IonButton  color = "danger" className="BtnCircle"> <IonIcon md={trashOutline}> </IonIcon> </IonButton>           
+           
       </IonRow>
     );
 
