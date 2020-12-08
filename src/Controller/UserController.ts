@@ -1,5 +1,4 @@
-import {fireB} from "../firebaseConfig"
-import "firebase/firestore"
+import {fireB, database} from "../firebaseConfig"
 import "firebase/auth"
 import { useState } from "react"
  
@@ -13,8 +12,8 @@ import { useState } from "react"
   }
 
 
-export const database = fireB.firestore()
-  require('firebase/auth')
+//export const database = fireB.firestore()
+  //require('firebase/auth')
   //Autenticacion con firebase 
    // CONEXION A BASE DE DATOS
 
@@ -63,8 +62,8 @@ export const database = fireB.firestore()
 
 
   export async function loginUser(username: string, password:string ){
-    
-    const  resultado = await fireB.auth().signInWithEmailAndPassword(/*email*/username, password)
+    console.log()
+    const  resultado = await fireB.auth().signInWithEmailAndPassword(username, password)
        .then((e:any) => {
          console.log("Si entre",e.credential)
          return true

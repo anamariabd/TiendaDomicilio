@@ -1,7 +1,11 @@
 import Menu from './components/Menu';
 import Page from './pages/Page';
+import Inicio from './components/Inicio';
 import Logo from './pages/Logo';
+import Reportes from './pages/Reportes';
+import Domiciliarios from './pages/Domiciliarios';
 import Login from './pages/Login';
+import EstadoPedido from './pages/EstadoPedido';
 import React from 'react';
 import { IonApp, IonRouterOutlet, IonSplitPane } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
@@ -43,6 +47,9 @@ const App: React.FC = () => {
               <Route path="/page/:Tipo" component= {InicioUser} exact/>      
             { /* <Route path="/page/Cliente/:name" component= {InicioUser} exact/> */ } 
               <Route path="/register" component= {Register} exact />
+              <Route path="/estado-pedido" component= {EstadoPedido} exact />
+              <Route path="/reportes" component= {Reportes} exact />
+              <Route path="/domiciliarios" component= {Domiciliarios} exact />
               <Redirect  to="/logo"/> 
           </IonRouterOutlet>
       </IonReactRouter>

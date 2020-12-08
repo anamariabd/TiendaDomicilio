@@ -11,11 +11,30 @@ interface DatosProduct {
   // UrlImg: string;
 }
 
-export let IdProduct = 0;
+
+export let listCard = Array<DatosProduct>();
+
+
+function validate(key:number){
+  let aux : boolean;
+  aux = true;
+  listCard.forEach((element)=>{
+    if(element.Id === key){
+       aux = false;
+    }
+  })
+  return aux;
+}
+  
+function listProd(data:number ,name : string, marca : string, medida : string){
+  if(validate(data)){
+    listCard.push({Id: data, name : name, medida : medida, marca : marca});
+  }
+}
 
 const ProductCard: React.FC<DatosProduct> = ({name, medida, marca, Id}) => {
-  const [ ProdAdd, setProdAdd] = useState(0);
-  IdProduct = ProdAdd;
+  //const [ ProdAdd, setProdAdd] = useState(0);
+  //IdProduct = ProdAdd;
     return( 
     <IonRow>
         <div id="articles">
@@ -33,7 +52,7 @@ const ProductCard: React.FC<DatosProduct> = ({name, medida, marca, Id}) => {
                 Precio : 1200
               </p>
             </IonCardContent>
-            <button value = {Id} onClick= { ()=>{ setProdAdd(Id) }}>Agregar a Carrito</button>
+            <button value = {Id} onClick= { ()=>{ listProd(Id, name, marca, medida ); console.log(listCard)}}>Agregar a Carrito</button>
           </IonCard>
         </div>
       </IonRow>
