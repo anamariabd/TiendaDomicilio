@@ -87,6 +87,12 @@ const Register: React.FC = () => {
               <IonRow>
                 <IonInput class="entrada" placeholder="Direcion de domicilio" > </IonInput>
               </IonRow>
+              <IonRow>
+                <IonLabel class="entrada">Ingrese foto de la tienda: </IonLabel>
+              </IonRow>
+              <IonRow>
+                <input className="entrada" type="file" />
+              </IonRow>
                     </IonGrid>
                     
               <IonButton /* routerLink="/login"*/ onClick = {() => {registerUser()}}>
