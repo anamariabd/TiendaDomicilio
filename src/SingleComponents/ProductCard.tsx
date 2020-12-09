@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {  IonRow, IonCard, IonIcon, IonButton, IonCardContent, IonCardTitle } from '@ionic/react';
 import './Clasificacion.css'
 
-interface DatosProduct {
+export interface DatosProduct {
   name: string;
   medida: string;
   marca:  string;

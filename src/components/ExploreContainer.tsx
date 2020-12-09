@@ -19,9 +19,7 @@ const ExploreContainer: React.FC<ContainerProps> = ({ name }) => {
          switch (name) {
          case 'Inicio':
          return (
-           <div>
-          <Productos/>
-           </div>    
+          <Productos key={1}/>
          )
          case 'Carrito':
          return ( 
@@ -32,7 +30,7 @@ const ExploreContainer: React.FC<ContainerProps> = ({ name }) => {
          )
          case 'Productos':
          return (
-          <Productos/>
+          <Productos key={2}/>
          )
          case 'Tienda':
          return (

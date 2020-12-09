@@ -33,3 +33,17 @@
   input[type="radio"]:checked ~ label {
     color: orange;
   }
+
+  ion-col.md.hydrated{
+
+    min-width: 90px;
+
+  }
+
+.BtnCircle{
+  min-width: 30px;
+  margin-top: -12px;
+  height: 30px;
+  width: 30px;
+  --border-radius: 50px;
+}
