@@ -1,5 +1,5 @@
 import { IonButtons,  IonContent, IonHeader, IonInput, IonPage, IonTitle, IonToolbar, IonIcon, IonButton, IonImg, IonFooter, IonGrid, IonRow, IonCol} from '@ionic/react';
-import React from 'react';
+import React, { useState} from 'react';
 import './Logo.css';
 import im3 from '../Assets/im3.png';
 const Logo: React.FC = () => {
@@ -20,7 +20,7 @@ const Logo: React.FC = () => {
                 </IonRow>
                 <IonRow>
                     <IonCol>
-                        <IonButton routerLink="/register" class="btn" color="primary" expand="block">Registrate Aqui</IonButton>
+                    <IonButton routerLink="/register" class="btn" color="primary"  expand="block">Registrate Aqui</IonButton>
                     </IonCol>
                 </IonRow>
             </IonGrid>

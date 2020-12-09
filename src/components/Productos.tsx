@@ -22,8 +22,7 @@ async function loadProducts() {
         querySnapshot.forEach((doc :  any) =>{
           list.push({id: doc.id,name:doc.data().nombre, img: doc.data().imagen, medida: doc.data().medida, marca:  doc.data().marca});
         }); 
-       console.log(listaProduct.length)
-       return listaProduct;
+       return list;
       }) 
      .catch((e: any)=>{
        return 0;
@@ -67,9 +66,9 @@ useIonViewWillEnter( ()=>{ loadProducts(); } )
     </IonRow>
     {listaProduct.map((listaProduct, index) => {
             return (
-              <div>
+              <div key={index}>
                 <br/>
-                <ProductCard Id = {listaProduct.id} name={listaProduct.name} medida = {listaProduct.medida} marca = {listaProduct.marca} /*UrlImg={listaProduct.img}*//>
+                <ProductCard key={index} Id = {listaProduct.id} name={listaProduct.name} medida = {listaProduct.medida} marca = {listaProduct.marca} /*UrlImg={listaProduct.img}*//>
               </div>
             );
           })}

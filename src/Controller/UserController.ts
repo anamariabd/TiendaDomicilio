@@ -1,7 +1,5 @@
 import {fireB, database} from "../firebaseConfig"
 import "firebase/auth"
-
-import Productos from "../components/Productos"
 import { useState } from "react"
  
   export interface produt {
