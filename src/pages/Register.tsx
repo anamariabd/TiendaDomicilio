@@ -1,4 +1,4 @@
-import { IonButton, IonSelect, IonSelectOption, IonCol, IonLabel, IonContent, IonGrid, IonInput, IonPage, IonRow } from '@ionic/react';
+import { IonButton, IonSelect, IonSelectOption, IonCol, IonModal, IonLabel, IonContent, IonGrid, IonInput, IonPage, IonRow } from '@ionic/react';
 import React, {useState} from 'react';
 import './Register.css';
 import {registUser,RegisterData} from '../Controller/UserController';
@@ -6,6 +6,7 @@ import {registUser,RegisterData} from '../Controller/UserController';
 
 const Register: React.FC = () => {
   
+  const [showModal, setShowModal] = useState(false);
   const [name, setName] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -40,7 +41,7 @@ const Register: React.FC = () => {
             <IonCol>
                  
            <IonRow>
-               <IonLabel class="entrada">Ordenar por</IonLabel>
+               <IonLabel class="entrada">Registrar como: </IonLabel>
                 <IonSelect  value={tUser} okText="Aceptar" cancelText="Cancelar" onIonChange = { (e : any) => setTUser(e.target.value)}>
                 <IonSelectOption value="Tendero">Tendero</IonSelectOption>
                 <IonSelectOption   value="Cliente">Cliente</IonSelectOption>
@@ -68,12 +69,35 @@ const Register: React.FC = () => {
             </IonCol>
           </IonRow>
           <IonRow>
-            <IonCol id="bIngresar">
-              <IonButton /* routerLink="/login"*/ onClick = {() => {registerUser()}}>
+            <IonCol id="bIngresar">              
+              <IonButton /* routerLink="/login"*/  onClick={() =>{ (tUser === "Tendero")? setShowModal(true): registerUser()}}>
                 Registrarse
               </IonButton>
             </IonCol>
           </IonRow>
+          {/* Modal */}
+          <IonRow>
+              <IonCol>
+                <IonModal isOpen={showModal} cssClass='my-custom-class'>
+                    <IonGrid>
+                       
+              <IonRow>
+                <IonInput class="entrada" placeholder="Nombre de tienda"> </IonInput>
+              </IonRow>
+              <IonRow>
+                <IonInput class="entrada" placeholder="Direcion de domicilio" > </IonInput>
+              </IonRow>
+                    </IonGrid>
+                    
+              <IonButton /* routerLink="/login"*/ onClick = {() => {registerUser()}}>
+                Registrarse
+              </IonButton>
+              <IonButton onClick={() => setShowModal(false)}>Cerrar</IonButton>
+                </IonModal>
+                
+              </IonCol>
+          </IonRow>
+
         </IonGrid>
       </IonContent>
     </IonPage>
