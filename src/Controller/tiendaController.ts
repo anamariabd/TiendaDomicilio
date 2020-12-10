@@ -1,4 +1,4 @@
-import {fireB, database} from "../firebaseConfig"
+import {fireB, database} from "./UserController"
 import "firebase/auth"
 
 

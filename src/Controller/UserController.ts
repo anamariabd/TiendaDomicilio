@@ -1,9 +1,10 @@
-import {fireB, database} from "../firebaseConfig"
+import {firebaseConfig} from "../firebaseConfig"
 import "firebase/auth"
 import { useState } from "react"
-import { barbellOutline } from "ionicons/icons"
-import { formatDiagnosticsWithColorAndContext } from "typescript"
-import { promises } from "dns"
+import firebase from "firebase/app"
+import  "firebase/firestore"
+import  "firebase/auth"
+
  
   export interface produt {
     id:  number,
@@ -13,10 +14,9 @@ import { promises } from "dns"
     marca: string
 
   }
-
-
-//export const database = fireB.firestore()
-  //require('firebase/auth')
+  export const fireB = firebase.initializeApp(firebaseConfig)
+  export const database = fireB.firestore(); // Inicializacion de la base de datos
+  require('firebase/auth')
   //Autenticacion con firebase 
    // CONEXION A BASE DE DATOS
 
@@ -64,9 +64,9 @@ import { promises } from "dns"
 
   export async function loginUser(username: string, password:string ){
     console.log()
-    const  resultado = await fireB.auth().signInWithEmailAndPassword(username, password)
-       .then((e:any) => {
-         console.log("Si entre",e.credential)
+    const  resultado = await firebase.auth().signInWithEmailAndPassword(username, password)
+       .then((user) => {
+         console.log("Si entre")
          return true
        })
        .catch((e) => {
