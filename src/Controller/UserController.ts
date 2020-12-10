@@ -1,6 +1,9 @@
 import {fireB, database} from "../firebaseConfig"
 import "firebase/auth"
 import { useState } from "react"
+import { barbellOutline } from "ionicons/icons"
+import { formatDiagnosticsWithColorAndContext } from "typescript"
+import { promises } from "dns"
  
   export interface produt {
     id:  number,
@@ -18,7 +21,7 @@ import { useState } from "react"
    // CONEXION A BASE DE DATOS
 
   export async function RegisterData(name:string,username: string, numberPhone: Number,address:string, email : string, tUser : string) {
-    await database.collection("usuarios").add({
+    const result = await database.collection("usuarios").add({
       tipoUsuario : tUser,
       nombre : name,
       userName : username,
@@ -26,8 +29,11 @@ import { useState } from "react"
       correo : email,
       direccion : address
      })
-     .then((doc) => {console.log(doc.id)})
-     .catch((e : any) => {console.log(e,"que cagada")})
+     .then((doc) => {return doc.id})
+     .catch((e : any) => {return 0})
+     if(typeof result === "string"){
+        return result;
+     }
   }
   let list:Array<produt> = new Array();
   
@@ -55,7 +61,6 @@ import { useState } from "react"
         
         return result;  
   }
-
 
   export async function loginUser(username: string, password:string ){
     console.log()
@@ -88,22 +93,29 @@ import { useState } from "react"
     };
   }
 
-  export function userCurrent(){
+  export async function userCurrent(){
    let user =   fireB.auth().currentUser;
-   if (user) {
-          let doc =database.collection("usuarios").where("correo", "==",user.email).get()
-          .then((querySnapshot) => {
+    if (user) {
+        let result;
+       await database.collection("usuarios").where("correo", "==",user.email).get()
+         .then((querySnapshot) => {
+            let m;
               querySnapshot.forEach((doc) => {
-                console.log(doc.id, doc.data())
+                 m = doc.id
+                //console.log(doc.id)
+                //console.log(doc.id, doc.data())
               })
-          })
+              
+              result = m;
+            })
           .catch()
-         
+      console.log(result,"resultado")    
+      return String(result);
+      
     } else {
           console.log("no hay usuarios logiados") // No user is signed in.
     }
  }
-  
 
   export async function registUser(email: string, password: string){
       let reg = await fireB.auth().createUserWithEmailAndPassword(email,password).then((e:any) => {return e}).catch((e:any) => {return e})
@@ -112,3 +124,13 @@ import { useState } from "react"
   } 
 
 
+  export async function registerClient(id:string,barrio:string, direccion: string, localizacion: string ){
+    await database.collection('cliente').add({ 
+      idUsuario: id,
+      barrio: barrio,
+      direccion: direccion,
+      localizacion: localizacion
+    })
+    .then()
+    .catch()
+  }
