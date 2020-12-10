@@ -1,6 +1,4 @@
 import {firebaseConfig} from "../firebaseConfig"
-import "firebase/auth"
-import { useState } from "react"
 import firebase from "firebase/app"
 import  "firebase/firestore"
 import  "firebase/auth"
@@ -63,17 +61,21 @@ import  "firebase/auth"
   }
 
   export async function loginUser(username: string, password:string ){
-    console.log()
-    const  resultado = await firebase.auth().signInWithEmailAndPassword(username, password)
-       .then((user) => {
-         console.log("Si entre")
-         return true
-       })
-       .catch((e) => {
-         console.log("nada no entre")
-         return e
-      });
-       return resultado; 
+    console.log();
+
+      const resultado = await firebase.auth().signInWithEmailAndPassword(username, password)
+      .then( (user) =>{
+        console.log("Entró"+user);
+       return true;
+      }
+      ).catch( (error) =>{
+        
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      return false;
+      } );
+
+      return resultado;
   }
   
   export async function logOut(){
@@ -94,27 +96,26 @@ import  "firebase/auth"
   }
 
   export async function userCurrent(){
-   let user =   fireB.auth().currentUser;
-    if (user) {
-        let result;
-       await database.collection("usuarios").where("correo", "==",user.email).get()
-         .then((querySnapshot) => {
+   let user =   fireB.auth().onAuthStateChanged( (user)=>{
+      if (user) {
+        console.log(user);
+       // let result;
+     //  await database.collection("usuarios").where("correo", "==",user.email).get()
+      /*   .then((querySnapshot) => {
             let m;
               querySnapshot.forEach((doc) => {
                  m = doc.id
                 //console.log(doc.id)
                 //console.log(doc.id, doc.data())
               })
-              
               result = m;
             })
           .catch()
       console.log(result,"resultado")    
-      return String(result);
-      
-    } else {
-          console.log("no hay usuarios logiados") // No user is signed in.
+      return String(result); */
+    }else{console.log("no hay usuarios logiados")  }
     }
+   );
  }
 
   export async function registUser(email: string, password: string){

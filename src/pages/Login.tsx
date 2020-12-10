@@ -2,7 +2,7 @@ import { IonButton, IonLabel, IonSelectOption, IonSelect, IonCol, IonContent, Io
 import React, {useState} from 'react';
 
 import './Login.css';
-import {loginUser,loadProducts} from '../Controller/UserController'
+import {loginUser} from '../Controller/UserController'
 
 let TipoUser;
 
@@ -13,13 +13,14 @@ const Login: React.FC = () => {
   
   const [tUser, setTUser] = useState('');
  
-  async function login(){
+async function login(){
     TipoUser= tUser;
-        const res =  await loginUser(username, password);
-        if (typeof res == "boolean"){
-          console.log("ingrese")
+        if (await loginUser(username, password)){
+          console.log("ingresé")
+          return true;
         }else{
-          console.log(res.code, res.message)
+          console.log("NO ingresé") // este sirve
+          return false;
         }
   }
 
@@ -50,7 +51,7 @@ const Login: React.FC = () => {
           </IonRow>
           <IonRow>
             <IonCol id="bIngresar">
-              <IonButton href ={"/page"+entry+"/Inicio"} onClick = { () => {login()}} /*href={entry}*/>
+              <IonButton href ={"/page"+entry+"/Inicio"} onClick = { () => {login(); console.log(login())}} /*href={entry}*/>
                 Iniciar Sesion
               </IonButton>
             </IonCol>

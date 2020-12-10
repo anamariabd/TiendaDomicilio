@@ -34,11 +34,11 @@ const Register: React.FC = () => {
     }
   }
   async function registStore(nombre : string, localizacion : string){
-    let id = await userCurrent();
+  /*  let id = await userCurrent();
     console.log(id)
     if(id !== undefined){
-      await DataStore(nombre, id, localizacion)
-    }
+      await DataStore(nombre, id, localizacion) 
+    }*/
   }
 
   const [imagen,  setImagen] = useState<File>();
