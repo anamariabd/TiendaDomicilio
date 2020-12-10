@@ -40,8 +40,8 @@ const Tienda: AppPage[] = [
     iosIcon: notificationsOutline,    mdIcon: notificationsSharp
   },
   {
-    title: 'Mis tiendas',
-    url: '/page/Tendero/Tiendas',
+    title: 'Mi tienda',
+    url: '/page/Tendero/Tienda',
     iosIcon: storefrontOutline,    mdIcon: storefrontSharp
   },
   {

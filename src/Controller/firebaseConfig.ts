@@ -1,6 +1,6 @@
 import firebase from "firebase/app"
 import  "firebase/firestore"
- const firebaseConfig = {
+export  const firebaseConfig = {
     apiKey: "AIzaSyCxnH8cNOZ6oDen6AKjjz--BmOPnG3ngIU",
     authDomain: "app-tiendas-7f8ba.firebaseapp.com",
     databaseURL: "https://app-tiendas-7f8ba.firebaseio.com",

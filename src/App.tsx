@@ -45,7 +45,7 @@ const App: React.FC = () => {
               <Route path="/page/:Tipo/:name" component= {InicioUser} exact/>  
               
               <Route path="/page/:Tipo" component= {InicioUser} exact/>      
-            { /* <Route path="/page/Cliente/:name" component= {InicioUser} exact/> */ } 
+            { /* Hay que hacer PrivateRoute*/ } 
               <Route path="/register" component= {Register} exact />
               <Redirect  to="/logo"/> 
           </IonRouterOutlet>

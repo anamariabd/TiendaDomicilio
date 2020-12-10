@@ -2,7 +2,7 @@ import React from 'react';
 import Productos from './Productos'
 import Reportes from '../pages/Reportes'
 import './ExploreContainer.css';
-import BuscarTienda from './BuscarTienda';
+import MiTienda from '../pages/MiTienda';
 import MiPerfil from './MiPerfil';
 import EstadoPedido from '../pages/EstadoPedido';
 import Domiciliarios from '../pages/Domiciliarios';
@@ -33,7 +33,7 @@ const ExploreContTienda: React.FC<ContainerProps> = ({ name }) => {
          )
          case 'Tiendas':
          return (
-          <BuscarTienda/>
+          <MiTienda/>
          )
          case 'Domiciliarios':
          return (

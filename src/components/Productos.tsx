@@ -4,7 +4,7 @@ import { searchCircleOutline, searchCircleSharp} from 'ionicons/icons';
 import ProductCard from '../SingleComponents/ProductCard'
 import '../Styles/styles.css'
 import './Productos.css'
-import {database} from "../firebaseConfig"
+import {database} from "../Controller/firebaseConfig"
 import {produt} from "../Controller/UserController";
 
 
