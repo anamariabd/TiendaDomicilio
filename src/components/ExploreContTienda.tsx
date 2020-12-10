@@ -6,6 +6,7 @@ import BuscarTienda from './BuscarTienda';
 import MiPerfil from './MiPerfil';
 import EstadoPedido from '../pages/EstadoPedido';
 import Domiciliarios from '../pages/Domiciliarios';
+import Inicio from './Inicio';
 
 interface ContainerProps {
   name: string;
@@ -20,7 +21,7 @@ const ExploreContTienda: React.FC<ContainerProps> = ({ name }) => {
          case 'Inicio':
          return (
            <div>
-          <Productos/>
+          <Inicio/>
            </div>    
          )
          case 'Reportes':

@@ -4,7 +4,7 @@ import React, {Fragment, useState} from 'react';
 import './Domiciliarios.css';
 
 const Domiciliarios: React.FC = () => {
-    
+  const [showModal, setShowModal] = useState(false);
   return (
     <Fragment>
         <IonGrid>
@@ -36,11 +36,37 @@ const Domiciliarios: React.FC = () => {
             </IonRow>
             <IonRow>
               <IonCol>
-                <IonButton>
+                <IonButton  onClick={() => setShowModal(true)}>
                   Añadir Domiciliario
                 </IonButton>
               </IonCol>
             </IonRow>
+            <IonRow>
+              <IonCol>
+                <IonModal isOpen={showModal} cssClass='my-custom-class'>
+                    <IonGrid>
+                        <IonRow>
+                            <IonCol>
+                             <IonInput class="entrada" placeholder="Nombre:"> </IonInput>
+                            </IonCol>
+                        </IonRow>
+                        <IonRow>
+                            <IonCol>
+                             <IonInput class="entrada" placeholder="Apellido:"> </IonInput>
+                            </IonCol>
+                        </IonRow>
+              <IonRow>
+                <IonLabel class="entrada">Ingrese foto del domiciliario: </IonLabel>
+              </IonRow>
+              <IonRow>
+                <input className="entrada" type="file" />
+              </IonRow>
+                    </IonGrid>
+                    <IonButton onClick={() => setShowModal(false)}>Cerrar</IonButton>
+                </IonModal>
+                
+              </IonCol>
+          </IonRow>
         </IonGrid>
     </Fragment>
   );
