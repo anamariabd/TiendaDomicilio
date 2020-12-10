@@ -115,6 +115,7 @@ else if(TypeUser==="Cliente"){
    mensaje="Haz un pedido!";
   }
 
+
   return (
     <IonMenu contentId="main" type="overlay" >
       <IonContent>
