@@ -4,8 +4,8 @@ import { searchCircleOutline, searchCircleSharp} from 'ionicons/icons';
 import ProductCard from '../SingleComponents/ProductCard'
 import '../Styles/styles.css'
 import './Productos.css'
-import {database} from "../Controller/UserController"
-import {produt} from "../Controller/UserController";
+import {database,produt,loadProducts} from "../Controller/UserController"
+//import {produt} from "../Controller/UserController";
 
 
 const list: produt[] = [];
@@ -14,7 +14,14 @@ const Productos: React.FC = () => {
 
  const[listaProduct, setListaProduct] = useState<produt[]>([]);
 
-async function loadProducts() {
+ async function loads() {
+    var result = await loadProducts();
+    if (typeof result !== "number"){
+      setListaProduct(result);
+    }
+    
+ }
+/*async function loadProducts() {
     
   const result =  await database.collection("producto").get() // TOMA LOS DATOS DE LA TABLA "producto" Y LOS OBTIENE
      .then(
@@ -30,9 +37,9 @@ async function loadProducts() {
      setListaProduct(list);
 
      return result;  
-}
+}*/
 
-useIonViewWillEnter( ()=>{ loadProducts(); } )
+useIonViewWillEnter( ()=>{ loads(); } )
 
   
     return(

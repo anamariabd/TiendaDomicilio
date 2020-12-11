@@ -61,15 +61,18 @@ import  "firebase/auth"
         return result;  
   }
 
-  export  function loginUser(username: string, password:string ){
+  export  async function loginUser(username: string, password:string ){
     try{
-      const resultado = firebase.auth().signInWithEmailAndPassword(username, password).then( (user) =>{
-        console.log("Entró");
+      var aux;
+      const resultado = await firebase.auth().signInWithEmailAndPassword(username, password).then( (user) =>{
+        
+        console.log(user.user, " User Entro");
+        aux = user;
         return user;
       })
       alert("Hola")
       return resultado;
-  
+      console.log(aux);
     }catch( error) {
         var errorCode = error.code;
         var errorMessage = error.message;

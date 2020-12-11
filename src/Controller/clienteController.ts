@@ -10,11 +10,10 @@ interface ProductPedido{
 
 export  function compra(list:Array<ProductPedido>, idCliente: string ){
     list.forEach(async (data)=>{
-        await database.collection("pedido").add(
-            {                                                   
-            idCliente : idCliente,                                    
-            idProducto : data.idproduct,
-            cantidad : data.cantidad
+        await database.collection("pedido").add({                                                   
+                idCliente : idCliente,                                    
+                idProducto : data.idproduct,
+                cantidad : data.cantidad
             }
         )
     })

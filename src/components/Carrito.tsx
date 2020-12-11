@@ -34,7 +34,7 @@ const Carrito: React.FC =() => {
 
  
  const[listaProduct, setListaProduct] = useState<DatosProduct[]>([]);
-//setListaProduct(listCard);
+  //setListaProduct(listCard);
     return(
        <IonCardContent> 
 

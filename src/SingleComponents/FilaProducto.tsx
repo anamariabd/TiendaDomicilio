@@ -38,13 +38,16 @@ class FilaProducto extends React.Component<DatosProduct> {
     return(
       <IonRow>  
             <IonCol>{this.props.name}</IonCol>
-            <IonCol> <IonButton className="BtnCircle" onClick={this.resta} ><IonIcon md={removeCircleOutline}> 
-            </IonIcon>
-            </IonButton> {this.state.count}<IonButton  className="BtnCircle" onClick={ this.add}>
-            <IonIcon md={addCircleOutline}> </IonIcon> </IonButton>
+            <IonCol> 
+              <IonButton className="BtnCircle" onClick={this.resta} >
+                <IonIcon md={removeCircleOutline}> </IonIcon>
+              </IonButton> {this.state.count}<IonButton  className="BtnCircle" onClick={ this.add}>
+              <IonIcon md={addCircleOutline}> </IonIcon> </IonButton>
             </IonCol>
             <IonCol>{this.state.precioTotal} </IonCol>
-            <IonButton  color = "danger" className="BtnCircle"> <IonIcon md={trashOutline}> </IonIcon> </IonButton>           
+            <IonButton  color = "danger" className="BtnCircle"> 
+              <IonIcon md={trashOutline}> </IonIcon> 
+            </IonButton>           
            
       </IonRow>
     );
