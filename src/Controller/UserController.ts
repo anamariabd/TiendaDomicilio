@@ -61,20 +61,19 @@ import  "firebase/auth"
   }
 
   export async function loginUser(username: string, password:string ){
-    
-      const resultado = await firebase.auth().signInWithEmailAndPassword(username, password)
-      .then( (user) =>{
-        console.log("Entró", user);
-        console.log(user.credential);
-       return user;
-      }
+  
+      const resultado = await firebase.auth().signInWithEmailAndPassword("elpepe@gmail.com", "123456")
+      .then( (userAuth)=>{ console.log("DAME SEÑAL DE VIDA ERDA");
+      console.log(userAuth)
+    return true;}
       ).catch( (error) =>{
         
         var errorCode = error.code;
         var errorMessage = error.message;
         return false;
       } );
-      console.log(resultado)
+      console.log("okkk");
+      
       return resultado;
   }
   
@@ -96,17 +95,26 @@ import  "firebase/auth"
   }
 
   export async function userCurrent(){
-
-    var user = firebase.auth().currentUser;
-    
+    var usuario;
+   // var user = firebase.auth().currentUser;
+    var userAuth = firebase.auth().getRedirectResult().then(function(result) {
+      // The firebase.User instance:
+      
+     var credential = result.credential;
+     usuario = result.user;
+      console.log(credential);
+      console.log(usuario);
+    });  
+/*
     firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       console.log(user);
     } else {
       console.log("NADIE");
     }
-  });
- }
+  }); */
+  // return user;
+}
 
   export async function registUser(email: string, password: string){
       let reg = await fireB.auth().createUserWithEmailAndPassword(email,password).then((e:any) => {return e}).catch((e:any) => {return e})

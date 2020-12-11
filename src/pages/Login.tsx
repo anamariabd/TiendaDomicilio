@@ -1,8 +1,8 @@
 import { IonButton, IonLabel, IonSelectOption, IonSelect, IonCol, IonContent, IonGrid, IonInput, IonPage, IonRow } from '@ionic/react';
 import React, {useState} from 'react';
-
+import firebase from 'firebase'
 import './Login.css';
-import {loginUser} from '../Controller/UserController'
+import {loginUser, userCurrent} from '../Controller/UserController'
 
 let TipoUser;
 
@@ -14,21 +14,34 @@ const Login: React.FC = () => {
   const [tUser, setTUser] = useState('');
  
 async function login(){
-    TipoUser= tUser;
-     const res  = await loginUser(username, password)
-       /* if (await loginUser(username, password)){
+  var Usuar;
+
+  const resultado = await firebase.auth().signInWithEmailAndPassword("elpepe@gmail.com", "123456")
+  .then( (userAuth)=>{ console.log("DAME SEÑAL DE VIDA ERDA");
+  console.log(userAuth)
+return true;}
+  ).catch( (error) =>{
+    
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    return false;
+  } );
+  console.log("okkk");
+  
+  return resultado;
+
+    Usuar= await loginUser(username, password);
+       if (Usuar){
           console.log("ingresé")
+          console.log(Usuar);
           return true;
         }else{
           console.log("NO ingresé") // este sirve
           return false;
-        }*/
-        
-        console.log(typeof res);
-        console.log(res.valueOf);
+        }
   }
 
-  
+
   return (
     <IonPage>
       <IonContent >
