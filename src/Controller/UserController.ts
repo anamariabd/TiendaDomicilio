@@ -12,6 +12,7 @@ import  "firebase/auth"
     marca: string
 
   }
+  
   export const fireB = firebase.initializeApp(firebaseConfig)
   export const database = fireB.firestore(); // Inicializacion de la base de datos
   require('firebase/auth')
@@ -60,22 +61,23 @@ import  "firebase/auth"
         return result;  
   }
 
-  export async function loginUser(username: string, password:string ){
-    
-      const resultado = await firebase.auth().signInWithEmailAndPassword(username, password)
-      .then( (user) =>{
-        console.log("Entró", user);
-       return user;
-      }
-      ).catch( (error) =>{
-        
+  export  function loginUser(username: string, password:string ){
+    try{
+      const resultado = firebase.auth().signInWithEmailAndPassword(username, password).then( (user) =>{
+        console.log("Entró");
+        return user;
+      })
+      alert("Hola")
+      return resultado;
+  
+    }catch( error) {
         var errorCode = error.code;
         var errorMessage = error.message;
+        
+        console.log(error)
         return false;
-      } );
-      console.log(resultado)
-      return resultado;
-  }
+      } 
+  }  
   
   export async function logOut(){
     try{

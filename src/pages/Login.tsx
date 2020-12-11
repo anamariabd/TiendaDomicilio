@@ -13,9 +13,10 @@ const Login: React.FC = () => {
   
   const [tUser, setTUser] = useState('');
  
-async function login(){
+ function login(){
     TipoUser= tUser;
-     const res  = await loginUser(username, password)
+    
+     const res  =   loginUser(username, password)
        /* if (await loginUser(username, password)){
           console.log("ingresé")
           return true;
@@ -23,7 +24,7 @@ async function login(){
           console.log("NO ingresé") // este sirve
           return false;
         }*/
-        console.log(res);
+        console.log(res,"volvi");
   }
 
   

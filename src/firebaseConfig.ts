@@ -1,5 +1,6 @@
-import firebase from "firebase/app"
-import  "firebase/firestore"
+//import firebase from "firebase/app"
+//import  "firebase/firestore"
+
  export const firebaseConfig = {
     apiKey: "AIzaSyCxnH8cNOZ6oDen6AKjjz--BmOPnG3ngIU",
     authDomain: "app-tiendas-7f8ba.firebaseapp.com",
@@ -11,7 +12,7 @@ import  "firebase/firestore"
     measurementId: "G-21B0HGT1T8"
   };
 
- /* export const fireB = firebase.initializeApp(firebaseConfig)
+ /* 
   export const database = fireB.firestore(); // Inicializacion de la base de datos
 */
   
