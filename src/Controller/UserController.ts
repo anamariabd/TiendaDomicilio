@@ -1,9 +1,8 @@
-import {fireB, database} from "../firebaseConfig"
-import "firebase/auth"
-import { useState } from "react"
-import { barbellOutline } from "ionicons/icons"
-import { formatDiagnosticsWithColorAndContext } from "typescript"
-import { promises } from "dns"
+import {firebaseConfig} from "../firebaseConfig"
+import firebase from "firebase/app"
+import  "firebase/firestore"
+import  "firebase/auth"
+
  
   export interface produt {
     id:  number,
@@ -13,10 +12,9 @@ import { promises } from "dns"
     marca: string
 
   }
-
-
-//export const database = fireB.firestore()
-  //require('firebase/auth')
+  export const fireB = firebase.initializeApp(firebaseConfig)
+  export const database = fireB.firestore(); // Inicializacion de la base de datos
+  require('firebase/auth')
   //Autenticacion con firebase 
    // CONEXION A BASE DE DATOS
 
@@ -63,17 +61,20 @@ import { promises } from "dns"
   }
 
   export async function loginUser(username: string, password:string ){
-    console.log()
-    const  resultado = await fireB.auth().signInWithEmailAndPassword(username, password)
-       .then((e:any) => {
-         console.log("Si entre",e.credential)
-         return true
-       })
-       .catch((e) => {
-         console.log("nada no entre")
-         return e
-      });
-       return resultado; 
+    
+      const resultado = await firebase.auth().signInWithEmailAndPassword(username, password)
+      .then( (user) =>{
+        console.log("Entró", user);
+       return user;
+      }
+      ).catch( (error) =>{
+        
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        return false;
+      } );
+      console.log(resultado)
+      return resultado;
   }
   
   export async function logOut(){
@@ -94,27 +95,16 @@ import { promises } from "dns"
   }
 
   export async function userCurrent(){
-   let user =   fireB.auth().currentUser;
+
+    var user = firebase.auth().currentUser;
+    
+    firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
-        let result;
-       await database.collection("usuarios").where("correo", "==",user.email).get()
-         .then((querySnapshot) => {
-            let m;
-              querySnapshot.forEach((doc) => {
-                 m = doc.id
-                //console.log(doc.id)
-                //console.log(doc.id, doc.data())
-              })
-              
-              result = m;
-            })
-          .catch()
-      console.log(result,"resultado")    
-      return String(result);
-      
+      console.log(user);
     } else {
-          console.log("no hay usuarios logiados") // No user is signed in.
+      console.log("NADIE");
     }
+  });
  }
 
   export async function registUser(email: string, password: string){
