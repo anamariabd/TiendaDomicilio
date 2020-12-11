@@ -1,11 +1,7 @@
 import Menu from './components/Menu';
 import Page from './pages/Page';
-import Inicio from './components/Inicio';
 import Logo from './pages/Logo';
-import Reportes from './pages/Reportes';
-import Domiciliarios from './pages/Domiciliarios';
 import Login from './pages/Login';
-import EstadoPedido from './pages/EstadoPedido';
 import React from 'react';
 import { IonApp, IonRouterOutlet, IonSplitPane } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
@@ -43,9 +39,12 @@ const App: React.FC = () => {
               <Route path="/logo" component= {Logo} exact />
               <Route path="/login" component= {Login} exact />
               <Route path="/page/:Tipo/:name" component= {InicioUser} exact/>  
-              
               <Route path="/page/:Tipo" component= {InicioUser} exact/>      
+<<<<<<< HEAD
             { /* Hay que hacer PrivateRoute*/ } 
+=======
+        { /* <PrivateRoute path="/page/:Tipo/:name" authenticated={this.state.authenticated} component={IniciUser}></PrivateRoute> */ } 
+>>>>>>> 11d2f20fdae0d9a61de800a572d670952b1a419c
               <Route path="/register" component= {Register} exact />
               <Redirect  to="/logo"/> 
           </IonRouterOutlet>
