@@ -23,7 +23,9 @@ async function login(){
           console.log("NO ingresé") // este sirve
           return false;
         }*/
-        console.log(res);
+        
+        console.log(typeof res);
+        console.log(res.valueOf);
   }
 
   

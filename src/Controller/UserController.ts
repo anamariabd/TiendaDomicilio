@@ -65,6 +65,7 @@ import  "firebase/auth"
       const resultado = await firebase.auth().signInWithEmailAndPassword(username, password)
       .then( (user) =>{
         console.log("Entró", user);
+        console.log(user.credential);
        return user;
       }
       ).catch( (error) =>{

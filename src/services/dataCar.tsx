@@ -1,4 +1,4 @@
-import {database} from "../Controller/firebaseConfig"
+import {database} from "../Controller/UserController"
 import {produt} from "../Controller/UserController"
 //import { listCard } from "../SingleComponents/ProductCard";
 
