@@ -18,6 +18,7 @@ const Register: React.FC = () => {
   const [nameStore, setNameStore] = useState('');
   const [localizacion, setLocalizacion] = useState('');
   
+  const [entry, setEntry] = useState('/page/Inicio');
   function photo(photo: File){ //funcion para cargar fotos
     loadStore(photo);
   }
@@ -52,7 +53,7 @@ const Register: React.FC = () => {
                  
            <IonRow>
                <IonLabel class="entrada">Registrar como: </IonLabel>
-                <IonSelect  value={tUser} okText="Aceptar" cancelText="Cancelar" onIonChange = { (e : any) => setTUser(e.target.value)}>
+                <IonSelect okText="Aceptar" cancelText="Cancelar" onIonChange={(e:any)=> {setTUser( e.detail.value);  setEntry("/"+e.detail.value); console.log(entry)}} value={tUser}>
                 <IonSelectOption value="Tendero">Tendero</IonSelectOption>
                 <IonSelectOption   value="Cliente">Cliente</IonSelectOption>
               </IonSelect>
@@ -79,7 +80,7 @@ const Register: React.FC = () => {
           </IonRow>
           <IonRow>
             <IonCol id="bIngresar">              
-              <IonButton /* routerLink="/login"*/  onClick={() =>{ registerUser(); (tUser === "Tendero")? setShowModal(true):console.log("cliente")}}>
+              <IonButton  href ={"/page"+entry+"/Inicio"}/* routerLink="/login"*/  onClick={() =>{ registerUser(); (tUser === "Tendero")? setShowModal(true):console.log("cliente")}}>
                 Registrarse
               </IonButton>
             </IonCol>

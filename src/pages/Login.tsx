@@ -15,13 +15,15 @@ const Login: React.FC = () => {
  
 async function login(){
     TipoUser= tUser;
-        if (await loginUser(username, password)){
+     const res  = await loginUser(username, password)
+       /* if (await loginUser(username, password)){
           console.log("ingresé")
           return true;
         }else{
           console.log("NO ingresé") // este sirve
           return false;
-        }
+        }*/
+        console.log(res);
   }
 
   
@@ -51,7 +53,7 @@ async function login(){
           </IonRow>
           <IonRow>
             <IonCol id="bIngresar">
-              <IonButton href ={"/page"+entry+"/Inicio"} onClick = { () => {login(); console.log(login())}} /*href={entry}*/>
+              <IonButton href ={"/page"+entry+"/Inicio"} onClick = { ()=>{login()}} /*href={entry}*/>
                 Iniciar Sesion
               </IonButton>
             </IonCol>

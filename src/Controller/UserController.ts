@@ -61,20 +61,19 @@ import  "firebase/auth"
   }
 
   export async function loginUser(username: string, password:string ){
-    console.log();
-
+    
       const resultado = await firebase.auth().signInWithEmailAndPassword(username, password)
       .then( (user) =>{
-        console.log("Entró"+user);
-       return true;
+        console.log("Entró", user);
+       return user;
       }
       ).catch( (error) =>{
         
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      return false;
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        return false;
       } );
-
+      console.log(resultado)
       return resultado;
   }
   
@@ -96,26 +95,16 @@ import  "firebase/auth"
   }
 
   export async function userCurrent(){
-   let user =   fireB.auth().onAuthStateChanged( (user)=>{
-      if (user) {
-        console.log(user);
-       // let result;
-     //  await database.collection("usuarios").where("correo", "==",user.email).get()
-      /*   .then((querySnapshot) => {
-            let m;
-              querySnapshot.forEach((doc) => {
-                 m = doc.id
-                //console.log(doc.id)
-                //console.log(doc.id, doc.data())
-              })
-              result = m;
-            })
-          .catch()
-      console.log(result,"resultado")    
-      return String(result); */
-    }else{console.log("no hay usuarios logiados")  }
+
+    var user = firebase.auth().currentUser;
+    
+    firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      console.log(user);
+    } else {
+      console.log("NADIE");
     }
-   );
+  });
  }
 
   export async function registUser(email: string, password: string){
