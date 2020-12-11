@@ -3,7 +3,7 @@ import { IonGrid, IonRow, IonCol, useIonViewWillEnter, IonCardContent, IonButton
 import '../Styles/styles.css'
 import FilaProducto from '../SingleComponents/FilaProducto'
 import {listCard, DatosProduct} from '../SingleComponents/ProductCard'
-
+import {compra} from "../Controller/clienteController"
 interface ProductsCarrito{
   name: string;
   medida: string;
@@ -34,7 +34,7 @@ const Carrito: React.FC =() => {
 
  
  const[listaProduct, setListaProduct] = useState<DatosProduct[]>([]);
-//setListaProduct(listCard);
+  //setListaProduct(listCard);
     return(
        <IonCardContent> 
 
@@ -49,7 +49,7 @@ const Carrito: React.FC =() => {
             return (
              <div  key={index}>
               <br/>
-              <FilaProducto key={listCard.Id} name = {listCard.name+" "+listCard.marca+listCard.medida} precio={1200} />
+              <FilaProducto key  = {listCard.Id} name = {listCard.name+" "+listCard.marca + " " + listCard.medida} precio={1200} />
               </div>
             );
           })}

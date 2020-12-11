@@ -12,6 +12,8 @@ import  "firebase/firestore"
   };
  // export const fireB = firebase.initializeApp(firebaseConfig)
  /* export const fireB = firebase.initializeApp(firebaseConfig)
+
+ /* 
   export const database = fireB.firestore(); // Inicializacion de la base de datos
 */
   
