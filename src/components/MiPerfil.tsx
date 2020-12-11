@@ -2,6 +2,10 @@ import React, { Fragment } from 'react';
 import { IonButton,  IonLabel, IonListHeader } from '@ionic/react';
 import {userCurrent,logOut} from '../Controller/UserController'
 
+async function actual() {
+  
+}
+
 const MiPerfil: React.FC = () => {
 
     return(

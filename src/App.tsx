@@ -1,12 +1,10 @@
-import Menu from './components/Menu';
-import Page from './pages/Page';
 import Logo from './pages/Logo';
-import Login from './pages/Login';
+import{ Login, IsAuth} from './pages/Login';
 import React from 'react';
-import { IonApp, IonRouterOutlet, IonSplitPane } from '@ionic/react';
+import { IonApp, IonRouterOutlet} from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route, Switch } from 'react-router-dom';
-
+import PrivateRoute from './PrivateRoute'
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -40,7 +38,8 @@ const App: React.FC = () => {
               <Route path="/login" component= {Login} exact />
               <Route path="/page/:Tipo/:name" component= {InicioUser} exact/>  
               <Route path="/page/:Tipo" component= {InicioUser} exact/>      
-        { /* <PrivateRoute path="/page/:Tipo/:name" authenticated={this.state.authenticated} component={IniciUser}></PrivateRoute> */ } 
+        
+           {/*   <PrivateRoute path="/page/:Tipo/:name" authenticated={true} component={InicioUser}/>*/ } 
               <Route path="/register" component= {Register} exact />
               <Redirect  to="/logo"/> 
           </IonRouterOutlet>

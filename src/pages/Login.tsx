@@ -1,11 +1,11 @@
-import { IonButton, IonLabel, IonSelectOption, IonSelect, IonCol, IonContent, IonGrid, IonInput, IonPage, IonRow } from '@ionic/react';
+import { useIonViewWillEnter, IonButton, IonLabel, IonSelectOption, IonSelect, IonCol, IonContent, IonGrid, IonInput, IonPage, IonRow } from '@ionic/react';
 import React, {useState} from 'react';
-import firebase from 'firebase'
 import './Login.css';
-import {loginUser, userCurrent} from '../Controller/UserController'
+import {loginUser, usuarios, usuario} from '../Controller/UserController'
 
-let TipoUser;
+const list: usuario[] = [];
 
+var IsAuth;
 const Login: React.FC = () => {
   const  [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -14,33 +14,17 @@ const Login: React.FC = () => {
   const [tUser, setTUser] = useState('');
  
 async function login(){
-  var Usuar;
 
-  const resultado = await firebase.auth().signInWithEmailAndPassword("elpepe@gmail.com", "123456")
-  .then( (userAuth)=>{ console.log("DAME SEÑAL DE VIDA ERDA");
-  console.log(userAuth)
-return true;}
-  ).catch( (error) =>{
-    
-    var errorCode = error.code;
-    var errorMessage = error.message;
+  IsAuth = await loginUser(username, password);
+  if(IsAuth){
+    return true;
+  }
+  else{
     return false;
-  } );
-  console.log("okkk");
-  
-  return resultado;
-
-    Usuar= await loginUser(username, password);
-       if (Usuar){
-          console.log("ingresé")
-          console.log(Usuar);
-          return true;
-        }else{
-          console.log("NO ingresé") // este sirve
-          return false;
-        }
+  }
   }
 
+  useIonViewWillEnter( ()=>{ usuarios(); } )
 
   return (
     <IonPage>
@@ -68,7 +52,7 @@ return true;}
           </IonRow>
           <IonRow>
             <IonCol id="bIngresar">
-              <IonButton href ={"/page"+entry+"/Inicio"} onClick = { ()=>{login()}} /*href={entry}*/>
+              <IonButton href ={"/page"+entry+"/Inicio"} onClick = {usuarios} /*href={entry}*/>
                 Iniciar Sesion
               </IonButton>
             </IonCol>
@@ -79,4 +63,4 @@ return true;}
   )
 }
 
-export default Login;
+export {Login, IsAuth};

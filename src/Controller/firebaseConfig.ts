@@ -10,7 +10,7 @@ import  "firebase/firestore"
     appId: "1:1009980955989:web:23b41e169c7280bc95a3dc",
     measurementId: "G-21B0HGT1T8"
   };
-
+ // export const fireB = firebase.initializeApp(firebaseConfig)
  /* export const fireB = firebase.initializeApp(firebaseConfig)
   export const database = fireB.firestore(); // Inicializacion de la base de datos
 */

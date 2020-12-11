@@ -1,9 +1,12 @@
-import { IonButtons, IonFooter, IonContent, IonHeader, IonSearchbar, IonToolbar } from '@ionic/react';
+import {useIonViewWillEnter, IonFooter, useIonViewDidEnter, IonHeader, IonSearchbar, IonToolbar } from '@ionic/react';
 import { useState } from 'react';
 import React from 'react';
+import {userCurrent} from '../Controller/UserController'
+
 
 const Inicio: React.FC = () => {
 
+  useIonViewDidEnter( () => {userCurrent()}  )
   const [searchText, setSearchText] = useState('');
     return(
         <section>

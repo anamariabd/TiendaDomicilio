@@ -12,6 +12,16 @@ import  "firebase/auth"
     marca: string
 
   }
+
+  export interface usuario{
+    id:  number,
+    name:  string,
+    img: string,
+    medida: string,
+    marca: string
+
+  }
+  
   export const fireB = firebase.initializeApp(firebaseConfig)
   export const database = fireB.firestore(); // Inicializacion de la base de datos
   require('firebase/auth')
@@ -38,7 +48,6 @@ import  "firebase/auth"
  // const[listaProduct, setListaProduct] = useState<produt[]>([]);
 
   export async function loadProducts() {
-    
      const result =  await database.collection("producto").get() // TOMA LOS DATOS DE LA TABLA "producto" Y LOS OBTIENE
         .then(
           (querySnapshot) =>{
@@ -62,17 +71,23 @@ import  "firebase/auth"
 
   export async function loginUser(username: string, password:string ){
   
-      const resultado = await firebase.auth().signInWithEmailAndPassword("elpepe@gmail.com", "123456")
-      .then( (userAuth)=>{ console.log("DAME SEÑAL DE VIDA ERDA");
-      console.log(userAuth)
-    return true;}
-      ).catch( (error) =>{
-        
+      const resultado = await firebase.auth().signInWithEmailAndPassword(username,password)
+      .then( (user)=>{
+        console.log(user.credential)
+        console.log("si entra al then");
+        return true;
+      }
+      ).catch((error) =>{
+        console.log("si entra al catch");
         var errorCode = error.code;
         var errorMessage = error.message;
+        console.log(errorCode);
+        console.log(errorMessage);
         return false;
       } );
-      console.log("okkk");
+
+      
+    console.log("resultado: "+ resultado.valueOf);
       
       return resultado;
   }
@@ -95,31 +110,25 @@ import  "firebase/auth"
   }
 
   export async function userCurrent(){
-    var usuario;
-   // var user = firebase.auth().currentUser;
-    var userAuth = firebase.auth().getRedirectResult().then(function(result) {
-      // The firebase.User instance:
-      
-     var credential = result.credential;
-     usuario = result.user;
-      console.log(credential);
-      console.log(usuario);
-    });  
-/*
-    firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      console.log(user);
-    } else {
-      console.log("NADIE");
-    }
-  }); */
-  // return user;
+
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/firebase.User
+        var uid = user.uid;
+        console.log(firebase);
+        console.log(user);
+        console.log(user.displayName)
+        // ...
+      } else {
+        console.log("NO HAY O SALIÖ");
+      }
+    });
 }
 
   export async function registUser(email: string, password: string){
       let reg = await fireB.auth().createUserWithEmailAndPassword(email,password).then((e:any) => {return e}).catch((e:any) => {return e})
       console.log(reg)
-
   } 
 
 
@@ -132,4 +141,21 @@ import  "firebase/auth"
     })
     .then()
     .catch()
+  }
+
+  export async function usuarios() {
+    
+    const Users =  await database.collection("usuarios").get() // TOMA LOS DATOS DE LA TABLA "producto" Y LOS OBTIENE
+    .then(
+      (querySnapshot) =>{
+        querySnapshot.forEach((doc :  any) =>{
+          console.log(doc.id,doc.data().nombre, doc.password)
+          
+        }); 
+      return list;
+    }) 
+    .catch((e: any)=>{
+      return 0;
+    });
+    
   }
