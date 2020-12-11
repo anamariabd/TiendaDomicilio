@@ -49,11 +49,7 @@ const Carrito: React.FC =() => {
             return (
              <div  key={index}>
               <br/>
-<<<<<<< HEAD
-              <FilaProducto key={listCard.Id} name = {listCard.name+" "+listCard.marca+listCard.medida} precio={1200} />
-=======
               <FilaProducto key  = {listCard.Id} name = {listCard.name+" "+listCard.marca + " " + listCard.medida} precio={1200} />
->>>>>>> Fredy
               </div>
             );
           })}
