@@ -2,6 +2,8 @@ import {firebaseConfig} from "./firebaseConfig"
 import firebase from "firebase/app"
 import  "firebase/firestore"
 import  "firebase/auth"
+import { strict } from "assert"
+import { Console } from "console"
 
  
   export interface produt {
@@ -73,12 +75,11 @@ import  "firebase/auth"
   
       const resultado = await firebase.auth().signInWithEmailAndPassword(username,password)
       .then( (user)=>{
-        console.log(user.credential)
-        console.log("si entra al then");
+        console.log(user)
         return true;
       }
       ).catch((error) =>{
-        console.log("si entra al catch");
+        
         var errorCode = error.code;
         var errorMessage = error.message;
         console.log(errorCode);
@@ -87,7 +88,7 @@ import  "firebase/auth"
       } );
 
       
-    console.log("resultado: "+ resultado.valueOf);
+   // console.log("resultado: "+ resultado.valueOf);
       
       return resultado;
   }
@@ -110,24 +111,21 @@ import  "firebase/auth"
   }
 
   export async function userCurrent(){
-
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
-        var uid = user.uid;
-        console.log(firebase);
-        console.log(user);
-        console.log(user.displayName)
-        // ...
-      } else {
-        console.log("NO HAY O SALIÖ");
-      }
-    });
+    const result = fireB.auth().currentUser?.email;
+    if(typeof result ==="string"){
+        console.log("Siiiii");
+        return result;
+    }else{
+      console.log("noooo")
+      return false;
+    }
+    
 }
 
   export async function registUser(email: string, password: string){
-      let reg = await fireB.auth().createUserWithEmailAndPassword(email,password).then((e:any) => {return e}).catch((e:any) => {return e})
+      let reg = await fireB.auth().createUserWithEmailAndPassword(email,password)
+      .then((e:any) => {return e})
+      .catch((e:any) => {return e})
       console.log(reg)
   } 
 
@@ -143,19 +141,24 @@ import  "firebase/auth"
     .catch()
   }
 
-  export async function usuarios() {
-    
-    const Users =  await database.collection("usuarios").get() // TOMA LOS DATOS DE LA TABLA "producto" Y LOS OBTIENE
+  export async function usuarios(email:string, typeUser: string) {
+    const Users =  await database.collection("usuarios").where("correo","==", email).get() // TOMA LOS DATOS DE LA TABLA "producto" Y LOS OBTIENE
     .then(
       (querySnapshot) =>{
+        let aux;
         querySnapshot.forEach((doc :  any) =>{
-          console.log(doc.id,doc.data().nombre, doc.password)
           
+          if(typeUser === doc.data().tipoUsuario){
+            aux = true;
+          }else{
+            aux = false;
+          }
         }); 
-      return list;
-    }) 
+        return Boolean(aux);
+      }
+    ) 
     .catch((e: any)=>{
-      return 0;
+      return false
     });
-    
+    return Users;
   }
