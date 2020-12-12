@@ -11,18 +11,20 @@ interface ProductsCarrito{
   Precio: number;
 }
 //Simulando los datos
-const Productos: ProductsCarrito[] = [
+const Productos: DatosProduct[] = [
   {
     name: 'Arroz',
     medida: '500g',
     marca: 'Roa ',
-    Precio: 1200
+    Id: 12
+    //Precio: 1200
   },
   {
     name: 'Frijol Rojo',
     medida: '500g',
     marca: 'N.n.',
-    Precio: 2000
+    Id: 10
+   // Precio: 2000
   }
 ]
 
@@ -30,10 +32,24 @@ const Carrito: React.FC =() => {
 
   //const [precioTotal, setPrecioTotal] = useState(0);
   //const [ ProductAdd, setProductAdd] = useState(0);
+  // const[listaProduct, setListaProduct] = useState<DatosProduct[]>([]);
  var total = 0;
-
- 
  const[listaProduct, setListaProduct] = useState<DatosProduct[]>([]);
+  //setListaProduct(listCard);
+
+  const Delete = (dato:number) =>{
+    var i = 0;
+    listCard.map((ind)=>{
+      if(ind.Id === dato){
+        listCard.splice(i,1);
+        setListaProduct([...listaProduct]);
+      }
+      i++;
+    });
+    
+    console.log(listCard.length);
+  }  
+ 
   //setListaProduct(listCard);
     return(
        <IonCardContent> 
@@ -49,7 +65,7 @@ const Carrito: React.FC =() => {
             return (
              <div  key={index}>
               <br/>
-              <FilaProducto key  = {listCard.Id} name = {listCard.name+" "+listCard.marca + " " + listCard.medida} precio={1200} />
+              <FilaProducto eliminar={Delete} Id={listCard.Id} key = {listCard.Id} name = {listCard.name+" "+listCard.marca + " " + listCard.medida} precio={1200} />
               </div>
             );
           })}

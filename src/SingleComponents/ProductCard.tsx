@@ -11,9 +11,7 @@ export interface DatosProduct {
   // UrlImg: string;
 }
 
-
-export let listCard = Array<DatosProduct>();
-
+export const listCard :DatosProduct[] = [];
 
 function validate(key:number){
   let aux : boolean;

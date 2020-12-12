@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import {  IonRow, IonCol, IonIcon, IonButton } from '@ionic/react';
 import {addCircleOutline, removeCircleOutline, trashOutline} from 'ionicons/icons';
+import {listCard} from '../SingleComponents/ProductCard'
 import './Clasificacion.css'
 
 interface DatosProduct {
   name: string;
   precio: number;
+  Id: number;
+  eliminar(key: number): void;
 }
 
 class FilaProducto extends React.Component<DatosProduct> {
@@ -15,7 +18,9 @@ class FilaProducto extends React.Component<DatosProduct> {
     count:1,
     nombre: this.props.name,
     precio: 1200, 
-    precioTotal: 1200
+    precioTotal: 1200,
+    list: listCard,
+    key: this.props.Id
   }
   
   add = () => {
@@ -30,6 +35,17 @@ class FilaProducto extends React.Component<DatosProduct> {
           this.setState((state) =>  { if(this.state.count>1) return{precioTotal: this.state.precioTotal - this.state.precio}})
   }
 
+  Delete = (dato:number) =>{
+    var i = 0;
+    var lista = this.state.list;
+    lista.map((ind)=>{
+      if(ind.Id === dato){
+        listCard.splice(i,1);
+      }
+      i++;
+    });
+    console.log(listCard);
+  }
 
   render(){
     //const [nuevoPrecio, setNuevoPrecio] = useState(this.props.precio);
@@ -45,10 +61,9 @@ class FilaProducto extends React.Component<DatosProduct> {
               <IonIcon md={addCircleOutline}> </IonIcon> </IonButton>
             </IonCol>
             <IonCol>{this.state.precioTotal} </IonCol>
-            <IonButton  color = "danger" className="BtnCircle"> 
+            <IonButton onClick={ ()=>{this.props.eliminar(this.state.key)}} color = "danger" className="BtnCircle"> 
               <IonIcon md={trashOutline}> </IonIcon> 
-            </IonButton>           
-           
+            </IonButton>     
       </IonRow>
     );
 

@@ -16,15 +16,13 @@ const Login: React.FC = () => {
 async function login(){
 
   IsAuth = await loginUser(username, password);
-  if(IsAuth){
+  if(!IsAuth){
     return true;
   }
   else{
     return false;
   }
   }
-
-  useIonViewWillEnter( ()=>{ usuarios(); } )
 
   return (
     <IonPage>
@@ -52,7 +50,7 @@ async function login(){
           </IonRow>
           <IonRow>
             <IonCol id="bIngresar">
-              <IonButton href ={"/page"+entry+"/Inicio"} onClick = {usuarios} /*href={entry}*/>
+              <IonButton href ={"/page"+entry+"/Inicio"} onClick = {login} /*href={entry}*/>
                 Iniciar Sesion
               </IonButton>
             </IonCol>
