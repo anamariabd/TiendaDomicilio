@@ -12,17 +12,32 @@ const Login: React.FC = () => {
   const [entry, setEntry] = useState('/page/Inicio');
   
   const [tUser, setTUser] = useState('');
- 
-async function login(){
-
-  IsAuth = await loginUser(username, password);
-  if(!IsAuth){
-    return true;
-  }
-  else{
+ const expressEmail = new RegExp('^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$');
+ function validateEmail(){
+    if(expressEmail.test(username)){
+      return true
+    }
     return false;
+ }
+async function login(){
+ if(validateEmail()){
+  if( usuarios(username,tUser)){
+    IsAuth = await loginUser(username, password);
+    if(IsAuth){
+      return true;
+    }
+    else{
+      return false;
+    }
   }
-  }
+ }else{
+   alert("Ingresa un correo valido")
+ }
+  
+  
+}
+
+  //useIonViewWillEnter( ()=>{ ; } )
 
   return (
     <IonPage>
@@ -50,7 +65,7 @@ async function login(){
           </IonRow>
           <IonRow>
             <IonCol id="bIngresar">
-              <IonButton href ={"/page"+entry+"/Inicio"} onClick = {login} /*href={entry}*/>
+              <IonButton /*href ={"/page"+entry+"/Inicio"}*/ onClick = {login} /*href={entry}*/>
                 Iniciar Sesion
               </IonButton>
             </IonCol>
