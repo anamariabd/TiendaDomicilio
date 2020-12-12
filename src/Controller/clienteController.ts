@@ -1,5 +1,5 @@
 import { infinite, returnUpForward } from "ionicons/icons"
-import {database,produt} from "./UserController"
+import {database,produt,fireB} from "./UserController"
 
 export interface store{
     id : string,
@@ -50,4 +50,34 @@ export async function listStore() {
     return result;
     
     
+}
+
+export interface dataUser {
+    id: string;
+    name: string;
+    userName: string;
+    address :string;
+    numberPhone: string;
+    email :string
+}
+
+export async function loadData() {
+  let user= fireB.auth().currentUser?.email;
+  let aux1:dataUser;
+  const result = await database.collection("usuarios").where("correo", "==", user).get()
+  .then((querySnapshot)=>{
+           querySnapshot.forEach((element)=>{
+             aux1 = ({id:element.id,
+                    name: element.data().nombre, 
+                    userName: element.data().userName, 
+                    address: element.data().direccion, 
+                    numberPhone: element.data().celular,
+                    email: element.data().correo
+                 })
+            })
+        console.log("aux1", aux1)
+        return aux1;
+    })
+    .catch()
+    return result;
 }

@@ -65,7 +65,7 @@ async function login(){
           </IonRow>
           <IonRow>
             <IonCol id="bIngresar">
-              <IonButton href ={"/page"+entry+"/Inicio"} onClick = {login} /*href={entry}*/>
+              <IonButton onClick = {login} /*href={entry} href ={"/page"+entry+"/Inicio"} */>
                 Iniciar Sesion
               </IonButton>
             </IonCol>
