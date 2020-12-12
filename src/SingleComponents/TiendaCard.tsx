@@ -8,8 +8,8 @@ import { url } from 'inspector';
 export interface DatosTienda{
     name: string;
     Localizacion: string;
-    Calificacion:  string;
-    Id : number;
+    Calificacion:  number;
+    Id : string;
     UrlImg: string;
   }  
 

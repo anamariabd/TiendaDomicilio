@@ -1,7 +1,7 @@
 import { IonButton, IonSelect, IonSelectOption, IonCol, IonModal, IonLabel, IonContent, IonGrid, IonInput, IonPage, IonRow } from '@ionic/react';
 import React, {useState, createRef} from 'react';
 import './Register.css';
-import  { loadStore, DataStore} from '../Controller/tiendaController'
+import  { loadDataStore, DataStore, loadphotoStore} from '../Controller/tiendaController'
 import {registUser,RegisterData, userCurrent} from '../Controller/UserController';
 
 
@@ -20,7 +20,7 @@ const Register: React.FC = () => {
   
   const [entry, setEntry] = useState('/page/Inicio');
   function photo(photo: File){ //funcion para cargar fotos
-    loadStore(photo);
+    loadphotoStore(photo);
   }
   async function registerUser(){
     console.log(email, password)

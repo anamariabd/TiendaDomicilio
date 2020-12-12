@@ -46,7 +46,7 @@ async function login(){
             <IonCol>
             <IonRow>
                <IonLabel class="entrada">Tipo de usuario:</IonLabel>
-                <IonSelect onIonChange={(e:any)=> {setTUser( e.detail.value);  setEntry("/"+e.detail.value); console.log(entry)}} value={tUser} okText="Aceptar" cancelText="Cancelar" >
+                <IonSelect onIonChange={(e:any)=> {setTUser( e.detail.value);  setEntry("/"+e.detail.value)}} value={tUser} okText="Aceptar" cancelText="Cancelar" >
                 <IonSelectOption value="Tendero">Tendero</IonSelectOption>
                 <IonSelectOption  value="Cliente">Cliente</IonSelectOption>
               </IonSelect> 
@@ -64,10 +64,7 @@ async function login(){
           </IonRow>
           <IonRow>
             <IonCol id="bIngresar">
-              <IonButton /*href ={"/page"+entry+"/Inicio"}*/ onClick = {(e)=>{
-                e.preventDefault();
-                login();
-              }} /*href={entry}*/>
+              <IonButton onClick = {login} /*href={entry} href ={"/page"+entry+"/Inicio"} */>
                 Iniciar Sesion
               </IonButton>
             </IonCol>

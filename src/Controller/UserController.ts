@@ -72,14 +72,12 @@ import { Console } from "console"
   }
 
   export async function loginUser(username: string, password:string ){
-  
       const resultado = await firebase.auth().signInWithEmailAndPassword(username,password)
       .then( (user)=>{
         console.log(user)
         return true;
       }
       ).catch((error) =>{
-        
         var errorCode = error.code;
         var errorMessage = error.message;
         console.log(errorCode);
@@ -115,7 +113,7 @@ import { Console } from "console"
     if(typeof result ==="string"){
       
         console.log("Siiiii");
-      return result;
+      return result;// CORREO DE LA PERSONA LOGEADA
     }else{
       console.log("noooo")
       return false;
