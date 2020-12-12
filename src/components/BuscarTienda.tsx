@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Clasificacion from '../SingleComponents/Clasificación' 
 import Buscador from './Buscador'
 import {TiendaCard, DatosTienda} from '../SingleComponents/TiendaCard'
 import '../Styles/styles.css'
-import { IonList} from '@ionic/react';
+import { IonList, useIonViewWillEnter} from '@ionic/react';
+import {listStore,store} from '../Controller/clienteController'
 
-
-//Simulando los datos
+/*Simulando los datos
 const Tiendas: DatosTienda[] = [
   {
     name: 'Tienda mi super fresh',
@@ -23,29 +23,40 @@ const Tiendas: DatosTienda[] = [
 
   }
 ]
+*/
+const BuscarTienda: React.FC = () => {
+  const [stores,setStores] = useState<store[]> ([]);
+  
+  async function ListStore() {
+    const result = await listStore();  
+    if(typeof result !== "number"){
+      setStores(result)
+    }
+  }
+  useIonViewWillEnter( ()=>{ListStore()} )
+  return (
+    <div>
 
-const BuscarTienda: React.FC = () => (
-  <div>
+      <Buscador/>
+        
+        <input type="button" name = "submit" className="btn" value="Buscar"/>
+        
+        <Clasificacion/>
 
-     <Buscador/>
-      
-      <input type="button" name = "submit" className="btn" value="Buscar"/>
-      
-      <Clasificacion/>
-
-    {/*-- List of Text Items --*/}
-    <IonList>
-       
-    {Tiendas.map((Tiendas, index) => {
-            return (
-              <div key={index}>
-                <br/>
-                <TiendaCard key={index} Id = {Tiendas.Id} name={Tiendas.name} Localizacion = {Tiendas.Localizacion} Calificacion = {Tiendas.Calificacion} UrlImg={Tiendas.UrlImg}/>
-              </div>
-            );
-          })}
-    </IonList>
-  </div>
-);
+      {/*-- List of Text Items --*/}
+      <IonList>
+        
+      {stores.map((stores, index) => {
+              return (
+                <div key={index}>
+                  <br/>
+                  <TiendaCard key={index} Id = {stores.id} name={stores.name} Localizacion = {stores.address} Calificacion = {stores.score} UrlImg={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7L9WW1ZfI60LtfM74zaBl-16DwDNIfB_aLw&usqp=CAU"}/>
+                </div>
+              );
+            })}
+      </IonList>
+    </div>
+  );
+}
 
 export default BuscarTienda;
