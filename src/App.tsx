@@ -27,17 +27,21 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import InicioUser from './pages/InicioUser'
 import Register from './pages/Register';
+import {fireB} from './Controller/UserController'
 
 const App: React.FC = () => {
-
   return (
     <IonApp>
       <IonReactRouter> 
           <IonRouterOutlet>
               <Route path="/logo" component= {Logo} exact />
               <Route path="/login" component= {Login} exact />
-              <Route path="/page/:Tipo/:name" component= {InicioUser} exact/>  
-              <Route path="/page/:Tipo" component= {InicioUser} exact/>      
+         { /*    <Route path="/page/:Tipo/:name" component= {InicioUser} exact/>  */}
+         { /*    <Route path="/page/:Tipo" component= {InicioUser} exact/>  */ }
+              <Route path="/page/:Tipo/:name"
+               render={props => {
+               return true? <InicioUser/> : <InicioUser />;
+              }}/>   
         
            {/*   <PrivateRoute path="/page/:Tipo/:name" authenticated={true} component={InicioUser}/>*/ } 
               <Route path="/register" component= {Register} exact />

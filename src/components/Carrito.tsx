@@ -1,40 +1,26 @@
 import React, { useState } from 'react';
 import { IonGrid, IonRow, IonCol, useIonViewWillEnter, IonCardContent, IonButton, } from '@ionic/react';
 import '../Styles/styles.css'
-import FilaProducto from '../SingleComponents/FilaProducto'
+import {FilaProducto} from '../SingleComponents/FilaProducto'
 import {listCard, DatosProduct} from '../SingleComponents/ProductCard'
-import {compra} from "../Controller/clienteController"
+
 interface ProductsCarrito{
   name: string;
   medida: string;
   marca: string;
   Precio: number;
 }
-//Simulando los datos
-const Productos: DatosProduct[] = [
-  {
-    name: 'Arroz',
-    medida: '500g',
-    marca: 'Roa ',
-    Id: 12
-    //Precio: 1200
-  },
-  {
-    name: 'Frijol Rojo',
-    medida: '500g',
-    marca: 'N.n.',
-    Id: 10
-   // Precio: 2000
-  }
-]
+
+export interface pedido{
+  name: string;
+  Id: number;
+  count:number;
+}
 
 const Carrito: React.FC =() => {
 
-  //const [precioTotal, setPrecioTotal] = useState(0);
-  //const [ ProductAdd, setProductAdd] = useState(0);
-  // const[listaProduct, setListaProduct] = useState<DatosProduct[]>([]);
- var total = 0;
- const[listaProduct, setListaProduct] = useState<DatosProduct[]>([]);
+  var listaPed:pedido[] = [];
+  const[listaProduct, setListaProduct] = useState<DatosProduct[]>([]);
   //setListaProduct(listCard);
 
   const Delete = (dato:number) =>{
@@ -47,9 +33,16 @@ const Carrito: React.FC =() => {
       i++;
     });
     
-    console.log(listCard.length);
+    console.log(listCard);
   }  
- 
+
+  const cantidad = (e:any) =>{
+    console.log(e);
+  }
+
+  const total = (e:number) => {
+    console.log(e);
+  }
   //setListaProduct(listCard);
     return(
        <IonCardContent> 
@@ -65,16 +58,20 @@ const Carrito: React.FC =() => {
             return (
              <div  key={index}>
               <br/>
-              <FilaProducto eliminar={Delete} Id={listCard.Id} key = {listCard.Id} name = {listCard.name+" "+listCard.marca + " " + listCard.medida} precio={1200} />
+              <FilaProducto eliminar={Delete}
+               Id={listCard.Id} key = {listCard.Id} 
+               name = {listCard.name+" "+listCard.marca +" "+ listCard.medida} 
+               precio={1200} listPedido = {listaPed} handle = {total} />
               </div>
             );
           })}
 
           
       <IonRow>
+        <IonCol> Cantidad total: {0}</IonCol>
         <IonCol>Total a pagar: {total}</IonCol>
       </IonRow>
-     <IonButton> Comprar </IonButton>
+     <IonButton onClick={cantidad}> Comprar </IonButton>
     </IonGrid>                     
 
         </IonCardContent>

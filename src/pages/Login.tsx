@@ -1,4 +1,4 @@
-import { useIonViewWillEnter, IonButton, IonLabel, IonSelectOption, IonSelect, IonCol, IonContent, IonGrid, IonInput, IonPage, IonRow } from '@ionic/react';
+import {IonButton, IonLabel, IonSelectOption, IonSelect, IonCol, IonContent, IonGrid, IonInput, IonPage, IonRow } from '@ionic/react';
 import React, {useState} from 'react';
 import './Login.css';
 import {loginUser, usuarios, usuario} from '../Controller/UserController'
@@ -36,7 +36,6 @@ async function login(){
   
   
 }
-
   //useIonViewWillEnter( ()=>{ ; } )
 
   return (
@@ -65,7 +64,10 @@ async function login(){
           </IonRow>
           <IonRow>
             <IonCol id="bIngresar">
-              <IonButton /*href ={"/page"+entry+"/Inicio"}*/ onClick = {login} /*href={entry}*/>
+              <IonButton /*href ={"/page"+entry+"/Inicio"}*/ onClick = {(e)=>{
+                e.preventDefault();
+                login();
+              }} /*href={entry}*/>
                 Iniciar Sesion
               </IonButton>
             </IonCol>

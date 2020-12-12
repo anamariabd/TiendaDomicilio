@@ -50,7 +50,7 @@ const ProductCard: React.FC<DatosProduct> = ({name, medida, marca, Id}) => {
                 Precio : 1200
               </p>
             </IonCardContent>
-            <button value = {Id} onClick= { ()=>{ listProd(Id, name, marca, medida ); console.log(listCard)}}>Agregar a Carrito</button>
+            <button value = {Id} onClick= { ()=>{ listProd(Id, name, marca, medida); console.log(listCard)}}>Agregar a Carrito</button>
           </IonCard>
         </div>
       </IonRow>

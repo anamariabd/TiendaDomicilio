@@ -1,10 +1,10 @@
 import React, { Fragment, useState } from 'react';
-import { IonLabel, IonIcon, IonGrid, IonRow, IonList,IonSelect, IonCol,IonItem, useIonViewWillEnter, IonSelectOption, IonSearchbar,IonButton } from '@ionic/react';
-import { searchCircleOutline, searchCircleSharp} from 'ionicons/icons';
+import { IonLabel, IonIcon, IonGrid, IonRow, IonList,IonSelect, IonCol,IonItem,IonSelectOption, IonSearchbar,IonButton } from '@ionic/react';
+import { searchCircleOutline} from 'ionicons/icons';
 import ProductCard from '../SingleComponents/ProductCard'
 import '../Styles/styles.css'
 import './Productos.css'
-import {database,produt,loadProducts} from "../Controller/UserController"
+import {produt,loadProducts} from "../Controller/UserController"
 //import {produt} from "../Controller/UserController";
 
 
@@ -21,26 +21,7 @@ const Productos: React.FC = () => {
     }
     
  }
-/*async function loadProducts() {
-    
-  const result =  await database.collection("producto").get() // TOMA LOS DATOS DE LA TABLA "producto" Y LOS OBTIENE
-     .then(
-      (querySnapshot) =>{
-        querySnapshot.forEach((doc :  any) =>{
-          list.push({id: doc.id,name:doc.data().nombre, img: doc.data().imagen, medida: doc.data().medida, marca:  doc.data().marca});
-        }); 
-       return list;
-      }) 
-     .catch((e: any)=>{
-       return 0;
-     });
-     setListaProduct(list);
-
-     return result;  
-}*/
-
-useIonViewWillEnter( ()=>{ loads(); } )
-
+loads();
   
     return(
      

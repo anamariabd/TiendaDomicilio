@@ -54,7 +54,7 @@ import { Console } from "console"
         .then(
           (querySnapshot) =>{
             querySnapshot.forEach((doc :  any) =>{
-              console.log(doc.id,doc.data().nombre,doc.data().imagen)
+            //  console.log(doc.id,doc.data().nombre,doc.data().imagen)
               let id =  doc.id;
               let name = doc.data().nombre;
               let img = doc.data().imagen;
@@ -113,14 +113,15 @@ import { Console } from "console"
   export async function userCurrent(){
     const result = fireB.auth().currentUser?.email;
     if(typeof result ==="string"){
+      
         console.log("Siiiii");
-        return result;
+      return result;
     }else{
       console.log("noooo")
       return false;
     }
-    
-}
+  }
+
 
   export async function registUser(email: string, password: string){
       let reg = await fireB.auth().createUserWithEmailAndPassword(email,password)

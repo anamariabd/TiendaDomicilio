@@ -24,13 +24,13 @@ const Page: React.FC <{TypeUser:string}> = ({TypeUser}) => {
          case 'Tendero':
          return (
          
-          <IonItem href={"'/page/+`TypeUse`+/Carrito'"} color="primary">
+          <IonItem href={"/page/"+TypeUser+"/Inicio"} color="primary">
                   <IonIcon slot="end" ios={locationOutline} md={locationSharp} />
            </IonItem>  
          )
          case 'Cliente':
          return ( 
-          <IonItem href={"'/page/+`TypeUse`+/Carrito'"} color="primary">
+          <IonItem href={"/page/"+TypeUser+"/Carrito"} color="primary">
                   <IonIcon slot="end" ios={ bagOutline} md={bagSharp} />
            </IonItem>  
            )
