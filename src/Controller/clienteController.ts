@@ -15,33 +15,17 @@ export interface store{
                            [1,2]]
     cantidad : number
 }*/
-
+var idCliente:Promise<string>;
 export  function compra(list:Array<pedido> ){
     console.log("mostrando llegada de carrito",  list);//Verificacion
     let email = fireB.auth().currentUser?.email;  //Busco email del usuario logiado
-    alert(email)
-    var aux3:string;
-    const idCliente = (async ()=>{ 
-        let aux1: string;
-        let doc =await database.collection("usuarios").where("correo", "==", email).get()
-        .then((user)=>{
-            
-            user.forEach((element)=>{
-                aux3 = element.id;
   
-            })
-            console.log("aux1", aux1)
-            return aux1;
-        })
-        .catch(()=>{
-            return false
-        })
-        if(typeof doc === "string"){
-            return  aux3;
-        }
-        
-    })
-    alert("mostrando el id del cliente logeado "+aux3)
+    alert(email)
+    if(typeof email === "string"){
+        idCliente = idUser(email)
+    }
+    alert(idCliente)
+
     list.forEach(async (data)=>{
         console.log("datos de los productos", data.Id," ",data.count," ",data.precio)
         await database.collection("pedido").add({    
@@ -110,4 +94,18 @@ export async function loadData() {
     })
     .catch()
     return result;
+}
+
+async function idUser(email:string)  {
+    let aux1:string;
+    const result = await database.collection("usuarios").where("correo", "==", email).get()
+    .then((querySnapshot)=>{
+             querySnapshot.forEach((element)=>{
+               aux1 = element.id
+              })
+          console.log("aux1", aux1)
+          return aux1;
+      })
+      .catch()
+      return String(result)
 }
