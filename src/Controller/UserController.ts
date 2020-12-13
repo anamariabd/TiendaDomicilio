@@ -53,10 +53,10 @@ import { Console } from "console"
         return result;
      }
   }
-  let list:Array<produt> = new Array();
   
- // const[listaProduct, setListaProduct] = useState<produt[]>([]);
-
+  
+  let list:Array<produt> = new Array();
+  // const[listaProduct, setListaProduct] = useState<produt[]>([]);
   export async function loadProducts() {
      const result =  await database.collection("producto").get() // TOMA LOS DATOS DE LA TABLA "producto" Y LOS OBTIENE
         .then(
@@ -135,7 +135,6 @@ import { Console } from "console"
       .catch((e:any) => {return e})
       console.log(reg)
   } 
-
 
   export async function registerClient(id:string,barrio:string, direccion: string, localizacion: string ){
     await database.collection('cliente').add({ 
