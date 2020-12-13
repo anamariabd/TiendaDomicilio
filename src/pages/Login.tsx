@@ -101,7 +101,7 @@ async function login(){
           </IonRow>
           <IonRow>
             <IonCol id="bIngresar">
-              <IonButton onClick = {()=>{ login(); setTimeout( Signed , 3000 ); }}  >
+              <IonButton onClick = {()=>{ login(); setTimeout( Signed , 1500 ); }}  >
                 { /*  href={"/page"+entry+"/Inicio"} */}
                 Iniciar Sesion
               </IonButton>
@@ -111,11 +111,11 @@ async function login(){
           <IonRow>
               <IonCol>
                 <IonModal isOpen={showModal} cssClass='my-custom-class'>
-              <IonRow>
+             
                 <IonLabel class="entrada">Desea mantener la sesión iniciada? </IonLabel>
-              </IonRow>
+           
               
-              <IonButton /* routerLink="/login"*/href={"/page"+entry+"/Inicio"} >
+              <IonButton href={"/page"+entry+"/Inicio"} >
                 Si
               </IonButton>
               <IonButton href={"/page"+entry+"/Inicio"}>No</IonButton>

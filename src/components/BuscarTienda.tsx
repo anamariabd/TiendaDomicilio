@@ -3,7 +3,7 @@ import Clasificacion from '../SingleComponents/Clasificación'
 import Buscador from './Buscador'
 import {TiendaCard, DatosTienda} from '../SingleComponents/TiendaCard'
 import '../Styles/styles.css'
-import { IonList, useIonViewWillEnter} from '@ionic/react';
+import { IonButton, IonList, useIonViewWillEnter} from '@ionic/react';
 import {listStore,store} from '../Controller/clienteController'
 
 /*Simulando los datos
@@ -33,13 +33,12 @@ const BuscarTienda: React.FC = () => {
       setStores(result)
     }
   }
-  useIonViewWillEnter( ()=>{ListStore()} )
+  ListStore()
   return (
     <div>
 
       <Buscador/>
-        
-        <input type="button" name = "submit" className="btn" value="Buscar"/>
+        <IonButton> Buscar </IonButton>
         
         <Clasificacion/>
 

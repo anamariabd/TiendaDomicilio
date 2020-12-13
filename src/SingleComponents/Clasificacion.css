@@ -47,3 +47,12 @@
   width: 30px;
   --border-radius: 50px;
 }
+
+.Clear-fix{
+  
+  clear: both;
+  float: none;
+  
+  border-bottom: 1px solid #ccc;
+}
+
