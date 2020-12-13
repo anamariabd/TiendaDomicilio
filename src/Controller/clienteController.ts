@@ -1,6 +1,6 @@
 import { infinite, returnUpForward } from "ionicons/icons"
 import {database,produt,fireB} from "./UserController"
-
+import {pedido} from "../components/Carrito"
 export interface store{
     id : string,
     address : string,
@@ -9,21 +9,51 @@ export interface store{
     idShopman : string
 }
 
-interface ProductPedido{
-    idproduct : string, /*[[1,2],
+/*interface ProductPedido{
+    idproduct : string,    [1,2],
                            [1,2],
-                           [1,2]]*/
+                           [1,2]]
     cantidad : number
-}
+}*/
 
-export  function compra(list:Array<ProductPedido>, idCliente: string ){
+export  function compra(list:Array<pedido> ){
+    console.log("mostrando llegada de carrito",  list);//Verificacion
+    let email = fireB.auth().currentUser?.email;  //Busco email del usuario logiado
+    alert(email)
+    var aux3:string;
+    const idCliente = (async ()=>{ 
+        let aux1: string;
+        let doc =await database.collection("usuarios").where("correo", "==", email).get()
+        .then((user)=>{
+            
+            user.forEach((element)=>{
+                aux3 = element.id;
+  
+            })
+            console.log("aux1", aux1)
+            return aux1;
+        })
+        .catch(()=>{
+            return false
+        })
+        if(typeof doc === "string"){
+            return  aux3;
+        }
+        
+    })
+    alert("mostrando el id del cliente logeado "+aux3)
     list.forEach(async (data)=>{
-        await database.collection("pedido").add({                                                   
+        console.log("datos de los productos", data.Id," ",data.count," ",data.precio)
+        await database.collection("pedido").add({    
                 idCliente : idCliente,                                    
-                idProducto : data.idproduct,
-                cantidad : data.cantidad
+                idProducto : data.Id,
+                cantidad : data.count,
+                precio : data.precio,
             }
-        )
+        ).then((doc)=>{
+            console.log("Compra exitosa", doc.id)
+            
+        }).catch()
     })
 }
 

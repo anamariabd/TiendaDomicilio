@@ -27,7 +27,7 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import InicioUser from './pages/InicioUser'
 import Register from './pages/Register';
-import {fireB} from './Controller/UserController'
+import {userCurrent} from './Controller/UserController'
 
 const App: React.FC = () => {
   return (
@@ -38,10 +38,13 @@ const App: React.FC = () => {
               <Route path="/login" component= {Login} exact />
          { /*    <Route path="/page/:Tipo/:name" component= {InicioUser} exact/>  */}
          { /*    <Route path="/page/:Tipo" component= {InicioUser} exact/>  */ }
-              <Route path="/page/:Tipo/:name"
-               render={props => {
-               return true? <InicioUser/> : <InicioUser />;
-              }}/>   
+              {/* <Route path="/page/:Tipo/:name"
+               render={() => {
+               //  var IsAuth = await userCurrent();
+               return false ? <Login/> : <InicioUser />;
+              }}/>    */}
+
+        <Route path="/page/:Tipo/:name" render={() => {return true? <InicioUser/> : <Login/>;}}/>   
         
            {/*   <PrivateRoute path="/page/:Tipo/:name" authenticated={true} component={InicioUser}/>*/ } 
               <Route path="/register" component= {Register} exact />

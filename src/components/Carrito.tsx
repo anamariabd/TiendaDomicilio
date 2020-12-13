@@ -3,6 +3,7 @@ import { IonGrid, IonRow, IonCol, useIonViewWillEnter, IonCardContent, IonButton
 import '../Styles/styles.css'
 import {FilaProducto} from '../SingleComponents/FilaProducto'
 import {listCard, DatosProduct} from '../SingleComponents/ProductCard'
+import {compra} from "../Controller/clienteController"
 
 interface ProductsCarrito{
   name: string;
@@ -10,17 +11,29 @@ interface ProductsCarrito{
   marca: string;
   Precio: number;
 }
+function comprar(lista:Array<pedido>){
+  compra(lista);
+
+}
 
 export interface pedido{
   name: string;
   Id: number;
+  precio: number;
   count:number;
 }
 
+
+let listaPedido:pedido[] = []
+
+let list:pedido[] = []
 const Carrito: React.FC =() => {
 
   var listaPed:pedido[] = [];
   const[listaProduct, setListaProduct] = useState<DatosProduct[]>([]);
+  const[Total, setTotal] = useState(0);
+  
+  const[compra, setCompra] = useState(false);
   //setListaProduct(listCard);
 
   const Delete = (dato:number) =>{
@@ -35,15 +48,19 @@ const Carrito: React.FC =() => {
     
     console.log(listCard);
   }  
-
-  const cantidad = (e:any) =>{
-    console.log(e);
+  var product;
+  const total = (name:string, id: number, cantidad: number, precio: number) => {  // esa es la handle
+    product = {name: name, Id: id, precio: precio, count: cantidad};
+    if(compra){
+      listaPedido.push(product);
+    }
+    list = listaPedido;
   }
 
-  const total = (e:number) => {
-    console.log(e);
-  }
   //setListaProduct(listCard);
+  
+  console.log(list);
+ // console.log(listaPedido);
     return(
        <IonCardContent> 
 
@@ -61,17 +78,15 @@ const Carrito: React.FC =() => {
               <FilaProducto eliminar={Delete}
                Id={listCard.Id} key = {listCard.Id} 
                name = {listCard.name+" "+listCard.marca +" "+ listCard.medida} 
-               precio={1200} listPedido = {listaPed} handle = {total} />
+               precio={1200} handle = {total} />
               </div>
             );
           })}
-
-          
       <IonRow>
         <IonCol> Cantidad total: {0}</IonCol>
-        <IonCol>Total a pagar: {total}</IonCol>
+        <IonCol>Total a pagar: {Total}</IonCol>
       </IonRow>
-     <IonButton onClick={cantidad}> Comprar </IonButton>
+     <IonButton onClick={()=>{ setCompra(true);setTimeout( ()=>{comprar(list)}, 3000 );}}> Comprar </IonButton>
     </IonGrid>                     
 
         </IonCardContent>
