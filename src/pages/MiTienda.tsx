@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 
-import { IonButton,useIonViewDidEnter, IonCol, IonModal, IonLabel, IonContent, IonGrid, IonInput, IonPage, IonRow, useIonViewWillEnter } from '@ionic/react';
-import Clasificacion from '../SingleComponents/Clasificación' 
-import {TiendaCard, DatosTienda} from '../SingleComponents/TiendaCard'
+import { IonButton,IonItem, IonCol, IonModal, IonLabel, IonGrid, IonInput,IonRow} from '@ionic/react';
+import { DatosTienda} from '../SingleComponents/TiendaCard'
 import '../Styles/styles.css'
-import { IonList} from '@ionic/react';
 import {loadDataStore,editStore} from "../Controller/tiendaController"
 import { registUser } from '../Controller/UserController';
 
@@ -31,7 +29,11 @@ const Tiendas: DatosTienda[] = [
 
     const [name , setName] = useState('');
     const[address, setAddress] = useState('');
-    const [showModal, setShowModal] =useState(true)
+    const [UrlImg, setUrlImg] =useState("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7L9WW1ZfI60LtfM74zaBl-16DwDNIfB_aLw&usqp=CAU")
+    const [Localizacion, setLocalizacion] =useState("nose")
+    
+    const [showModal, setShowModal] =useState(false)
+    
     
   
       async function dataStore() {
@@ -50,20 +52,25 @@ const Tiendas: DatosTienda[] = [
       //useIonViewWillEnter(dataStore())
       dataStore()
     return(
-      
-   /* <div>
-      <IonList>
-         
-      {Tiendas.map((Tiendas, index) => {
-              return (
-                <div key={index}>
-                  <br/>
-                  <TiendaCard key={index} Id = {Tiendas.Id} name={Tiendas.name} Localizacion = {Tiendas.Localizacion} Calificacion = {Tiendas.Calificacion} UrlImg={Tiendas.UrlImg}/>
+
+      <IonCol>
+        
+      <IonItem>
+      <div id = "articles">
+                <div className="article-item" id = "article-template">
+                    <div className = "image-wrap">
+                        <img src={UrlImg} alt = "Tienda">
+                         </img>
+                    </div>
+                      <IonLabel>{name}</IonLabel>
+                     <span>500Lb</span>
+                     <p>{Localizacion}</p>
                 </div>
-              );
-            })}
-      </IonList>
-    </div> */
+                
+      </div>
+       <input type="button" name = "submit" className="btn" value="Ver tienda"/>
+      </IonItem>
+      
   
    <IonRow>
     <IonCol>
@@ -92,6 +99,8 @@ const Tiendas: DatosTienda[] = [
       
     </IonCol>
 </IonRow>
+
+</IonCol>
 
   );}
   

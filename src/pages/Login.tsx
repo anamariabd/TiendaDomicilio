@@ -1,4 +1,4 @@
-import {IonButton, IonLabel,IonSelectOption, IonSelect, IonCol, IonContent, IonGrid, IonInput, IonPage, IonRow } from '@ionic/react';
+import {IonButton, IonLabel,IonSelectOption, IonModal, IonSelect, IonCol, IonContent, IonGrid, IonInput, IonPage, IonRow } from '@ionic/react';
 import React, {useState, useEffect} from 'react';
 import './Login.css';
 
@@ -14,7 +14,9 @@ const Login: React.FC = () => {
   const  [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [entry, setEntry] = useState('/page/Inicio');
-  const [LoadUser, setLoadUser] = useState(true);
+  
+  const [ModalError, setModalError] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [tUser, setTUser] = useState('');
  const expressEmail = new RegExp('^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$');
  function validateEmail(){
@@ -46,7 +48,7 @@ async function login(){
   async function LoadUser() {
      
     if(!userCurrent){
-      setLoadUser(false);
+    //  setLoadUser(false);
      return;
     }
 
@@ -62,6 +64,13 @@ async function login(){
 
  const Signed =()=>{
    console.log(IsAuth);
+   if(IsAuth){
+     setShowModal(true);
+     setModalError(false);
+   }else{
+     setModalError(true);
+     setShowModal(false);
+   }
  }
 
   return (
@@ -92,11 +101,38 @@ async function login(){
           </IonRow>
           <IonRow>
             <IonCol id="bIngresar">
-              <IonButton onClick = {()=>{login(); setTimeout( Signed , 3000 ); }}>
+              <IonButton onClick = {()=>{ login(); setTimeout( Signed , 3000 ); }}  >
                 { /*  href={"/page"+entry+"/Inicio"} */}
                 Iniciar Sesion
               </IonButton>
             </IonCol>
+          </IonRow>
+
+          <IonRow>
+              <IonCol>
+                <IonModal isOpen={showModal} cssClass='my-custom-class'>
+              <IonRow>
+                <IonLabel class="entrada">Desea mantener la sesión iniciada? </IonLabel>
+              </IonRow>
+              
+              <IonButton /* routerLink="/login"*/href={"/page"+entry+"/Inicio"} >
+                Si
+              </IonButton>
+              <IonButton href={"/page"+entry+"/Inicio"}>No</IonButton>
+                </IonModal>
+              </IonCol>
+          </IonRow>  
+          
+          <IonRow>
+                <IonModal isOpen={ ModalError} cssClass='my-custom-class'>
+              <IonRow>
+                <IonLabel class="entrada">Error en su correo o Contraseña </IonLabel>
+              </IonRow>
+              
+              <IonButton /* routerLink="/login"*/href={"/login"} >
+                Intentar nuevamente
+              </IonButton>
+                </IonModal>
           </IonRow>
         </IonGrid>
       </IonContent>

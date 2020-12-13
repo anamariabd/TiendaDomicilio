@@ -4,7 +4,7 @@ import React from 'react';
 import { IonApp, IonRouterOutlet} from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import PrivateRoute from './PrivateRoute'
+import {PrivateRoute} from './PrivateRoute'
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -27,7 +27,6 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import InicioUser from './pages/InicioUser'
 import Register from './pages/Register';
-import {userCurrent} from './Controller/UserController'
 
 const App: React.FC = () => {
   return (
@@ -36,15 +35,8 @@ const App: React.FC = () => {
           <IonRouterOutlet>
               <Route path="/logo" component= {Logo} exact />
               <Route path="/login" component= {Login} exact />
-         { /*    <Route path="/page/:Tipo/:name" component= {InicioUser} exact/>  */}
-         { /*    <Route path="/page/:Tipo" component= {InicioUser} exact/>  */ }
-              {/* <Route path="/page/:Tipo/:name"
-               render={() => {
-               //  var IsAuth = await userCurrent();
-               return false ? <Login/> : <InicioUser />;
-              }}/>    */}
-
-        <Route path="/page/:Tipo/:name" render={() => {return true? <InicioUser/> : <Login/>;}}/>   
+              <PrivateRoute path="/page/:Tipo/:name"  component={InicioUser} />
+        {/* <Route path="/page/:Tipo/:name" render={() => {return userCurrent!? <InicioUser/> : <Login/>;}}/>    */}
         
            {/*   <PrivateRoute path="/page/:Tipo/:name" authenticated={true} component={InicioUser}/>*/ } 
               <Route path="/register" component= {Register} exact />

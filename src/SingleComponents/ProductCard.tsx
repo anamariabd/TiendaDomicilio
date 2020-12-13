@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {  IonRow, IonCard, IonIcon, IonButton, IonCardContent, IonCardTitle } from '@ionic/react';
+import {  IonRow, IonCard,  IonCardContent, IonCardTitle } from '@ionic/react';
 import './Clasificacion.css'
 
 export interface DatosProduct {

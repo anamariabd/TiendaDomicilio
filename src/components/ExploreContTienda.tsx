@@ -31,7 +31,7 @@ const ExploreContTienda: React.FC<ContainerProps> = ({ name }) => {
          return (
           <EstadoPedido/>
          )
-         case 'Tiendas':
+         case 'Tienda':
          return (
           <MiTienda/>
          )

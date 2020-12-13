@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import {  IonRow, IonCol, useIonViewWillEnter, IonIcon, IonButton} from '@ionic/react';
+import React from 'react';
+import {  IonRow, IonCol, IonIcon, IonButton} from '@ionic/react';
 import {addCircleOutline, removeCircleOutline, trashOutline} from 'ionicons/icons';
 import {listCard} from '../SingleComponents/ProductCard'
 import './Clasificacion.css'

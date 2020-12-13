@@ -2,6 +2,7 @@ import {firebaseConfig} from "./firebaseConfig"
 import firebase from "firebase/app"
 import  "firebase/firestore"
 import  "firebase/auth"
+import React, {useContext} from "react"
 import { strict } from "assert"
 import { Console } from "console"
 
@@ -29,7 +30,14 @@ import { Console } from "console"
   require('firebase/auth')
   //Autenticacion con firebase 
    // CONEXION A BASE DE DATOS
+   const AuthContext = React.createContext({
+     currentUser: true
+   })
 
+   export function useAuth() {
+     return useContext(AuthContext)
+   }
+   
   export async function RegisterData(name:string,username: string, numberPhone: Number,address:string, email : string, tUser : string) {
     const result = await database.collection("usuarios").add({
       tipoUsuario : tUser,

@@ -1,9 +1,8 @@
-import React, { Fragment, useState } from 'react';
-import { IonAvatar, IonLabel, IonItem, IonItemOption, IonItemOptions, IonContent} from '@ionic/react';
+import React, { Fragment } from 'react';
+import {  IonLabel, IonItem} from '@ionic/react';
 import './Clasificacion.css'
 
 import Clasificacion from '../SingleComponents/Clasificación' 
-import { url } from 'inspector';
 
 export interface DatosTienda{
     name: string;
