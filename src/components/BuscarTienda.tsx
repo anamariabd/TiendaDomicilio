@@ -33,12 +33,17 @@ const BuscarTienda: React.FC = () => {
       setStores(result)
     }
   }
+
+ const handleSearch = (e:any) =>{
+    console.log(e);
+    
+  }
+
   ListStore()
   return (
     <div>
 
-      <Buscador/>
-        <IonButton> Buscar </IonButton>
+      <Buscador HandleSearch={handleSearch} />
         
         <Clasificacion/>
 

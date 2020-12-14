@@ -43,25 +43,6 @@ async function login(){
  }  
 }
 
- useEffect(()=>{
-
-  async function LoadUser() {
-     
-    if(!userCurrent){
-    //  setLoadUser(false);
-     return;
-    }
-
-    try{
-    }catch(error){
-      console.log(error);
-    }
-
-  }
-
-  LoadUser();
- })
-
  const Signed =()=>{
    console.log(IsAuth);
    if(IsAuth){
@@ -101,7 +82,7 @@ async function login(){
           </IonRow>
           <IonRow>
             <IonCol id="bIngresar">
-              <IonButton onClick = {()=>{ login(); setTimeout( Signed , 1500 ); }}  >
+              <IonButton onClick = {()=>{ login(); setTimeout( Signed , 3000 ); }}  >
                 { /*  href={"/page"+entry+"/Inicio"} */}
                 Iniciar Sesion
               </IonButton>
@@ -114,11 +95,8 @@ async function login(){
              
                 <IonLabel class="entrada">Desea mantener la sesión iniciada? </IonLabel>
            
-              
-              <IonButton href={"/page"+entry+"/Inicio"} >
-                Si
-              </IonButton>
-              <IonButton href={"/page"+entry+"/Inicio"}>No</IonButton>
+                <IonCol>  <IonButton href={"/page"+tUser+"/Inicio"} >Si</IonButton>  </IonCol>
+                   <IonCol>   <IonButton href={"/page"+tUser+"/Inicio"}>No</IonButton>  </IonCol>
                 </IonModal>
               </IonCol>
           </IonRow>  

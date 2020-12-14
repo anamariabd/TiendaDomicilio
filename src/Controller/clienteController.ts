@@ -1,6 +1,7 @@
 import { infinite, returnUpForward } from "ionicons/icons"
 import {database,produt,fireB} from "./UserController"
 import {pedido} from "../components/Carrito"
+
 export interface store{
     id : string,
     address : string,
@@ -9,23 +10,39 @@ export interface store{
     idShopman : string
 }
 
-/*interface ProductPedido{
-    idproduct : string,    [1,2],
-                           [1,2],
-                           [1,2]]
-    cantidad : number
-}*/
-var idCliente:Promise<string>;
-export  function compra(list:Array<pedido> ){
+export interface dataUser { //Interface usada para crear el objeto usuario con todos los datos
+    id: string;
+    name: string;
+    userName: string;
+    address :string;
+    numberPhone: string;
+    email :string
+}
+
+export async function RegisterClient(barrio:string, direccion:string, id:string) {
+    await database.collection("cliente").add({
+        barrio: barrio,
+        direccion: direccion,
+        idUsuario: id
+    })
+    .then(()=>{
+        console.log("cliente registrado")
+    })
+    .catch(()=>{
+        console.log("No se registro cliente")
+    })
+}
+
+let idCliente:string;
+//Funcion realiza el envio de datos a la BD 
+export async function compra(list:Array<pedido> ){
     console.log("mostrando llegada de carrito",  list);//Verificacion
     let email = fireB.auth().currentUser?.email;  //Busco email del usuario logiado
-  
-    alert(email)
+    
     if(typeof email === "string"){
-        idCliente = idUser(email)
+        idCliente = await idUser(email)
     }
     alert(idCliente)
-
     list.forEach(async (data)=>{
         console.log("datos de los productos", data.Id," ",data.count," ",data.precio)
         await database.collection("pedido").add({    
@@ -66,16 +83,7 @@ export async function listStore() {
     
 }
 
-export interface dataUser {
-    id: string;
-    name: string;
-    userName: string;
-    address :string;
-    numberPhone: string;
-    email :string
-}
-
-export async function loadData() {
+export async function loadData() { // Carga los datos del usuario logueado a la vista
   let user= fireB.auth().currentUser?.email;
   let aux1:dataUser;
   const result = await database.collection("usuarios").where("correo", "==", user).get()
@@ -96,16 +104,35 @@ export async function loadData() {
     return result;
 }
 
-async function idUser(email:string)  {
+export async function idUser(email:string)  { // devuelve el id del usuario logeado
     let aux1:string;
     const result = await database.collection("usuarios").where("correo", "==", email).get()
     .then((querySnapshot)=>{
              querySnapshot.forEach((element)=>{
                aux1 = element.id
-              })
-          console.log("aux1", aux1)
-          return aux1;
-      })
-      .catch()
-      return String(result)
+            })
+        console.log("aux1", aux1)
+        return aux1;
+    })
+    .catch((error)=>{
+          console.log(error,"error al buscar el usuario");
+      return false
+    })
+    return String(result)
+}
+
+export async function EditClient(idClient:string, barrio:string, direccion:string,nombre:string) {
+    await database.collection("cliente").doc().set({
+        //                                                                   /   
+        //                _____    __        ___   _   _   __       _  _   __   __
+        //                  |     |__       |___| | \ / | |  |     | \/ | |__| |__
+        //                  |     |__       |   | |     | |__|     |    | |  |  __|
+        //                                                              
+    }).then((e)=>{
+        console.log("actualizacion exitosa", e);
+        return true;
+    }).catch((error)=>{
+        console.log("error al editar", error);
+        return false;
+    })
 }

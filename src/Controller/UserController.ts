@@ -43,7 +43,7 @@ import { Console } from "console"
       tipoUsuario : tUser,
       nombre : name,
       userName : username,
-      celular : numberPhone ,
+      celular :<Number> numberPhone,
       correo : email,
       direccion : address
      })
@@ -53,10 +53,10 @@ import { Console } from "console"
         return result;
      }
   }
-  let list:Array<produt> = new Array();
   
- // const[listaProduct, setListaProduct] = useState<produt[]>([]);
-
+  
+  let list:Array<produt> = new Array();
+  // const[listaProduct, setListaProduct] = useState<produt[]>([]);
   export async function loadProducts() {
      const result =  await database.collection("producto").get() // TOMA LOS DATOS DE LA TABLA "producto" Y LOS OBTIENE
         .then(
@@ -131,11 +131,12 @@ import { Console } from "console"
 
   export async function registUser(email: string, password: string){
       let reg = await fireB.auth().createUserWithEmailAndPassword(email,password)
-      .then((e:any) => {return e})
-      .catch((e:any) => {return e})
-      console.log(reg)
+      .then(() => {return true})
+      .catch(() => {return false})
+      console.log(reg,"resultado del registro")
+      return reg;
+      
   } 
-
 
   export async function registerClient(id:string,barrio:string, direccion: string, localizacion: string ){
     await database.collection('cliente').add({ 

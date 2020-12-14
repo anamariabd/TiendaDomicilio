@@ -1,12 +1,15 @@
 import React, { Fragment, useState } from 'react';
 import { IonButton,  IonLabel, IonListHeader } from '@ionic/react';
 import {userCurrent,logOut} from '../Controller/UserController'
-import {loadData} from "../Controller/clienteController"
+import {loadData, idUser} from "../Controller/clienteController"
 
 var ID;
 
 const MiPerfil: React.FC = () => {
 
+  function idCurrent(mail:string){
+      idUser(mail)
+  }
   async function showData() {
       let result = await loadData();
 
@@ -16,6 +19,7 @@ const MiPerfil: React.FC = () => {
       ID = result.id;
       setEmail(result.email)
       setLast_name(result.userName);  
+      console.log( idCurrent(email),email," ", "id :", ID)
   }
 
   const [name , setName] =useState("");
@@ -48,7 +52,7 @@ const MiPerfil: React.FC = () => {
     </IonListHeader>
 
     <IonButton onClick = {logOut} href = "/logo"> LOGOUT </IonButton>
-    <IonButton onClick={userCurrent} > user current </IonButton>
+    <IonButton onClick={showData} > user current </IonButton>
         </Fragment>
     );
 
