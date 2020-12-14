@@ -1,13 +1,19 @@
 import {fireB, database} from "./UserController"
 import "firebase/auth"
 import {DatosTienda} from "../SingleComponents/TiendaCard"
-
+import {user,product} from "./clienteController"
 export async function registerShopman(id:string ){//Registro del usuario como tendero
   await database.collection('tendero').add({ idUsuario: id})
   .then(()=>{console.log("Tendero nuevo")})
   .catch(()=>{console.log("no hay tendero nuevo")})
 }
 
+interface pedidoTienda{
+  cliente:string;
+  producto:string;
+  cantidad: number;
+  precio: number;
+}
 //Crea y agrega una tienda a la bd
 export async function DataStore(name: string, idTendero : string, localizacion: string) { //Registro datos de la tienda en BD
         registerShopman(idTendero);
@@ -74,4 +80,30 @@ export async function loadDataStore(){ // Carga los datos de la tienda para most
             return false 
     })
   return result; 
+}
+//devuelve la lista de todos los pedidos que se hicieron a la tienda
+let listPedido: pedidoTienda[];
+export async function ListPedido(idTienda : string) {
+  let idclient:string ,idproduct : string;
+  const result = await database.collection("pedido").where("idTienda", "==", idTienda).get()
+  .then(
+    (querySnapshot)=>{
+    let producto:string, cliente:string;
+    querySnapshot.forEach((element)=>{
+      idclient = element.data().idCliente; //id cliente
+      idproduct  =element.data().idProducto; //id producto
+      producto = String(async ()=>{
+        const result = await product(idproduct)
+        return result;
+      })
+      cliente = String(async ()=> {
+        const result = await user(idclient)
+        return result;
+      })
+      listPedido.push({cliente:cliente, producto: producto, cantidad: element.data().cantidad,precio:element.data().precio})
+    })
+    return listPedido
+  })
+  .catch(/*()=>{console.log("error")}*/)
+  return result;
 }

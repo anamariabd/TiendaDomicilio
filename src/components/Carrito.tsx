@@ -11,6 +11,7 @@ interface ProductsCarrito{
   marca: string;
   Precio: number;
 }
+
 function comprar(lista:Array<pedido>){
   compra(lista);
 

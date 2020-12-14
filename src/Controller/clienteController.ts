@@ -33,10 +33,18 @@ export async function RegisterClient(barrio:string, direccion:string, id:string)
     })
 }
 
+
 let idCliente:string;
-//Funcion realiza el envio de datos a la BD 
-export async function compra(list:Array<pedido> ){
-    console.log("mostrando llegada de carrito",  list);//Verificacion
+
+var IdTienda:string;
+export const handleId= (e:string) =>{
+  console.log("ID",e);
+  IdTienda=e;
+  console.log("ID",IdTienda);
+}
+//Funcion realiza el envio de datos a la BD simulacion de compra
+export async function compra(list:Array<pedido>){
+    console.log("mostrando llegada de carrito",  list,"id de la tienda", IdTienda);//Verificacion
     let email = fireB.auth().currentUser?.email;  //Busco email del usuario logiado
     
     if(typeof email === "string"){
@@ -50,6 +58,7 @@ export async function compra(list:Array<pedido> ){
                 idProducto : data.Id,
                 cantidad : data.count,
                 precio : data.precio,
+                idTienda : IdTienda
             }
         ).then((doc)=>{
             console.log("Compra exitosa", doc.id)
@@ -123,11 +132,6 @@ export async function idUser(email:string)  { // devuelve el id del usuario loge
 
 export async function EditClient(idClient:string, barrio:string, direccion:string,nombre:string) {
     await database.collection("cliente").doc().set({
-        //                                                                   /   
-        //                _____    __        ___   _   _   __       _  _   __   __
-        //                  |     |__       |___| | \ / | |  |     | \/ | |__| |__
-        //                  |     |__       |   | |     | |__|     |    | |  |  __|
-        //                                                              
     }).then((e)=>{
         console.log("actualizacion exitosa", e);
         return true;
@@ -135,4 +139,26 @@ export async function EditClient(idClient:string, barrio:string, direccion:strin
         console.log("error al editar", error);
         return false;
     })
+}
+
+export async function product(id:string) {
+    let name:string;
+    const result = await database.collection("producto").where("id", "==", id).get()
+    .then((user)=>{
+        user.forEach((item)=>{
+            name = item.data().nombre;
+        })
+        return name;
+    }).catch()
+    return result;
+}
+export async function user(id:string) { // Busca usuario por id y devuelve el nombre del usuario en cuestion
+    let name:string;
+    const result = await database.collection("usuarios").where("id", "==", id).get().then((user)=>{
+        user.forEach((item)=>{
+            name= item.data().nombre;
+        })
+        return name;
+    }).catch()
+    return result;
 }

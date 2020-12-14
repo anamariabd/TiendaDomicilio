@@ -95,8 +95,8 @@ async function login(){
              
                 <IonLabel class="entrada">Desea mantener la sesión iniciada? </IonLabel>
            
-                <IonCol>  <IonButton href={"/page"+tUser+"/Inicio"} >Si</IonButton>  </IonCol>
-                   <IonCol>   <IonButton href={"/page"+tUser+"/Inicio"}>No</IonButton>  </IonCol>
+                <IonCol>  <IonButton href={"/page/"+tUser+"/Inicio"} >Si</IonButton>  </IonCol>
+                   <IonCol>   <IonButton href={"/page/"+tUser+"/Inicio"}>No</IonButton>  </IonCol>
                 </IonModal>
               </IonCol>
           </IonRow>  
