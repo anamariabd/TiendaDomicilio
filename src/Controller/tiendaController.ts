@@ -4,20 +4,21 @@ import {DatosTienda} from "../SingleComponents/TiendaCard"
 
 export async function registerShopman(id:string ){//Registro del usuario como tendero
   await database.collection('tendero').add({ idUsuario: id})
-  .then()
-  .catch()
+  .then(()=>{console.log("Tendero nuevo")})
+  .catch(()=>{console.log("no hay tendero nuevo")})
 }
 
-
+//Crea y agrega una tienda a la bd
 export async function DataStore(name: string, idTendero : string, localizacion: string) { //Registro datos de la tienda en BD
         registerShopman(idTendero);
         await database.collection("tienda").add({
             nombre : name,
             localizacion : localizacion,
-            idTendero : idTendero
+            idTendero : idTendero,
+            calificacion :<number> 0 
         })
         .then(()=>{console.log("tienda registrada")})
-        .catch()
+        .catch(()=>{console.log("No se logró registrar")})
 }
 
 export function loadphotoStore(file : File){ //Carga foto o archivo de la tienda en Storage
@@ -47,7 +48,7 @@ export async function editStore(idTienda:string, nameStore : string, addressStor
     )
 }
 
-export async function loadDataStore(){
+export async function loadDataStore(){ // Carga los datos de la tienda para mostrar y luego editar
 
   let user= fireB.auth().currentUser?.email ///
   let aux1 ="";
@@ -66,7 +67,7 @@ export async function loadDataStore(){
             console.log(elemet.id, elemet.data().direccion, elemet.data().nombre)
             aux = {Id: elemet.id, name : elemet.data().nombre, Localizacion: elemet.data().direccion, Calificacion:elemet.data().calificacion,UrlImg :""}
         })
-      console.log("actualizacion exitosa")
+      console.log("carga de datos")
         return aux;
     }).catch((error)=>{
             console.log("Error al editar",error);

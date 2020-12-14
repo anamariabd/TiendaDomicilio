@@ -86,7 +86,7 @@ const Carrito: React.FC =() => {
         <IonCol> Cantidad total: {0}</IonCol>
         <IonCol>Total a pagar: {Total}</IonCol>
       </IonRow>
-     <IonButton onClick={()=>{ setCompra(true);setTimeout( ()=>{comprar(list)}, 3000 );}}> Comprar </IonButton>
+     <IonButton onClick={()=>{ setCompra(true);setTimeout( ()=>{comprar(list)}, 2000 );}}> Comprar </IonButton>
     </IonGrid>                     
 
         </IonCardContent>

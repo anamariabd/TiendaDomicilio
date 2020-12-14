@@ -19,7 +19,7 @@ const MiPerfil: React.FC = () => {
       ID = result.id;
       setEmail(result.email)
       setLast_name(result.userName);  
-      console.log(await idCurrent(email),email," ", "id :", ID)
+      console.log( idCurrent(email),email," ", "id :", ID)
   }
 
   const [name , setName] =useState("");

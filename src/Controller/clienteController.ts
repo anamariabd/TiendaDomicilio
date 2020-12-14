@@ -19,6 +19,20 @@ export interface dataUser { //Interface usada para crear el objeto usuario con t
     email :string
 }
 
+export async function RegisterClient(barrio:string, direccion:string, id:string) {
+    await database.collection("cliente").add({
+        barrio: barrio,
+        direccion: direccion,
+        idUsuario: id
+    })
+    .then(()=>{
+        console.log("cliente registrado")
+    })
+    .catch(()=>{
+        console.log("No se registro cliente")
+    })
+}
+
 let idCliente:string;
 //Funcion realiza el envio de datos a la BD 
 export async function compra(list:Array<pedido> ){
@@ -105,4 +119,20 @@ export async function idUser(email:string)  { // devuelve el id del usuario loge
       return false
     })
     return String(result)
+}
+
+export async function EditClient(idClient:string, barrio:string, direccion:string,nombre:string) {
+    await database.collection("cliente").doc().set({
+        //                                                                   /   
+        //                _____    __        ___   _   _   __       _  _   __   __
+        //                  |     |__       |___| | \ / | |  |     | \/ | |__| |__
+        //                  |     |__       |   | |     | |__|     |    | |  |  __|
+        //                                                              
+    }).then((e)=>{
+        console.log("actualizacion exitosa", e);
+        return true;
+    }).catch((error)=>{
+        console.log("error al editar", error);
+        return false;
+    })
 }
