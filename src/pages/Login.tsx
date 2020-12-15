@@ -1,5 +1,5 @@
-import {IonButton, IonLabel,IonSelectOption, IonModal, IonSelect, IonCol, IonContent, IonGrid, IonInput, IonPage, IonRow } from '@ionic/react';
-import React, {useState, useEffect} from 'react';
+import {IonButton,IonLoading ,IonLabel,IonSelectOption, IonModal, IonSelect, IonCol, IonContent, IonGrid, IonInput, IonPage, IonRow } from '@ionic/react';
+import React, {useState} from 'react';
 import './Login.css';
 
 import { Redirect} from 'react-router-dom';
@@ -10,6 +10,7 @@ const list: usuario[] = [];
 var IsAuth:boolean;
 const Login: React.FC = () => {
 
+  const [showLoading, setShowLoading] = useState(false);
   const  [IsUser, setIsUser] = useState(false);
   const  [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -45,14 +46,20 @@ async function login(){
 
  const Signed =()=>{
    console.log(IsAuth);
+   
    if(IsAuth){
+     
+  //   setShowLoading(true); 
      setShowModal(true);
      setModalError(false);
+
    }else{
      setModalError(true);
      setShowModal(false);
    }
  }
+
+ 
 
   return (
     <IonPage>
@@ -82,10 +89,18 @@ async function login(){
           </IonRow>
           <IonRow>
             <IonCol id="bIngresar">
-              <IonButton onClick = {()=>{ login(); setTimeout( Signed , 3000 ); }}  >
+              <IonButton onClick = {()=>{ login(); setTimeout(()=>{ setShowLoading(true)}, 2000 ); setTimeout( Signed , 2000 );  }}  >
                 { /*  href={"/page"+entry+"/Inicio"} */}
                 Iniciar Sesion
               </IonButton>
+              
+              <IonLoading
+        cssClass='my-custom-class'
+        isOpen={showLoading}
+        onDidDismiss={() => setShowLoading(false)}
+        message={'Loading...'}
+        duration={2000}
+      />
             </IonCol>
           </IonRow>
 
@@ -93,6 +108,7 @@ async function login(){
               <IonCol>
                 <IonModal isOpen={showModal} cssClass='my-custom-class'>
              
+                <IonLabel class="entrada">Sesion iniciada! </IonLabel>
                 <IonLabel class="entrada">Desea mantener la sesión iniciada? </IonLabel>
            
                 <IonCol>  <IonButton href={"/page/"+tUser+"/Inicio"} >Si</IonButton>  </IonCol>

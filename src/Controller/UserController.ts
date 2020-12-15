@@ -120,7 +120,6 @@ import { Console } from "console"
     const result = fireB.auth().currentUser?.email;
     if(typeof result ==="string"){
       
-        console.log("Siiiii");
       return result;// CORREO DE LA PERSONA LOGEADA
     }else{
       console.log("noooo")
@@ -170,3 +169,4 @@ import { Console } from "console"
     });
     return Users;
   }
+

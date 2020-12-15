@@ -53,11 +53,11 @@ export async function editStore(idTienda:string, nameStore : string, addressStor
         
     )
 }
-
+let aux1 ="";
 export async function loadDataStore(){ // Carga los datos de la tienda para mostrar y luego editar
 
   let user= fireB.auth().currentUser?.email ///
-  let aux1 ="";
+ 
   const idTienda = await database.collection("usuarios").where("correo", "==", user).get()
   .then((user)=>{
     user.forEach((element)=>{
@@ -81,10 +81,14 @@ export async function loadDataStore(){ // Carga los datos de la tienda para most
     })
   return result; 
 }
+
 //devuelve la lista de todos los pedidos que se hicieron a la tienda
 let listPedido: pedidoTienda[];
 export async function ListPedido(idTienda : string) {
   let idclient:string ,idproduct : string;
+
+  console.log(idTienda);
+
   const result = await database.collection("pedido").where("idTienda", "==", idTienda).get()
   .then(
     (querySnapshot)=>{

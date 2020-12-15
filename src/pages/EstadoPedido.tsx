@@ -1,121 +1,70 @@
-import { IonHeader,IonButton, IonSelect, IonSelectOption, IonCol, IonLabel, IonContent, IonGrid, IonInput, IonPage, IonRow, IonToolbar, IonButtons, IonIcon, IonModal } from '@ionic/react';
-import { notifications, personCircle } from 'ionicons/icons';
+import {  IonCol,  IonGrid,  IonRow} from '@ionic/react';
 import React, {Fragment, useState} from 'react';
-import './EstadoPedido.css';
+import {ListPedido} from "../Controller/tiendaController"
+import TablaPedido from '../SingleComponents/TablaPedido'
+import {ClientePedido} from '../SingleComponents/TablaPedido'
+import {loadDataStore} from '../Controller/tiendaController'
+
+async function listaPedido(){
+  
+  let result = await loadDataStore();
+  if(typeof result !== "boolean" ){
+      console.log(result.Id);
+     const list = await ListPedido(result.Id)
+     return list;
+  }
+}
 
 
+const listapedido:ClientePedido[] = [
+    {
+        Nombre: "ana",
+        Direccion: "cra",
+        Total: 0
+    }
+]
 
 const EstadoPedido: React.FC = () => {
+
+ // setTimeout( ()=>{ listaPedido()}, 2300);
+
     const [showModal, setShowModal] = useState(false);
+    const [nombre, setNombre] = useState("Ana");
   return (
     <Fragment>
         <IonGrid>
           <IonRow>
             <IonCol>
-                <h1>
-                    AQUI VA LA FECHA
-                </h1>
+                <h1> AQUI VA LA FECHA</h1>
             </IonCol>
           </IonRow>
           <IonRow>
             <IonCol>
-                <h4>
-                    Pedidos en cola:
-                </h4>
+                <h4>Pedidos en cola:</h4>
             </IonCol>
           </IonRow>
           <IonRow class="cabeceraTabla">
-            <IonCol>
-                <h6>
-                    Nombres
-                </h6>
-            </IonCol>
-            <IonCol>
-                <h6>
-                    Direccion
-                </h6>
-            </IonCol>
-            <IonCol>
-                <h6>
-                    Total a pagar
-                </h6>
-            </IonCol>
-            <IonCol>
-                <h6>
-                    Factura Electronica
-                </h6>
-            </IonCol>
-          </IonRow>
-          <IonRow>
-            <IonCol>
-                <h6>
-                    Nombres aqui
-                </h6>
-            </IonCol>
-            <IonCol>
-                <h6>
-                    Direccion aqui
-                </h6>
-            </IonCol>
-            <IonCol>
-                <h6>
-                    Total a pagar aqui
-                </h6>
-            </IonCol>
-            <IonCol>
-                <IonButton onClick={() => setShowModal(true)}>
-                   Ver
-                </IonButton>
-            </IonCol>
-          </IonRow>
-          <IonRow>
-              <IonCol>
-                <IonModal isOpen={showModal} cssClass='my-custom-class'>
-                    <IonGrid>
-                        <IonRow>
-                            <IonCol>
-                                <h4>Fecha : 00/00/00</h4>
-                            </IonCol>
-                        </IonRow>
-                        <IonRow>
-                            <IonCol>
-                                <h4>Nombre del cliente: Ana Patricia :v</h4>
-                            </IonCol>
-                        </IonRow>
-                        <IonRow class="cabeceraTabla">
-                            <IonCol>
-                                <h4>Producto</h4>
-                            </IonCol>
-                            <IonCol>
-                                <h4>Cantidad</h4>
-                            </IonCol>
-                            <IonCol>
-                                <h4>Valor Unitario</h4>
-                            </IonCol>
-                        </IonRow>
-                        <IonRow>
-                            <IonCol>
-                                <h4>Arroz</h4>
-                            </IonCol>
-                            <IonCol>
-                                <h4>4</h4>
-                            </IonCol>
-                            <IonCol>
-                                <h4>2500</h4>
-                            </IonCol>
-                        </IonRow>
-                        <IonRow>
-                            <IonCol class="cabeceraTabla">
-                                <h4>Total a pagar : 10000</h4>
-                            </IonCol>
-                        </IonRow>
-                    </IonGrid>
-                    <IonButton onClick={() => setShowModal(false)}>Cerrar</IonButton>
-                </IonModal>
-                
-              </IonCol>
-          </IonRow>
-        </IonGrid>
+         <IonCol>
+            <h6>Nombres</h6>
+        </IonCol>
+       <IonCol>
+          <h6>Direccion</h6>
+      </IonCol>
+      <IonCol><h6>Total a pagar</h6></IonCol>
+     <IonCol>
+       <h6>Factura Electronica</h6>
+     </IonCol>
+     </IonRow>
+   </IonGrid>
+
+   {listapedido.map((listapedido, index) => {
+       return (
+              <div key={index}>
+                <br/>
+                <TablaPedido key={index} Nombre={listapedido.Nombre} Direccion={listapedido.Direccion} Total={0} />
+              </div>)
+              })
+   }
     </Fragment>
   );
 };

@@ -4,25 +4,8 @@ import Buscador from './Buscador'
 import {TiendaCard, DatosTienda} from '../SingleComponents/TiendaCard'
 import '../Styles/styles.css'
 import { IonButton, IonList, useIonViewWillEnter} from '@ionic/react';
-import {listStore,store, handleId} from '../Controller/clienteController'
-/*Simulando los datos
-const Tiendas: DatosTienda[] = [
-  {
-    name: 'Tienda mi super fresh',
-    Localizacion: 'Localización',
-    Calificacion: 'Roa ',
-    Id: 1,
-    UrlImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7L9WW1ZfI60LtfM74zaBl-16DwDNIfB_aLw&usqp=CAU"
-  },
-  {name: 'Tienda la barata',
-  Localizacion: 'Localización',
-  Calificacion: 'Roa ',
-  Id: 2,
-  UrlImg: "https://image.freepik.com/vector-gratis/diseno-logotipo-supermercado-lema-tienda_23-2148458443.jpg"
-
-  }
-]
-*/
+import {listStore,store} from '../Controller/clienteController'
+import {handleId} from './Carrito'
 
 const BuscarTienda: React.FC = () => {
   const [stores,setStores] = useState<store[]> ([]);
