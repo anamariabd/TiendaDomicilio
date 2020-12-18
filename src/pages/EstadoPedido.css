@@ -8,3 +8,13 @@
     background: rgb(255, 255, 255);
     color: black;
   }
+
+  
+  .sc-ion-modal-md-h {
+    --height: 55%;
+    --width: 80%;
+    
+    --min-width: auto;
+    --max-width: auto;
+}
+

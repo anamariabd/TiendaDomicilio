@@ -1,6 +1,7 @@
 import { infinite, returnUpForward } from "ionicons/icons"
 import {database,produt,fireB} from "./UserController"
 import {pedido} from "../components/Carrito"
+import {localStorageGet} from '../Controller/StorageLocal'
 
 export interface store{
     id : string,
@@ -9,6 +10,7 @@ export interface store{
     score : number,
     idShopman : string
 }
+
 
 export interface dataUser { //Interface usada para crear el objeto usuario con todos los datos
     id: string;
@@ -34,13 +36,18 @@ export async function RegisterClient(barrio:string, direccion:string, id:string)
 }
 
 let idCliente:string;
-//Funcion realiza el envio de datos a la BD 
-export async function compra(list:Array<pedido> ){
-    console.log("mostrando llegada de carrito",  list);//Verificacion
+
+//Funcion realiza el envio de datos a la BD simulacion de compra
+export async function compra(list:Array<pedido>, IdTienda:string){
+    console.log("mostrando llegada de carrito",  list,"id de la tienda", IdTienda);//Verificacion
     let email = fireB.auth().currentUser?.email;  //Busco email del usuario logiado
     
     if(typeof email === "string"){
-        idCliente = await idUser(email)
+       let aux  = await idUser(email)
+       if(typeof aux === "string"){
+            idCliente =aux;  
+       }
+         
     }
     alert(idCliente)
     list.forEach(async (data)=>{
@@ -50,6 +57,7 @@ export async function compra(list:Array<pedido> ){
                 idProducto : data.Id,
                 cantidad : data.count,
                 precio : data.precio,
+                idTienda : IdTienda
             }
         ).then((doc)=>{
             console.log("Compra exitosa", doc.id)
@@ -104,7 +112,7 @@ export async function loadData() { // Carga los datos del usuario logueado a la 
     return result;
 }
 
-export async function idUser(email:string)  { // devuelve el id del usuario logeado
+export async function idUser(email:string)  { 
     let aux1:string;
     const result = await database.collection("usuarios").where("correo", "==", email).get()
     .then((querySnapshot)=>{
@@ -118,16 +126,14 @@ export async function idUser(email:string)  { // devuelve el id del usuario loge
           console.log(error,"error al buscar el usuario");
       return false
     })
-    return String(result)
+
+    if(typeof result ==="string"){
+        return result;
+    }
 }
 
 export async function EditClient(idClient:string, barrio:string, direccion:string,nombre:string) {
     await database.collection("cliente").doc().set({
-        //                                                                   /   
-        //                _____    __        ___   _   _   __       _  _   __   __
-        //                  |     |__       |___| | \ / | |  |     | \/ | |__| |__
-        //                  |     |__       |   | |     | |__|     |    | |  |  __|
-        //                                                              
     }).then((e)=>{
         console.log("actualizacion exitosa", e);
         return true;
@@ -135,4 +141,27 @@ export async function EditClient(idClient:string, barrio:string, direccion:strin
         console.log("error al editar", error);
         return false;
     })
+}
+
+export async function product(id:string) {
+    let name:string;
+    const result = await database.collection("producto").where("id", "==", id).get()
+    .then((user)=>{
+        user.forEach((item)=>{
+            name = item.data().nombre;
+        })
+        return name;
+    }).catch()
+    return result;
+}
+
+export async function user(id:string) { // Busca usuario por id y devuelve el nombre del usuario en cuestion
+    let name:string;
+    const result = await database.collection("usuarios").where("id", "==", id).get().then((user)=>{
+        user.forEach((item)=>{
+            name= item.data().nombre;
+        })
+        return name;
+    }).catch()
+    return result;
 }

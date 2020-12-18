@@ -7,24 +7,7 @@ import {loadDataStore,editStore} from "../Controller/tiendaController"
 import { registUser } from '../Controller/UserController';
 
 var ID:string ;
-//Simulando los datos
-const Tiendas: DatosTienda[] = [
-    {
-      name: 'Tienda mi super fresh',
-      Localizacion: 'Localización',
-      Calificacion: 2,
-      Id: "1",
-      UrlImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7L9WW1ZfI60LtfM74zaBl-16DwDNIfB_aLw&usqp=CAU"
-    },
-    {name: 'Tienda la barata',
-    Localizacion: 'Localización',
-    Calificacion: 1,
-    Id: "2",
-    UrlImg: "https://image.freepik.com/vector-gratis/diseno-logotipo-supermercado-lema-tienda_23-2148458443.jpg"
-  
-    }
-  ]
-  
+
   const MiTienda: React.FC = () => {
 
     const [name , setName] = useState('');
@@ -39,8 +22,8 @@ const Tiendas: DatosTienda[] = [
       async function dataStore() {
         let result = await loadDataStore();
         if(typeof result !== "boolean" ){
-          setAddress(result.Localizacion);
-          setName(result.name)
+       //   setAddress(result.Localizacion);
+       //  setName(result.name)
             ID = result.Id
         }
 

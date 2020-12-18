@@ -50,7 +50,10 @@ const Register: React.FC = () => {
   async function registStore(nombre : string, localizacion : string){
     let correo = await userCurrent();
     if (correo !==false){
-     id = await idUser(correo)
+     let auxiliar = await idUser(correo);
+     if(typeof auxiliar === "string"){
+       id = auxiliar;
+     }
     }
     await DataStore(nombre, id, localizacion) 
     
@@ -59,7 +62,11 @@ const Register: React.FC = () => {
   async function registClient(barrio:string,direccion:string) {
     let correo = await userCurrent();
     if (correo !==false){
-     id = await idUser(correo)
+     let auxiliar = await idUser(correo);
+     if(typeof auxiliar === "string"){
+       id = auxiliar;
+     }
+
     }
     await RegisterClient(barrio,direccion,id)
   }
@@ -157,7 +164,7 @@ const Register: React.FC = () => {
           {/*--------------------------------------- Modal ------------------------------------ */}
 
           <IonRow>
-              <IonCol>
+              <IonCol  class= "clasePrueba">
                 <IonModal isOpen={RegBarrio} cssClass='my-custom-class'>
                     <IonGrid>
               <IonRow>
@@ -181,8 +188,8 @@ const Register: React.FC = () => {
               <IonCol>
                <IonModal isOpen={confirmar} cssClass='my-custom-class'>
                 <IonLabel class="entrada">Desea mantener la sesión iniciada? </IonLabel>
-               <IonCol>  <IonButton href={"/page"+tUser+"/Inicio"} >Si</IonButton>  </IonCol>
-                   <IonCol>   <IonButton href={"/page"+tUser+"/Inicio"}>No</IonButton>  </IonCol>
+               <IonCol>  <IonButton href={"/page/"+tUser+"/Inicio"} >Si</IonButton>  </IonCol>
+                   <IonCol>   <IonButton href={"/page/"+tUser+"/Inicio"}>No</IonButton>  </IonCol>
               
                </IonModal>
               </IonCol>

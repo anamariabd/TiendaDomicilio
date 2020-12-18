@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import { IonGrid, IonRow, IonCol, useIonViewWillEnter, IonCardContent, IonButton, } from '@ionic/react';
+import React, { useState, useContext } from 'react';
+import { IonGrid, IonRow, IonCol,  IonCardContent, IonButton, } from '@ionic/react';
 import '../Styles/styles.css'
 import {FilaProducto} from '../SingleComponents/FilaProducto'
 import {listCard, DatosProduct} from '../SingleComponents/ProductCard'
 import {compra} from "../Controller/clienteController"
+import { localStorageAdd, localStorageGet } from '../Controller/StorageLocal'
 
 interface ProductsCarrito{
   name: string;
@@ -11,8 +12,27 @@ interface ProductsCarrito{
   marca: string;
   Precio: number;
 }
-function comprar(lista:Array<pedido>){
-  compra(lista);
+
+export const handleId= (e:string) =>{
+ 
+  IdTienda=e;
+  console.log("ID",IdTienda);
+  localStorageAdd( "ID", IdTienda);
+  return IdTienda;
+
+}
+
+
+var IdTienda:string;
+let valor = localStorageGet("ID");
+if(typeof valor === "string"){
+    IdTienda = valor;
+    console.log("VALOR ID TIEENDA: ", IdTienda);
+}
+
+function comprar(lista:Array<pedido>, IdTienda:string){
+  console.log("Id en comprar", IdTienda);
+  compra(lista, IdTienda);
 
 }
 
@@ -86,7 +106,7 @@ const Carrito: React.FC =() => {
         <IonCol> Cantidad total: {0}</IonCol>
         <IonCol>Total a pagar: {Total}</IonCol>
       </IonRow>
-     <IonButton onClick={()=>{ setCompra(true);setTimeout( ()=>{comprar(list)}, 2000 );}}> Comprar </IonButton>
+     <IonButton onClick={()=>{ setCompra(true);setTimeout( ()=>{comprar(list, IdTienda)}, 2000 );}}> Comprar </IonButton>
     </IonGrid>                     
 
         </IonCardContent>

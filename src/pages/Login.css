@@ -21,8 +21,13 @@
 #bIngresar{
     text-align: center;
 }
-
+/* 
 .sc-ion-modal-md-h {
     --width: 50%;
     --height: 35%;
+} */
+ .sc-ion-modal-md-h {
+
+--height:55%;
+--width:30%
 }

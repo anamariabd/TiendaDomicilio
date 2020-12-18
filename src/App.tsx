@@ -35,7 +35,8 @@ const App: React.FC = () => {
           <IonRouterOutlet>
               <Route path="/logo" component= {Logo} exact />
               <Route path="/login" component= {Login} exact />
-              <PrivateRoute path="/page/:Tipo/:name"  component={InicioUser} />
+              <Route path="/page/:Tipo/:name" component= {InicioUser} exact />
+              {/* <PrivateRoute path="/page/:Tipo/:name"  component={InicioUser} /> */}
         {/* <Route path="/page/:Tipo/:name" render={() => {return userCurrent!? <InicioUser/> : <Login/>;}}/>    */}
         
            {/*   <PrivateRoute path="/page/:Tipo/:name" authenticated={true} component={InicioUser}/>*/ } 

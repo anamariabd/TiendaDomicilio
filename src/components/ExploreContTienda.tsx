@@ -7,6 +7,7 @@ import MiPerfil from './MiPerfil';
 import EstadoPedido from '../pages/EstadoPedido';
 import Domiciliarios from '../pages/Domiciliarios';
 import Inicio from './Inicio';
+import ListaPedidos from '../SingleComponents/ListaPedidos'
 
 interface ContainerProps {
   name: string;
@@ -47,6 +48,10 @@ const ExploreContTienda: React.FC<ContainerProps> = ({ name }) => {
          return ( 
          <MiPerfil/>
          )
+         case 'ListaPedidos':
+          return(
+            <ListaPedidos/>
+          )
          default:
          return (
           
