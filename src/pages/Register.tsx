@@ -60,15 +60,17 @@ const Register: React.FC = () => {
   }
   //REGISTRO DATOS DEL CLIENTE
   async function registClient(barrio:string,direccion:string) {
+  
     let correo = await userCurrent();
+
     if (correo !==false){
      let auxiliar = await idUser(correo);
-     if(typeof auxiliar === "string"){
-       id = auxiliar;
-     }
 
+    if(typeof auxiliar === "string"){
+       id = auxiliar;
+       await RegisterClient(barrio,direccion,auxiliar)
+     } 
     }
-    await RegisterClient(barrio,direccion,id)
   }
   //VERIFICA
   const Signed =()=>{
@@ -87,7 +89,7 @@ const Register: React.FC = () => {
 
   const RegistrarCliente = () =>{
     registClient(Barrio, address); 
-    setTimeout( Signed ,3000);
+    setTimeout( Signed, 5000);
   }
   const [imagen,  setImagen] = useState<File>();
 

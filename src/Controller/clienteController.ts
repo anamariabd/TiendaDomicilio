@@ -1,7 +1,5 @@
-import { infinite, returnUpForward } from "ionicons/icons"
 import {database,produt,fireB} from "./UserController"
-import {pedido} from "../components/Carrito"
-import {localStorageGet} from '../Controller/StorageLocal'
+import {pedido} from "../components/Carrito";
 
 export interface store{
     id : string,
@@ -87,7 +85,6 @@ export async function listStore() {
             return 0;
         })
     return result;
-    
     
 }
 

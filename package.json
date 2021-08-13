@@ -19,6 +19,7 @@
     "firebase": "^8.2.1",
     "firebase-admin": "^9.4.1",
     "firebase-tools": "^9.0.1",
+    "ionic": "^5.4.16",
     "ionicons": "^5.0.0",
     "react": "^16.14.0",
     "react-dom": "^16.13.0",
